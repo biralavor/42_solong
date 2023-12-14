@@ -17,7 +17,7 @@ static mlx_image_t* image;
 
 int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
 {
-    return (r << 24 | g << 16 | b << 8 | a);
+    return (r << 24 | g << 24 | b << 16 | a);
 }
 
 void ft_randomize(void* param)
@@ -51,9 +51,56 @@ void ft_hook(void* param)
 		image->instances[0].x -= 5;
 	if (mlx_is_key_down(mlx, MLX_KEY_RIGHT))
 		image->instances[0].x += 5;
+	if (mlx_is_key_down(mlx, MLX_KEY_W))
+		image->instances[0].y -= 5;
+	if (mlx_is_key_down(mlx, MLX_KEY_S))
+		image->instances[0].y += 5;
+	if (mlx_is_key_down(mlx, MLX_KEY_A))
+		image->instances[0].x -= 5;
+	if (mlx_is_key_down(mlx, MLX_KEY_D))
+		image->instances[0].x += 5;
+	
 }
 
-// -----------------------------------------------------------------------------
+int my_keyhook(mlx_key_data_t keydata, void* param)
+{
+	int	movenbr;
+
+	movenbr = 0;
+	if (keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS)
+	{
+		puts("\nLets Go!!!");
+		movenbr++;
+		printf("\nTotal Moves = %i", movenbr);
+	}
+
+	if (keydata.key == MLX_KEY_S && keydata.action == MLX_PRESS)
+		puts("\nOh, Gosh: pull back! Pull back!!");
+
+	if (keydata.key == MLX_KEY_A && keydata.action == MLX_PRESS)
+		puts("\nDodging left!");
+
+	if (keydata.key == MLX_KEY_D && keydata.action == MLX_PRESS)
+		puts("\nSliding right!");
+	
+	return (movenbr);
+}
+
+void my_scrollhook(double xdelta, double ydelta, void* param)
+{
+	// Simple up or down detection.
+	if (ydelta > 0)
+		puts("Up!");
+	else if (ydelta < 0)
+		puts("Down!");
+	
+	// Can also detect a mousewheel that go along the X (e.g: MX Master 3)
+	if (xdelta < 0)
+		puts("Sliiiide to the left!");
+	else if (xdelta > 0)
+		puts("Sliiiide to the right!");
+}
+
 
 int32_t main(int32_t argc, const char* argv[])
 {
@@ -65,7 +112,7 @@ int32_t main(int32_t argc, const char* argv[])
 		puts(mlx_strerror(mlx_errno));
 		return(EXIT_FAILURE);
 	}
-	if (!(image = mlx_new_image(mlx, 128, 128)))
+	if (!(image = mlx_new_image(mlx, 4, 4)))
 	{
 		mlx_close_window(mlx);
 		puts(mlx_strerror(mlx_errno));
@@ -78,9 +125,10 @@ int32_t main(int32_t argc, const char* argv[])
 		return(EXIT_FAILURE);
 	}
 	
+	mlx_scroll_hook(mlx, &my_scrollhook, NULL);
 	mlx_loop_hook(mlx, ft_randomize, mlx);
 	mlx_loop_hook(mlx, ft_hook, mlx);
-
+	mlx_key_hook(mlx, &my_keyhook, NULL);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
 	return (EXIT_SUCCESS);
