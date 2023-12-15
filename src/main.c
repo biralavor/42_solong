@@ -1,19 +1,22 @@
-// -----------------------------------------------------------------------------
-// Codam Coding College, Amsterdam @ 2022-2023 by W2Wizard.
-// See README in the root project for more information.
-// -----------------------------------------------------------------------------
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/14 14:47:07 by umeneses          #+#    #+#             */
+/*   Updated: 2023/12/15 13:14:04 by umeneses         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
 #include "../libs/codam/include/MLX42/MLX42.h"
+#include "../headers/so_long.h"
 
 #define WIDTH 512
 #define HEIGHT 512
 
 static mlx_image_t* image;
-
-// -----------------------------------------------------------------------------
 
 int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
 {
@@ -39,51 +42,48 @@ void ft_randomize(void* param)
 
 void ft_hook(void* param)
 {
-	mlx_t* mlx = param;
+	mlx_t*		mlx = param;
 
 	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(mlx);
 	if (mlx_is_key_down(mlx, MLX_KEY_UP))
-		image->instances[0].y -= 5;
+			image->instances[0].y -= 5;
 	if (mlx_is_key_down(mlx, MLX_KEY_DOWN))
-		image->instances[0].y += 5;
+			image->instances[0].y += 5;
 	if (mlx_is_key_down(mlx, MLX_KEY_LEFT))
 		image->instances[0].x -= 5;
 	if (mlx_is_key_down(mlx, MLX_KEY_RIGHT))
 		image->instances[0].x += 5;
 	if (mlx_is_key_down(mlx, MLX_KEY_W))
-		image->instances[0].y -= 5;
+			image->instances[0].y -= 5;
 	if (mlx_is_key_down(mlx, MLX_KEY_S))
-		image->instances[0].y += 5;
+			image->instances[0].y += 5;
 	if (mlx_is_key_down(mlx, MLX_KEY_A))
 		image->instances[0].x -= 5;
 	if (mlx_is_key_down(mlx, MLX_KEY_D))
 		image->instances[0].x += 5;
-	
 }
 
-int my_keyhook(mlx_key_data_t keydata, void* param)
+void my_keyhook(mlx_key_data_t keydata, void* param)
 {
-	int	movenbr;
+	static t_player	moves;
 
-	movenbr = 0;
-	if (keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS)
-	{
-		puts("\nLets Go!!!");
-		movenbr++;
-		printf("\nTotal Moves = %i", movenbr);
-	}
-
-	if (keydata.key == MLX_KEY_S && keydata.action == MLX_PRESS)
-		puts("\nOh, Gosh: pull back! Pull back!!");
-
-	if (keydata.key == MLX_KEY_A && keydata.action == MLX_PRESS)
-		puts("\nDodging left!");
-
-	if (keydata.key == MLX_KEY_D && keydata.action == MLX_PRESS)
-		puts("\nSliding right!");
-	
-	return (movenbr);
+	if ((keydata.key == MLX_KEY_W | keydata.key == MLX_KEY_UP) \
+		&& keydata.action == MLX_PRESS)
+			printf("\nLet's Go!!! \
+			\nTotal Moves = %i", ++moves.totalmoves);
+	if ((keydata.key == MLX_KEY_S | keydata.key == MLX_KEY_DOWN) \
+		&& keydata.action == MLX_PRESS)
+		printf("\nOh, Gosh: pull back! Pull back! \
+			\nTotal Moves = %i", ++moves.totalmoves);
+	if ((keydata.key == MLX_KEY_A | keydata.key == MLX_KEY_LEFT) \
+		&& keydata.action == MLX_PRESS)
+		printf("\nDodging left! \
+			\nTotal Moves = %i", ++moves.totalmoves);
+	if ((keydata.key == MLX_KEY_D | keydata.key == MLX_KEY_RIGHT) \
+		&& keydata.action == MLX_PRESS)
+		printf("\nSliding right! \
+			\nTotal Moves = %i", ++moves.totalmoves);
 }
 
 void my_scrollhook(double xdelta, double ydelta, void* param)
@@ -93,7 +93,6 @@ void my_scrollhook(double xdelta, double ydelta, void* param)
 		puts("Up!");
 	else if (ydelta < 0)
 		puts("Down!");
-	
 	// Can also detect a mousewheel that go along the X (e.g: MX Master 3)
 	if (xdelta < 0)
 		puts("Sliiiide to the left!");
@@ -101,10 +100,9 @@ void my_scrollhook(double xdelta, double ydelta, void* param)
 		puts("Sliiiide to the right!");
 }
 
-
 int32_t main(int32_t argc, const char* argv[])
 {
-	mlx_t* mlx;
+	mlx_t*	mlx;
 
 	// Gotta error check this stuff
 	if (!(mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true)))
@@ -124,7 +122,7 @@ int32_t main(int32_t argc, const char* argv[])
 		puts(mlx_strerror(mlx_errno));
 		return(EXIT_FAILURE);
 	}
-	
+
 	mlx_scroll_hook(mlx, &my_scrollhook, NULL);
 	mlx_loop_hook(mlx, ft_randomize, mlx);
 	mlx_loop_hook(mlx, ft_hook, mlx);
