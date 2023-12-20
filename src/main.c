@@ -6,17 +6,12 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:47:07 by umeneses          #+#    #+#             */
-/*   Updated: 2023/12/15 13:14:04 by umeneses         ###   ########.fr       */
+/*   Updated: 2023/12/20 18:41:02 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libs/codam/include/MLX42/MLX42.h"
 #include "../headers/so_long.h"
-
-#define WIDTH 512
-#define HEIGHT 512
-
-static mlx_image_t* image;
 
 int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
 {
@@ -74,7 +69,7 @@ void my_keyhook(mlx_key_data_t keydata, void* param)
 			\nTotal Moves = %i", ++moves.totalmoves);
 	if ((keydata.key == MLX_KEY_S | keydata.key == MLX_KEY_DOWN) \
 		&& keydata.action == MLX_PRESS)
-		printf("\nOh, Gosh: pull back! Pull back! \
+		printf("\nOh, Gosh! Pulling back now! \
 			\nTotal Moves = %i", ++moves.totalmoves);
 	if ((keydata.key == MLX_KEY_A | keydata.key == MLX_KEY_LEFT) \
 		&& keydata.action == MLX_PRESS)
