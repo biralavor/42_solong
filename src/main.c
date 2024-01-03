@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:47:07 by umeneses          #+#    #+#             */
-/*   Updated: 2023/12/20 18:41:02 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/03 15:51:49 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,15 +83,17 @@ void my_keyhook(mlx_key_data_t keydata, void* param)
 
 void my_scrollhook(double xdelta, double ydelta, void* param)
 {
+	mlx_key_data_t keydata;
+
 	// Simple up or down detection.
 	if (ydelta > 0)
 		puts("Up!");
 	else if (ydelta < 0)
 		puts("Down!");
 	// Can also detect a mousewheel that go along the X (e.g: MX Master 3)
-	if (xdelta < 0)
+	if (keydata.key == MLX_KEY_LEFT_SHIFT && ydelta > 0)
 		puts("Sliiiide to the left!");
-	else if (xdelta > 0)
+	else if (keydata.key == MLX_KEY_LEFT_SHIFT && ydelta < 0)
 		puts("Sliiiide to the right!");
 }
 
@@ -100,7 +102,7 @@ int32_t main(int32_t argc, const char* argv[])
 	mlx_t*	mlx;
 
 	// Gotta error check this stuff
-	if (!(mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true)))
+	if (!(mlx = mlx_init(WIDTH, HEIGHT, "42_Astronauts_Sooo_Long_Game", true)))
 	{
 		puts(mlx_strerror(mlx_errno));
 		return(EXIT_FAILURE);
@@ -117,7 +119,9 @@ int32_t main(int32_t argc, const char* argv[])
 		puts(mlx_strerror(mlx_errno));
 		return(EXIT_FAILURE);
 	}
-
+	
+	mlx_image_to_window(mlx, image, 0, 0);
+	mlx_put_pixel(image, 10, 10, 0xFF0000FF);
 	mlx_scroll_hook(mlx, &my_scrollhook, NULL);
 	mlx_loop_hook(mlx, ft_randomize, mlx);
 	mlx_loop_hook(mlx, ft_hook, mlx);
