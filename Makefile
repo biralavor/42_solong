@@ -6,44 +6,64 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/03 15:54:10 by umeneses          #+#    #+#              #
-#    Updated: 2024/01/03 15:55:45 by umeneses         ###   ########.fr        #
+#    Updated: 2024/01/03 18:21:18 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		:= so_long
+NAME		= so_long
 
-AUTHOR		:= umeneses
+AUTHOR		= umeneses
 
-CFLAGS		:= -Ofast
+CFLAGS		= -Ofast
 
-LIBMLX		:= ./libs/codam
+MLXCODAM_D	= ./libs/codam
 
-HEADERS		:= -I ./include -I $(LIBMLX)/include/MLX42/
+LIBFT_D		= ./libs/libft
 
-LIBS		:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
+HEADERS		= -I ./headers/ -I $(MLXCODAM_D)/include/MLX42/
 
-SRCS		:= $(shell find ./src -iname "main.c")
+MLX42_A		= $(MLXCODAM_D)/build
 
-OBJS		:= ${SRCS:.c=.o}
+SRC_D		= ./src/
+
+SRCS		= $(SRC_D)main.c
+
+AR			= ar -rcs
+
+RM			= rm -rf
+
+OBJS		= ${SRCS:.c=.o}
 
 all:		libmlx $(NAME)
 
-libmlx:
-	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
-
-%.o:		%.c
-	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS) && printf "Compiling: $(notdir $<)"
-
 $(NAME):	$(OBJS)
-	@$(CC) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
+			cp $(LIBFT_D)/libft.a $(NAME)
+			cp $(MLX42_A)/libmlx42.a $(NAME)
+			$(AR) $(NAME) $(OBJS)
+			$(CC) $(OBJS) $(MLX42_A)/libmlx42.a -ldl -lglfw -pthread -lm \
+				$(HEADERS) -o $(NAME)
+
+libmlx:		libft_lib
+			@cmake $(MLXCODAM_D) -B $(MLXCODAM_D)/build
+			$(MAKE) -C $(MLXCODAM_D)/build -j4
+
+libft_lib:
+			$(MAKE) -C $(LIBFT_D)
+
+%.o: 		%.c
+			@$(CC) -c $(CFLAGS) $< -o $@ $(HEADERS)
+			@echo "Compiling: $(notdir $<)"
 
 clean:
-	@rm -rf $(OBJS)
-	@rm -rf $(LIBMLX)/build
+			$(RM) $(OBJS)
+			$(RM) $(MLXCODAM_D)/build
+			$(MAKE) -C $(LIBFT_D) clean
 
 fclean:		clean
-	@rm -rf $(NAME)
+			$(RM) $(NAME)
+			$(RM) $(MLXCODAM_D)/build
+			$(MAKE) -C $(LIBFT_D) fclean
 
-re:			fclean clean all
+re:			fclean all
 
-.PHONY:		all, clean, fclean, re, libmlx
+.PHONY:		libft_lib libmlx all clean fclean re
