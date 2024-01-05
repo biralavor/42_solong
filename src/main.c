@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:47:07 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/05 19:02:16 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/05 19:07:25 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void error(void)
 {
 	puts(mlx_strerror(mlx_errno));
-	return (EXIT_FAILURE);
+	exit(EXIT_FAILURE);
 }
 
 int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
