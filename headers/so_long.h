@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:46:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/05 18:19:01 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/05 18:26:33 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_player
 	int	totalmoves;
 }		t_player;
 
-static mlx_image_t* image;
+static mlx_image_t* play_img;
 mlx_image_t*		cvs_img;
 mlx_image_t*		ship_img;
 mlx_texture_t*		ship_texture;
