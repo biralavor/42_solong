@@ -6,14 +6,16 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/03 15:54:10 by umeneses          #+#    #+#              #
-#    Updated: 2024/01/03 18:21:18 by umeneses         ###   ########.fr        #
+#    Updated: 2024/01/05 16:41:34 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= so_long
+NAME_BONUS	= so_long_bonus
 
 AUTHOR		= umeneses
 
+#CFLAGS		= -Wall -Wextra -Werror
 CFLAGS		= -Ofast
 
 MLXCODAM_D	= ./libs/codam
@@ -34,16 +36,15 @@ RM			= rm -rf
 
 OBJS		= ${SRCS:.c=.o}
 
-all:		libmlx $(NAME)
+all:		libft_lib libmlx $(NAME)
 
 $(NAME):	$(OBJS)
-			cp $(LIBFT_D)/libft.a $(NAME)
-			cp $(MLX42_A)/libmlx42.a $(NAME)
 			$(AR) $(NAME) $(OBJS)
-			$(CC) $(OBJS) $(MLX42_A)/libmlx42.a -ldl -lglfw -pthread -lm \
-				$(HEADERS) -o $(NAME)
+			$(CC) $(OBJS) $(MLX42_A)/libmlx42.a $(LIBFT_D)/libft.a \
+			-ldl -lglfw -pthread -lm $(HEADERS) -o $(NAME) $(CFLAGS)
+			@echo "Game Ready!"
 
-libmlx:		libft_lib
+libmlx:
 			@cmake $(MLXCODAM_D) -B $(MLXCODAM_D)/build
 			$(MAKE) -C $(MLXCODAM_D)/build -j4
 
@@ -51,7 +52,7 @@ libft_lib:
 			$(MAKE) -C $(LIBFT_D)
 
 %.o: 		%.c
-			@$(CC) -c $(CFLAGS) $< -o $@ $(HEADERS)
+			@$(CC) -c $(CFLAGS) $< -o $@
 			@echo "Compiling: $(notdir $<)"
 
 clean:
