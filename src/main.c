@@ -6,11 +6,17 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:47:07 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/05 18:28:39 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/05 19:02:16 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/so_long.h"
+
+static void error(void)
+{
+	puts(mlx_strerror(mlx_errno));
+	return (EXIT_FAILURE);
+}
 
 int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
 {
@@ -60,7 +66,7 @@ void keyb_wasd_arrow(void* param)
 
 void movecounter(mlx_key_data_t keydata, void* param)
 {
-	static t_player	moves;
+	static t_game	moves;
 
 	if ((keydata.key == MLX_KEY_W | keydata.key == MLX_KEY_UP) \
 		&& keydata.action == MLX_PRESS)
@@ -108,21 +114,16 @@ int32_t main(int32_t argc, const char* argv[])
 
 	// Gotta error check this stuff
 	if (!(mlx = mlx_init(WIDTH, HEIGHT, "42_Astronauts_So_Long_Game", true)))
-	{
-		puts(mlx_strerror(mlx_errno));
-		return(EXIT_FAILURE);
-	}
+		error();
 	if (!(play_img = mlx_new_image(mlx, 4, 4)))
 	{
 		mlx_close_window(mlx);
-		puts(mlx_strerror(mlx_errno));
-		return(EXIT_FAILURE);
+		error();
 	}
 	if (mlx_image_to_window(mlx, play_img, 0, 0) == -1)
 	{
 		mlx_close_window(mlx);
-		puts(mlx_strerror(mlx_errno));
-		return(EXIT_FAILURE);
+		error();
 	}
 	ui_stats_canvas(mlx, cvs_img);
 	load_texture(mlx, ship_texture, ship_img);
