@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:46:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/05 18:26:33 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/05 18:35:45 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,13 @@
 # define GRAY_COLOR printf("\033[0;36m")
 # define RESET_COLOR printf("\033[0m")
 
-typedef struct s_player
+typedef struct s_game
 {
-	int	totalmoves;
-}		t_player;
+	int		totalmoves;
+	void	*window;
+	int		img_w;
+	int		img_h;
+}			t_game;
 
 static mlx_image_t* play_img;
 mlx_image_t*		cvs_img;
