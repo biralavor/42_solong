@@ -1,0 +1,5 @@
+To find a PNG image: https://www.pngfind.com/
+To crop a image: https://www.iloveimg.com/crop-image
+To resize a image: https://www.iloveimg.com/resize-image
+To rotate a image: https://www.iloveimg.com/rotate-image
+To modify Hue, Saturation and Brightness: https://hsl.imageonline.co/
