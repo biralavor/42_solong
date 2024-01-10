@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:47:07 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/05 19:07:25 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/10 16:47:06 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void movecounter(mlx_key_data_t keydata, void* param)
 		&& keydata.action == MLX_PRESS)
 		printf("\nSliding right! \
 			\nTotal Moves = %i", ++moves.totalmoves);
+	// mlx_put_string(data->mlx, data->combstr[str_img], x, 0)
 }
 
 void ui_stats_canvas(mlx_t* mlx, mlx_image_t* cvs_img)
@@ -95,16 +96,29 @@ void ui_stats_canvas(mlx_t* mlx, mlx_image_t* cvs_img)
 	mlx_image_to_window(mlx, cvs_img, 0, 0);
 }
 
-void load_texture(mlx_t* mlx, mlx_texture_t* ship_texture, mlx_image_t* ship_img)
+void load_texture(mlx_t* mlx, mlx_texture_t* ship, mlx_image_t* ship_img)
 {
-	// Try to load the file
-	ship_texture = mlx_load_png("./textures/ref-space-shuttle-redux.png");
-	if (!ship_texture)
+	ship = mlx_load_png(SPACESHIP);
+	background = mlx_load_png(SPACEFIELD);
+	enemy = mlx_load_png(DEATH);
+	border = mlx_load_png(BOUNDARY);
+	astro = mlx_load_png(ASTRONAUT);
+	earth = mlx_load_png(EARTH);
+	if (!ship || !background || !enemy || !border || !astro || !earth)
 		puts(mlx_strerror(mlx_errno));
-
 	// Convert texture to a displayable image
-	ship_img = mlx_texture_to_image(mlx, ship_texture);
-	if (!ship_img || (mlx_image_to_window(mlx, ship_img, 0, 0) < 0))
+	ship_img = mlx_texture_to_image(mlx, ship);
+	back_img = mlx_texture_to_image(mlx, background);
+	enemy_img = mlx_texture_to_image(mlx, enemy);
+	border_img = mlx_texture_to_image(mlx, border);
+	astro_img = mlx_texture_to_image(mlx, astro);
+	earth_img = mlx_texture_to_image(mlx, earth);
+	if (!ship_img || (mlx_image_to_window(mlx, ship_img, 400, 100) < 0) || \
+		!back_img || (mlx_image_to_window(mlx, back_img, 200, 200) < 0) || \
+		!enemy_img || (mlx_image_to_window(mlx, enemy_img, 300, 400) < 0) || \
+		!border_img || (mlx_image_to_window(mlx, border_img, 0, 300) < 0) || \
+		!astro_img || (mlx_image_to_window(mlx, astro_img, 100, 350) < 0) || \
+		!earth_img || (mlx_image_to_window(mlx, earth_img, 250, 450) < 0))
 		puts(mlx_strerror(mlx_errno));
 }
 
@@ -126,16 +140,22 @@ int32_t main(int32_t argc, const char* argv[])
 		error();
 	}
 	ui_stats_canvas(mlx, cvs_img);
-	load_texture(mlx, ship_texture, ship_img);
+	load_texture(mlx, ship, ship_img);
 	mlx_loop_hook(mlx, play_random_color, mlx);
 	mlx_loop_hook(mlx, keyb_wasd_arrow, mlx);
 	mlx_key_hook(mlx, &movecounter, NULL);
 	mlx_loop(mlx);
-	mlx_delete_image(mlx, ship_img);
-	mlx_delete_image(mlx, cvs_img);
-	mlx_delete_image(mlx, play_img);
-	mlx_delete_texture(ship_texture);
 	mlx_close_window(mlx);
+	mlx_delete_image(mlx, play_img);
+	mlx_delete_image(mlx, cvs_img);
+	mlx_delete_image(mlx, ship_img);
+	mlx_delete_texture(ship);
+	mlx_delete_image(mlx, back_img);
+	mlx_delete_texture(background);
+	mlx_delete_image(mlx, enemy_img);
+	mlx_delete_texture(enemy);
+	mlx_delete_image(mlx, border_img);
+	mlx_delete_texture(border);
 	mlx_terminate(mlx);
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:46:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/05 19:11:13 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/10 16:45:52 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,39 @@
 # define WIDTH 512
 # define HEIGHT 512
 # define BPP sizeof(int32_t)
+# define BUFFERSIZE 30
+# define SPACESHIP "./textures/ref-space-shuttle-redux.png"
+# define SPACEFIELD "./textures/ref-background-hsl-70.png"
+# define DEATH "./textures/ref-death-icon-50.png"
+# define BOUNDARY "./textures/asteroid-35px-hsl.png"
+# define ASTRONAUT "./textures/astronaut-38px.png"
+# define EARTH "./textures/earth-40px.png"
 # define GRAY_COLOR printf("\033[0;36m")
 # define RESET_COLOR printf("\033[0m")
 
 typedef struct s_game
 {
+	mlx_t	*mlx;
 	int		totalmoves;
 	void	*window;
 	int		img_w;
 	int		img_h;
 }			t_game;
 
-static mlx_image_t* play_img;
-mlx_image_t*		cvs_img;
-mlx_image_t*		ship_img;
-mlx_texture_t*		ship_texture;
+static mlx_image_t *play_img;
+mlx_image_t			*cvs_img;
+mlx_texture_t		*ship;
+mlx_image_t			*ship_img;
+mlx_image_t			*back_img;
+mlx_texture_t		*background;
+mlx_texture_t		*enemy;
+mlx_image_t			*enemy_img;
+mlx_texture_t		*border;
+mlx_image_t			*border_img;
+mlx_texture_t		*astro;
+mlx_image_t			*astro_img;
+mlx_texture_t		*earth;
+mlx_image_t			*earth_img;
 
 void	*ft_memset(void *str, int c, size_t size);
 

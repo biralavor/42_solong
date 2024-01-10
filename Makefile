@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/03 15:54:10 by umeneses          #+#    #+#              #
-#    Updated: 2024/01/05 17:15:40 by umeneses         ###   ########.fr        #
+#    Updated: 2024/01/09 18:47:53 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,10 +43,11 @@ RM				= rm -rf
 all:			libft_lib libmlx $(NAME)
 
 $(NAME):		$(OBJS)
-				$(AR) $(NAME) $(OBJS)
-				$(CC) $(OBJS) $(MLX42_A)/libmlx42.a $(LIBFT_D)/libft.a \
+				@$(AR) $(NAME) $(OBJS)
+				@$(CC) $(OBJS) $(MLX42_A)/libmlx42.a $(LIBFT_D)/libft.a \
 				-ldl -lglfw -pthread -lm $(HEADERS) -o $(NAME) $(CFLAGS)
 				@echo "Game Ready!"
+				@echo "Hit on terminal: './so_long map/YOUR-MAP-HERE'"
 
 libmlx:
 				@cmake $(MLXCODAM_D) -B $(MLXCODAM_D)/build
