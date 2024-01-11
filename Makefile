@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/03 15:54:10 by umeneses          #+#    #+#              #
-#    Updated: 2024/01/09 18:47:53 by umeneses         ###   ########.fr        #
+#    Updated: 2024/01/11 10:36:06 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ MLX42_A			= $(MLXCODAM_D)/build
 
 SRC_D			= ./src/
 
-SRCS			= $(SRC_D)main.c
+SRCS			= $(SRC_D)main.c \
+					$(SRC_D)loading_images.c
 
 OBJS			= ${SRCS:.c=.o}
 

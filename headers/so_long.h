@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:46:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/10 16:45:52 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/11 11:11:59 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,28 +34,29 @@
 
 typedef struct s_game
 {
-	mlx_t	*mlx;
-	int		totalmoves;
-	void	*window;
-	int		img_w;
-	int		img_h;
-}			t_game;
+	mlx_t			*mlx;
+	mlx_image_t		*play_img;
+	mlx_image_t		*cvs_img;
+	int				totalmoves;
+	void			*window;
+	int				img_w;
+	int				img_h;
+	mlx_texture_t	*ship;
+	mlx_image_t		*ship_img;
+	mlx_texture_t	*background;
+	mlx_image_t		*back_img;
+	mlx_texture_t	*enemy;
+	mlx_image_t		*enemy_img;
+	mlx_texture_t	*border;
+	mlx_image_t		*border_img;
+	mlx_texture_t	*astro;
+	mlx_image_t		*astro_img;
+	mlx_texture_t	*earth;
+	mlx_image_t		*earth_img;
+}					t_game;
 
-static mlx_image_t *play_img;
-mlx_image_t			*cvs_img;
-mlx_texture_t		*ship;
-mlx_image_t			*ship_img;
-mlx_image_t			*back_img;
-mlx_texture_t		*background;
-mlx_texture_t		*enemy;
-mlx_image_t			*enemy_img;
-mlx_texture_t		*border;
-mlx_image_t			*border_img;
-mlx_texture_t		*astro;
-mlx_image_t			*astro_img;
-mlx_texture_t		*earth;
-mlx_image_t			*earth_img;
 
 void	*ft_memset(void *str, int c, size_t size);
+void	load_texture(t_game *game);
 
 #endif
