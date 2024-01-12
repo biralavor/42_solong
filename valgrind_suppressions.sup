@@ -1,6 +1,3 @@
-*/
-valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --log-file=valgrind-out.txt --suppressions=.suppress_mlx_error.sup ./so_long
-/*
 {
    <MLX_CODAM>
    Memcheck:Leak
