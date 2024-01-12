@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:46:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/11 11:11:59 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/12 17:49:08 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,12 @@
 
 # include "../libs/codam/include/MLX42/MLX42.h"
 # include "../libs/libft/libft.h"
+# include "../libs/gnl/get_next_line.h"
+# include "../libs/ft_printf/ft_printf.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <stdbool.h>
+# include <fcntl.h>
 
 # define WIDTH 512
 # define HEIGHT 512
@@ -29,18 +32,25 @@
 # define BOUNDARY "./textures/asteroid-35px-hsl.png"
 # define ASTRONAUT "./textures/astronaut-38px.png"
 # define EARTH "./textures/earth-40px.png"
-# define GRAY_COLOR printf("\033[0;36m")
-# define RESET_COLOR printf("\033[0m")
+# define COLOR_RED ft_printf("\033[0;31m")
+# define COLOR_GREEN ft_printf("\033[0;32m")
+# define COLOR_YELLOW ft_printf("\033[0;33m")
+# define COLOR_PURPLE ft_printf("\033[0;35m")
+# define COLOR_CYAN ft_printf("\033[0;36m")
+# define COLOR_RESET ft_printf("\033[0m")
 
 typedef struct s_game
 {
 	mlx_t			*mlx;
 	mlx_image_t		*play_img;
 	mlx_image_t		*cvs_img;
+	mlx_key_data_t	*keydata;
 	int				totalmoves;
 	void			*window;
 	int				img_w;
 	int				img_h;
+	char			*selected_map;
+	char			**map;
 	mlx_texture_t	*ship;
 	mlx_image_t		*ship_img;
 	mlx_texture_t	*background;
@@ -55,8 +65,10 @@ typedef struct s_game
 	mlx_image_t		*earth_img;
 }					t_game;
 
-
 void	*ft_memset(void *str, int c, size_t size);
 void	load_texture(t_game *game);
+char	*read_map(int32_t fd);
+char	**map_builder(int32_t fd, t_game *game);
+
 
 #endif
