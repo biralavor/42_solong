@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/26 20:31:36 by umeneses          #+#    #+#              #
-#    Updated: 2023/09/11 15:08:24 by umeneses         ###   ########.fr        #
+#    Updated: 2024/01/12 19:33:17 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,7 @@ BONUS_FTS			= ft_lstadd_front_bonus.c	\
 					ft_lstlast_bonus.c			\
 					ft_lstmap_bonus.c			\
 					ft_lstnew_bonus.c			\
-					ft_lstsize_bonus.c			\
+					ft_lstsize_bonus.c
 
 INCLUDE				= libft.h
 
@@ -75,7 +75,7 @@ CFLAGS 				= -Wall -Wextra -Werror
 
 all:				$(NAME)
 
-$(NAME):			$(OBJS)
+$(NAME):			$(OBJS) bonus
 
 %.o: %.c
 					$(CC) -c $(CFLAGS) $< -o $@
