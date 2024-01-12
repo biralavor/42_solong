@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_map.c                                         :+:      :+:    :+:   */
+/*   map_read.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 14:29:17 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/10 14:50:07 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/12 17:52:05 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/so_long.h"
+#include "so_long.h"
 
-char	*read_file(int32_t fd)
+char	*read_map(int32_t fd)
 {
 	int32_t	buffer_len;
 	char	*row;
