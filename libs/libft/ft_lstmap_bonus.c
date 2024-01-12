@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 13:58:17 by umeneses          #+#    #+#             */
-/*   Updated: 2023/09/11 14:10:22 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/12 19:45:21 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,19 @@
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	*new_node;
+	t_list	*new_list;
 
-	new_node = ft_calloc(1, sizeof(t_list));
-	if (!new_node)
-		return (NULL);
-	new_node = ft_lstiter(lst, f);
-	return (new_node);
+	new_list = NULL;
+	while (lst)
+	{
+		new_node = ft_lstnew(f(lst->content));
+		if (!new_node)
+		{
+			ft_lstclear(&new_node, del);
+			return (NULL);
+		}
+		ft_lstadd_back(&new_list, new_node);
+		lst = lst->next;
+	}
+	return (new_list);
 }
