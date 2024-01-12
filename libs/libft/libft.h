@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 20:30:01 by umeneses          #+#    #+#             */
-/*   Updated: 2023/12/13 14:56:16 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/12 17:27:41 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@
 # include <stdlib.h>
 /*	Headers for mandatory functions */
 
-typedef struct s_list
+typedef struct lib_s_list
 {
-	void			*content;
-	struct s_list	*next;
-}					t_list;
+	void				*content;
+	struct lib_s_list	*next;
+}						t_list;
 
 int				ft_atoi(const char *str);
 void			ft_bzero(void *s, size_t n);
