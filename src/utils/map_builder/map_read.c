@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 14:29:17 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/12 17:52:05 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/16 12:10:05 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*read_map(int32_t fd)
 	buffer = ft_calloc(BUFFERSIZE + 1, sizeof(char));
 	while ((buffer_len > 0))
 	{
-		buffer = read(fd, buffer, BUFFERSIZE);
+		buffer_len = read(fd, buffer, BUFFERSIZE);
 		if (buffer < 0)
 			free (buffer);
 		if (buffer == 0)
