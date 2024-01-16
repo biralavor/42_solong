@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/03 15:54:10 by umeneses          #+#    #+#              #
-#    Updated: 2024/01/12 18:47:20 by umeneses         ###   ########.fr        #
+#    Updated: 2024/01/16 17:06:48 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,36 +34,40 @@ FT_PRINTF_D		:= $(LIBS_D)ft_printf/
 MLX42_D			:= $(LIBS_D)codam/
 MLX42_BUILD		:= $(MLX42_D)build/
 BUILD_D			:= build/
-HEADERS			:= -I/headers/ $(HEADERS_ADDED)
-HEADERS_ADDED	:= -I$(LIBFT_D) \
-					-I$(GNL_D) \
-					-I$(FT_PRINTF_D) \
-					-I$(MLX42_D)include/MLX42/
+HEADERS			:= -I headers $(HEADERS_ADDED)
+HEADERS_ADDED	:= -I $(LIBFT_D) \
+					-I $(GNL_D) \
+					-I $(FT_PRINTF_D) \
+					-I $(MLX42_D)include/MLX42/
 
 # **************************************************************************** #
 #								FILES										   #
 # **************************************************************************** #
 
 LIBTF			= $(addprefix $(LIBFT_D), libft.a)
+GNL				= $(addprefix $(GNL_D), gnl.a)
+FT_PRINTF		= $(addprefix $(FT_PRINTF_D_D), ft_printf.a)
 MLX42			= $(addprefix $(MLX42_BUILD), libmlx42.a)
-LIBS			= $(LIBTF) $(MLX42)
+LIBS			= $(LIBTF) $(GNL) $(FT_PRINTF) $(MLX42)
 
 NAME			= so_long
 NAME_BONUS		= so_long_bonus
 
 SRCS			= $(addprefix $(SRC_D), main.c) \
 					$(addprefix $(SRC_D), loading_images.c)
-SRCS_UTILS		= $(addprefix $(SRC_UTILS_D), map_builder/map_build.c) \
-					$(addprefix $(SRC_UTILS_D), map_builder/map_read.c)
-SRCS_ALL		= $(SRCS) $(SRCS_UTILS)
+SRCS_UTILS		= $(addprefix $(SRC_UTILS_D), \
+					map_builder/map_build.c \
+					map_builder/map_read.c)
 SCRS_BONUS		= 
 
-OBJS			= $(SRCS_ALL:%.c=$(BUILD_D)%.o)
+OBJS			= $(SRCS:%.c=$(BUILD_D)%.o)
+OBJS_UTILS		= $(SRCS_UTILS:%.c=$(BUILD_D)%.o)
+OBJS_ALL		= $(OBJS) $(OBJS_UTILS)
 
 BONUS_FILES		= $(SCRS_BONUS:%.=$(BUILD_D)%.o)
 BONUS_OBJS		= $(BONUS_FILES:%.c=$(BUILD_D)%.o)
 
-DEPENDENCIES	= $(OBJS:.o=.d)
+DEPENDENCIES	= $(OBJS:.o=.d) $(OBJS_UTILS:.o=.d)
 
 # **************************************************************************** #
 #								COMMANDS									   #
@@ -84,25 +88,31 @@ CFLAGS			= -Ofast
 DFLAGS			= -g3
 LDFLAGS			= $(addprefix -L, $(dir $(LIBS)))
 LDLIBS			= -lft -lmlx42 -ldl -lglfw -pthread -lm
-COMPILE_OBJS	= $(CC) $(CFLAGS) -c $< -o $@
-COMPILE_EXE		= $(CC) $(LDFLAGS) $(OBJS) $(LDLIBS) $(HEADERS) -o $(NAME)
+COMPILE_OBJS	= $(CC) $(CFLAGS) -c $< -o $@ $(HEADERS)
+COMPILE_EXE		= $(CC) $(LDFLAGS) $(OBJS_ALL) $(LDLIBS) $(HEADERS) -o $(NAME)
 
 # **************************************************************************** #
 #								TARGETS										   #
 # **************************************************************************** #
 
-all:			libft_lib $(LIBTF) libmlx $(MLX42) $(NAME)
+all:			ft_printf_lib gnl_lib libft_lib libmlx $(NAME)
 
 $(BUILD_D)%.o:	%.c
 				$(MKDIR) $(dir $@)
 				$(COMPILE_OBJS)
 				@echo "Compiling: $(notdir $<)"
-#				mv %.o $(BUILD_D)
 
-$(NAME):		$(OBJS)
+$(NAME):		$(OBJS_ALL)
 				$(COMPILE_EXE)
 				@echo "Game Ready!"
 				@echo "Now, hit on terminal: './so_long map/CHOSE-YOUR-MAP'"
+
+ft_printf_lib:
+				$(MAKE) -C $(FT_PRINTF_D)
+#				mv %.o $(BUILD_D)
+
+gnl_lib:
+				$(MAKE) -C $(GNL_D)
 
 libft_lib:
 				$(MAKE) -C $(LIBFT_D)
@@ -120,13 +130,17 @@ $(NAME_BONUS):	$(BONUS_OBJS)
 #				@echo "Game BONUS Ready!"
 
 clean:
-				$(RM) $(OBJS)
+				$(RM) $(OBJS_ALL)
 				$(RM) $(BUILD_DIR)
 				$(RM) $(MLX42_BUILD)
+				$(MAKE) -C $(FT_PRINTF_D) clean
+				$(MAKE) -C $(GNL_D) clean
 				$(MAKE) -C $(LIBFT_D) clean
 
 fclean:			clean
 				$(RM) $(NAME)
+				$(MAKE) -C $(FT_PRINTF_D) fclean
+				$(MAKE) -C $(GNL_D) fclean
 				$(MAKE) -C $(LIBFT_D) fclean
 
 re:				fclean all
