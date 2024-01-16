@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:47:07 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/12 17:51:53 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/16 13:30:17 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,27 +99,28 @@ t_game *structures_init(void)
 
 int32_t main(int32_t argc, char **argv)
 {
-	t_game	*game;
+	// t_game	*game;
 	int32_t	fd;
 	char	*gnl_temp;
 	int		index;
 
-	index =0;
+	index = 0;
 	if (argc == 2)
 	{
 		fd = open(argv[1], O_RDONLY);
-		while(gnl_temp[index])
+		while (gnl_temp)
 		{
 			COLOR_CYAN;
 			ft_printf(" Reading map file: %s \n", argv[1]);
 			COLOR_PURPLE;
 			ft_printf("MAP line %i = ", index);
 			gnl_temp = get_next_line(fd);
+			ft_printf("%s", gnl_temp);
 			free(gnl_temp);
 			index++;
 		}
 		COLOR_RESET;
-		map_builder(fd, game);
+		// map_builder(fd, game);
 	}
 	// game = structures_init();
 	// game->mlx = mlx_init(WIDTH, HEIGHT, "42_Astronauts_So_Long_Game", true);
