@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:03:14 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/12 17:43:19 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/16 16:36:06 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ int	ft_placeholder(char format, va_list ptr);
 int	ft_putnbrbase(long long int n, char *base);
 int	ft_putptr(long long int n, char *base);
 int	ft_put_unsigned_nbr(unsigned long long int n, char *base);
+int	ft_putchar_fd(int c, int fd);
 
 #endif
