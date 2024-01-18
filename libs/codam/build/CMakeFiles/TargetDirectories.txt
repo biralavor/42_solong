@@ -1,7 +1,0 @@
-/nfs/homes/umeneses/bira/42_solong/libs/codam/build/CMakeFiles/install/strip.dir
-/nfs/homes/umeneses/bira/42_solong/libs/codam/build/CMakeFiles/install.dir
-/nfs/homes/umeneses/bira/42_solong/libs/codam/build/CMakeFiles/list_install_components.dir
-/nfs/homes/umeneses/bira/42_solong/libs/codam/build/CMakeFiles/rebuild_cache.dir
-/nfs/homes/umeneses/bira/42_solong/libs/codam/build/CMakeFiles/edit_cache.dir
-/nfs/homes/umeneses/bira/42_solong/libs/codam/build/CMakeFiles/install/local.dir
-/nfs/homes/umeneses/bira/42_solong/libs/codam/build/CMakeFiles/mlx42.dir
