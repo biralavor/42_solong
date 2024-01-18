@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:46:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/17 18:19:57 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/18 11:29:18 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@
 # define BOUNDARY "./textures/asteroid-35px-hsl.png"
 # define ASTRONAUT "./textures/astronaut-38px.png"
 # define EARTH "./textures/earth-40px.png"
-# define COLOR_RED ft_printf("\033[0;31m")
-# define COLOR_GREEN ft_printf("\033[0;32m")
-# define COLOR_YELLOW ft_printf("\033[0;33m")
-# define COLOR_PURPLE ft_printf("\033[0;35m")
-# define COLOR_CYAN ft_printf("\033[0;36m")
-# define COLOR_RESET ft_printf("\033[0m")
+# define COLOR_RED "\033[0;31m"
+// # define COLOR_GREEN ft_printf("\033[0;32m")
+// # define COLOR_YELLOW ft_printf("\033[0;33m")
+// # define COLOR_PURPLE ft_printf("\033[0;35m")
+// # define COLOR_CYAN ft_printf("\033[0;36m")
+// # define COLOR_RESET ft_printf("\033[0m")
 
 typedef struct s_game
 {
