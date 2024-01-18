@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/03 15:54:10 by umeneses          #+#    #+#              #
-#    Updated: 2024/01/16 17:06:48 by umeneses         ###   ########.fr        #
+#    Updated: 2024/01/18 10:47:51 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,46 +28,46 @@ RESET			:= \033[0m
 SRC_D			:= src/
 SRC_UTILS_D		:= $(SRC_D)utils/
 LIBS_D			:= libs/
-LIBFT_D			:= $(LIBS_D)libft/
-GNL_D			:= $(LIBS_D)gnl/
 FT_PRINTF_D		:= $(LIBS_D)ft_printf/
+GNL_D			:= $(LIBS_D)gnl/
+LIBFT_D			:= $(LIBS_D)libft/
 MLX42_D			:= $(LIBS_D)codam/
 MLX42_BUILD		:= $(MLX42_D)build/
 BUILD_D			:= build/
-HEADERS			:= -I headers $(HEADERS_ADDED)
-HEADERS_ADDED	:= -I $(LIBFT_D) \
-					-I $(GNL_D) \
-					-I $(FT_PRINTF_D) \
-					-I $(MLX42_D)include/MLX42/
+HEADERS			:= headers $(HEADERS_ADDED)
+HEADERS_ADDED	:= $(FT_PRINTF_D) \
+					$(GNL_D) \
+					$(LIBFT_D) \
+					$(MLX42_D)include/MLX42/
 
 # **************************************************************************** #
 #								FILES										   #
 # **************************************************************************** #
 
-LIBTF			= $(addprefix $(LIBFT_D), libft.a)
+FT_PRINTF		= $(addprefix $(FT_PRINTF_D), ft_printf.a)
 GNL				= $(addprefix $(GNL_D), gnl.a)
-FT_PRINTF		= $(addprefix $(FT_PRINTF_D_D), ft_printf.a)
-MLX42			= $(addprefix $(MLX42_BUILD), libmlx42.a)
-LIBS			= $(LIBTF) $(GNL) $(FT_PRINTF) $(MLX42)
+LIBTF			= $(addprefix $(LIBFT_D), libft.a)
+MLX42			= $(addprefix $(MLX42_BUILD), mlx_lib42.a)
+LIBS			= $(FT_PRINTF) $(GNL) $(LIBTF) $(MLX42)
 
 NAME			= so_long
 NAME_BONUS		= so_long_bonus
 
-SRCS			= $(addprefix $(SRC_D), main.c) \
-					$(addprefix $(SRC_D), loading_images.c)
+SRCS			= $(addprefix $(SRC_D), main.c \
+					loading_images.c)
 SRCS_UTILS		= $(addprefix $(SRC_UTILS_D), \
 					map_builder/map_build.c \
 					map_builder/map_read.c)
 SCRS_BONUS		= 
 
-OBJS			= $(SRCS:%.c=$(BUILD_D)%.o)
-OBJS_UTILS		= $(SRCS_UTILS:%.c=$(BUILD_D)%.o)
+OBJS			= $(addprefix $(BUILD_D), $(SRCS:%.c=%.o))
+OBJS_UTILS		= $(addprefix $(BUILD_D), $(SRCS_UTILS:%.c=%.o))
 OBJS_ALL		= $(OBJS) $(OBJS_UTILS)
 
-BONUS_FILES		= $(SCRS_BONUS:%.=$(BUILD_D)%.o)
+BONUS_FILES		= $(SCRS_BONUS:%.=%.o)
 BONUS_OBJS		= $(BONUS_FILES:%.c=$(BUILD_D)%.o)
 
-DEPENDENCIES	= $(OBJS:.o=.d) $(OBJS_UTILS:.o=.d)
+#DEPENDENCIES	= $(OBJS:.o=.d) $(OBJS_UTILS:.o=.d)
 
 # **************************************************************************** #
 #								COMMANDS									   #
@@ -75,7 +75,8 @@ DEPENDENCIES	= $(OBJS:.o=.d) $(OBJS_UTILS:.o=.d)
 
 #AR				= ar -rcs
 RM				= rm -rf
-MKDIR			= mkdir -p
+MKDIR			= mkdir -p $@
+MV_OBJS			= find . -type f \( -name '.o' -o -name '.a'\) -exec mv {} \
 
 # **************************************************************************** #
 #								COMPILATION									   #
@@ -85,20 +86,23 @@ AUTHOR			= umeneses
 CC				= cc
 #CFLAGS			= -Wall -Wextra -Werror
 CFLAGS			= -Ofast
+CPPFLAGS		= $(addprefix -I, $(HEADERS)) -MMD -MP
 DFLAGS			= -g3
 LDFLAGS			= $(addprefix -L, $(dir $(LIBS)))
 LDLIBS			= -lft -lmlx42 -ldl -lglfw -pthread -lm
-COMPILE_OBJS	= $(CC) $(CFLAGS) -c $< -o $@ $(HEADERS)
-COMPILE_EXE		= $(CC) $(LDFLAGS) $(OBJS_ALL) $(LDLIBS) $(HEADERS) -o $(NAME)
+COMPILE_OBJS	= $(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+COMPILE_EXE		= $(CC) $(LDFLAGS) $(OBJS_ALL) $(LDLIBS) -o $(NAME)
 
 # **************************************************************************** #
 #								TARGETS										   #
 # **************************************************************************** #
 
-all:			ft_printf_lib gnl_lib libft_lib libmlx $(NAME)
+all:			ft_printf_lib gnl_lib libft_lib mlx_lib $(NAME)
 
-$(BUILD_D)%.o:	%.c
-				$(MKDIR) $(dir $@)
+$(BUILD_D):
+				$(MKDIR)
+
+$(BUILD_D)%.o:	%.c | $(BUILD_D)
 				$(COMPILE_OBJS)
 				@echo "Compiling: $(notdir $<)"
 
@@ -108,20 +112,27 @@ $(NAME):		$(OBJS_ALL)
 				@echo "Now, hit on terminal: './so_long map/CHOSE-YOUR-MAP'"
 
 ft_printf_lib:
+				@printf "$(PURPLE)"
 				$(MAKE) -C $(FT_PRINTF_D)
-#				mv %.o $(BUILD_D)
+				@printf "$(RESET)"
 
 gnl_lib:
+				@printf "$(YELLOW)"
 				$(MAKE) -C $(GNL_D)
+#				$(MKDIR) $(BUILD_D)$(GNL_D)
+#				$(MV_OBJS) $(BUILD_D)$(GNL_D)
+				@printf "$(RESET)"
 
 libft_lib:
+				@printf "$(CYAN)"
 				$(MAKE) -C $(LIBFT_D)
+				@printf "$(RESET)"
 
-libmlx:
+mlx_lib:
 				@cmake $(MLX42_D) -B $(MLX42_D)build
 				$(MAKE) -C $(MLX42_D)build -j4
 
-bonus:			libft_lib libmlx $(NAME_BONUS)
+bonus:			libft_lib mlx_lib $(NAME_BONUS)
 
 $(NAME_BONUS):	$(BONUS_OBJS)
 #				$(AR) $(NAME_BONUS) $(BONUS_OBJS)
@@ -148,4 +159,4 @@ rebonus:		fclean bonus
 
 .PHONY:			all clean fclean re bonus rebonus
 
-#-include		$(DEPENDENCIES)
+#.INCLUDE:		$(LIBS)
