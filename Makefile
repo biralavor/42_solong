@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/03 15:54:10 by umeneses          #+#    #+#              #
-#    Updated: 2024/01/18 10:47:51 by umeneses         ###   ########.fr        #
+#    Updated: 2024/01/18 11:41:36 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,18 +34,21 @@ LIBFT_D			:= $(LIBS_D)libft/
 MLX42_D			:= $(LIBS_D)codam/
 MLX42_BUILD		:= $(MLX42_D)build/
 BUILD_D			:= build/
-HEADERS			:= headers $(HEADERS_ADDED)
-HEADERS_ADDED	:= $(FT_PRINTF_D) \
-					$(GNL_D) \
-					$(LIBFT_D) \
-					$(MLX42_D)include/MLX42/
+HEADERS_ADDED	:= $(FT_PRINTF_D)
+HEADERS_ADDED	+= $(GNL_D)
+HEADERS_ADDED	+= $(LIBFT_D)
+HEADERS_ADDED	+= $(MLX42_D)include/MLX42/
+HEADERS			:= headers/ $(HEADERS_ADDED)
 
 # **************************************************************************** #
 #								FILES										   #
 # **************************************************************************** #
 
-FT_PRINTF		= $(addprefix $(FT_PRINTF_D), ft_printf.a)
-GNL				= $(addprefix $(GNL_D), gnl.a)
+FT_PRINTF		= libs/ft_printf/ft_printf.a
+GNL				= libs/gnl/gnl.a
+
+#FT_PRINTF		= $(addprefix $(FT_PRINTF_D), ft_printf.a)
+#GNL				= $(addprefix $(GNL_D), gnl.a)
 LIBTF			= $(addprefix $(LIBFT_D), libft.a)
 MLX42			= $(addprefix $(MLX42_BUILD), mlx_lib42.a)
 LIBS			= $(FT_PRINTF) $(GNL) $(LIBTF) $(MLX42)
@@ -53,9 +56,10 @@ LIBS			= $(FT_PRINTF) $(GNL) $(LIBTF) $(MLX42)
 NAME			= so_long
 NAME_BONUS		= so_long_bonus
 
-SRCS			= $(addprefix $(SRC_D), main.c \
+SRCS			= $(addprefix $(SRC_D), main.c)
+#SRCS			= $(addprefix $(SRC_D), main.c \
 					loading_images.c)
-SRCS_UTILS		= $(addprefix $(SRC_UTILS_D), \
+#SRCS_UTILS		= $(addprefix $(SRC_UTILS_D), \
 					map_builder/map_build.c \
 					map_builder/map_read.c)
 SCRS_BONUS		= 
@@ -86,9 +90,9 @@ AUTHOR			= umeneses
 CC				= cc
 #CFLAGS			= -Wall -Wextra -Werror
 CFLAGS			= -Ofast
-CPPFLAGS		= $(addprefix -I, $(HEADERS)) -MMD -MP
+CPPFLAGS		= $(addprefix -I , $(HEADERS)) -MMD -MP
 DFLAGS			= -g3
-LDFLAGS			= $(addprefix -L, $(dir $(LIBS)))
+LDFLAGS			= $(addprefix -L , $(dir $(LIBS)))
 LDLIBS			= -lft -lmlx42 -ldl -lglfw -pthread -lm
 COMPILE_OBJS	= $(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 COMPILE_EXE		= $(CC) $(LDFLAGS) $(OBJS_ALL) $(LDLIBS) -o $(NAME)

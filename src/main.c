@@ -6,23 +6,23 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:47:07 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/17 15:51:43 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/18 11:30:46 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/so_long.h"
 #include <stdio.h>
 
-static void error(void)
-{
-	puts(mlx_strerror(mlx_errno));
-	exit(EXIT_FAILURE);
-}
+// static void error(void)
+// {
+// 	puts(mlx_strerror(mlx_errno));
+// 	exit(EXIT_FAILURE);
+// }
 
-int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
-{
-    return (r << 24 | g << 24 | b << 16 | a);
-}
+// int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
+// {
+//     return (r << 24 | g << 24 | b << 16 | a);
+// }
 
 // void play_random_color(void *param)
 // {
@@ -39,7 +39,7 @@ int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
 // 				rand() % 0xFF, // B
 // 				rand() % 0xFF  // A
 // 			);
-// 			mlx_put_pixel(game->play_img, i, y, color);
+// 			mlx_put_pixel(game->pl#include "so_long.h"ay_img, i, y, color);
 // 		}
 // 	}
 // }
@@ -61,42 +61,42 @@ int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
 // 		game->play_img->instances[0].x += 5;
 // }
 
-void movecounter(mlx_key_data_t keydata, void* param)
-{
-	static t_game	game;
+// void movecounter(mlx_key_data_t keydata, void* param)
+// {
+// 	static t_game	game;
 
-	if ((keydata.key == MLX_KEY_W | keydata.key == MLX_KEY_UP) \
-		&& keydata.action == MLX_PRESS)
-			printf("\nLet's Go!!! \
-			\nTotal Moves = %i", ++game.totalmoves);
-	if ((keydata.key == MLX_KEY_S | keydata.key == MLX_KEY_DOWN) \
-		&& keydata.action == MLX_PRESS)
-		printf("\nOh, Gosh! Pulling back now! \
-			\nTotal Moves = %i", ++game.totalmoves);
-	if ((keydata.key == MLX_KEY_A | keydata.key == MLX_KEY_LEFT) \
-		&& keydata.action == MLX_PRESS)
-		printf("\nDodging left! \
-			\nTotal Moves = %i", ++game.totalmoves);
-	if ((keydata.key == MLX_KEY_D | keydata.key == MLX_KEY_RIGHT) \
-		&& keydata.action == MLX_PRESS)
-		printf("\nSliding right! \
-			\nTotal Moves = %i", ++game.totalmoves);
-	// mlx_put_string(data->mlx, data->combstr[str_img], x, 0)
-}
+// 	if ((keydata.key == MLX_KEY_W | keydata.key == MLX_KEY_UP) \
+// 		&& keydata.action == MLX_PRESS)
+// 			printf("\nLet's Go!!! \
+// 			\nTotal Moves = %i", ++game.totalmoves);
+// 	if ((keydata.key == MLX_KEY_S | keydata.key == MLX_KEY_DOWN) \
+// 		&& keydata.action == MLX_PRESS)
+// 		printf("\nOh, Gosh! Pulling back now! \
+// 			\nTotal Moves = %i", ++game.totalmoves);
+// 	if ((keydata.key == MLX_KEY_A | keydata.key == MLX_KEY_LEFT) \
+// 		&& keydata.action == MLX_PRESS)
+// 		printf("\nDodging left! \
+// 			\nTotal Moves = %i", ++game.totalmoves);
+// 	if ((keydata.key == MLX_KEY_D | keydata.key == MLX_KEY_RIGHT) \
+// 		&& keydata.action == MLX_PRESS)
+// 		printf("\nSliding right! \
+// 			\nTotal Moves = %i", ++game.totalmoves);
+// 	// mlx_put_string(data->mlx, data->combstr[str_img], x, 0)
+// }
 
-void ui_stats_canvas(t_game *game)
-{
-	game->cvs_img = mlx_new_image(game->mlx, (WIDTH % 10 * HEIGHT), (HEIGHT % 10) * 10);
-	// set color foreground image
-	ft_memset(game->cvs_img->pixels, 140, game->cvs_img->width * game->cvs_img->height * BPP);
-	mlx_image_to_window(game->mlx, game->cvs_img, 0, 0);
-}
+// void ui_stats_canvas(t_game *game)
+// {
+// 	game->cvs_img = mlx_new_image(game->mlx, (WIDTH % 10 * HEIGHT), (HEIGHT % 10) * 10);
+// 	// set color foreground image
+// 	ft_memset(game->cvs_img->pixels, 140, game->cvs_img->width * game->cvs_img->height * BPP);
+// 	mlx_image_to_window(game->mlx, game->cvs_img, 0, 0);
+// }
 
-t_game *structures_init(void)
-{
-	static t_game game;
-	return (&game);
-}
+// t_game *structures_init(void)
+// {
+// 	static t_game game;
+// 	return (&game);
+// }
 
 int32_t main(int32_t argc, char **argv)
 {
@@ -112,19 +112,19 @@ int32_t main(int32_t argc, char **argv)
 		gnl_temp = "";
 		while (gnl_temp)
 		{
-			COLOR_CYAN;
-			printf(" Reading Program: %s \n", argv[0]);
-			printf(" Reading map file: %s \n", argv[1]);
-			COLOR_PURPLE;
+			// COLOR_CYAN;
+			// printf(" Reading Program: %s \n", argv[0]);
+			// printf(" Reading map file: %s \n", argv[1]);
+			// COLOR_PURPLE;
 			printf("MAP line %i = ", index);
 			gnl_temp = get_next_line(fd);
 			printf("%s", gnl_temp);
 			free(gnl_temp);
 			index++;
 		}
-		COLOR_RESET;
+		// COLOR_RESET;
 		close (fd);
-		printf("\n\nfd was closed.\n");
+		// printf("\n\nfd was closed.\n");
 		// map_builder(fd, game);
 	}
 	// game = structures_init();
