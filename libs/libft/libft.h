@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 20:30:01 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/12 19:47:55 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/18 18:51:45 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,13 @@
 # include <unistd.h>
 # include <stdlib.h>
 /*	Headers for mandatory functions */
+# include <stdarg.h>
+/* Headers for ft_printf */
+
+# define DEC "0123456789"
+# define HEXL "0123456789abcdef"
+# define HEXU "0123456789ABCDEF"
+/* Definitions for ft_printf */
 
 typedef struct lib_s_list
 {
@@ -72,7 +79,14 @@ void			ft_lstclear(t_list **lst, void (*del)(void *));
 void			ft_lstiter(t_list *lst, void (*f)(void *));
 t_list			*ft_lstmap(t_list *lst, void *(*f)(void *), \
 					void (*del)(void *));
-
 /* Bonus Functions */
+
+int				ft_printf(const char *format, ...);
+int				ft_printf_placeholder(char format, va_list ptr);
+int				ft_putnbrbase(long long int n, char *base);
+int				ft_putptr(long long int n, char *base);
+int				ft_put_unsigned_nbr(unsigned long long int n, char *base);
+
+/* ft_printf functions */
 
 #endif
