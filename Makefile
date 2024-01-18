@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/03 15:54:10 by umeneses          #+#    #+#              #
-#    Updated: 2024/01/18 17:03:43 by umeneses         ###   ########.fr        #
+#    Updated: 2024/01/18 19:05:51 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,6 @@ RESET			:= \033[0m
 SRC_D			= src/
 SRC_UTILS_D		= $(SRC_D)utils/
 LIBS_D			= ./libs/
-FT_PRINTF_D		= $(LIBS_D)ft_printf/
 GNL_D			= $(LIBS_D)gnl/
 LIBFT_D			= $(LIBS_D)libft/
 MLX42_D			= $(LIBS_D)codam/
@@ -36,7 +35,6 @@ MLX42_BUILD		= $(MLX42_D)build/
 BUILD_D			= ./build/
 HEADERS			= ./headers/ $(HEADERS_ADDED)
 HEADERS_ADDED	= $(LIBFT_D)
-HEADERS_ADDED	+= $(FT_PRINTF_D)
 HEADERS_ADDED	+= $(MLX42_D)include/MLX42/
 HEADERS_ADDED	+= $(GNL_D)
 
@@ -45,10 +43,9 @@ HEADERS_ADDED	+= $(GNL_D)
 # **************************************************************************** #
 
 LIBTF			= $(addprefix $(LIBFT_D), libft.a)
-FT_PRINTF		= $(addprefix $(FT_PRINTF_D), ft_printf.a)
 MLX42			= $(addprefix $(MLX42_BUILD), libmlx42.a)
 GNL				= $(addprefix $(GNL_D), gnl.a)
-LIBS			= $(LIBTF) $(FT_PRINTF) $(MLX42) $(GNL)
+LIBS			= $(LIBTF) $(MLX42) $(GNL)
 
 NAME			= so_long
 NAME_BONUS		= so_long_bonus
@@ -96,7 +93,7 @@ COMPILE_EXE		= $(CC) $(OBJS_ALL) $(LDFLAGS) $(LIBS) -o $(NAME)
 #								TARGETS										   #
 # **************************************************************************** #
 
-all:			libft_lib mlx_lib ft_printf_lib gnl_lib $(NAME)
+all:			libft_lib mlx_lib gnl_lib $(NAME)
 
 $(BUILD_D)%.o:	%.c 
 				$(MKDIR) $(dir $@)
@@ -119,13 +116,6 @@ mlx_lib:
 				@cmake $(MLX42_D) -B $(MLX42_D)build
 				$(MAKE) -C $(MLX42_D)build -j4
 
-ft_printf_lib:
-				@printf "$(PURPLE)"
-				$(MAKE) -C $(FT_PRINTF_D)
-				@echo "Checking File..."
-				nm $(FT_PRINTF)
-				@printf "$(RESET)"
-
 gnl_lib:
 				@printf "$(YELLOW)"
 				$(MAKE) -C $(GNL_D)
@@ -141,7 +131,6 @@ clean:
 				$(RM) $(OBJS_ALL)
 				$(RM) $(BUILD_D)
 				$(RM) $(MLX42_BUILD)
-				$(MAKE) -C $(FT_PRINTF_D) fclean
 				$(MAKE) -C $(GNL_D) fclean
 				$(MAKE) -C $(LIBFT_D) fclean
 
