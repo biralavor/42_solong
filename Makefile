@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/03 15:54:10 by umeneses          #+#    #+#              #
-#    Updated: 2024/01/18 11:41:36 by umeneses         ###   ########.fr        #
+#    Updated: 2024/01/18 13:13:35 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,30 +25,27 @@ RESET			:= \033[0m
 #								PATHS										   #
 # **************************************************************************** #
 
-SRC_D			:= src/
-SRC_UTILS_D		:= $(SRC_D)utils/
-LIBS_D			:= libs/
-FT_PRINTF_D		:= $(LIBS_D)ft_printf/
-GNL_D			:= $(LIBS_D)gnl/
-LIBFT_D			:= $(LIBS_D)libft/
-MLX42_D			:= $(LIBS_D)codam/
-MLX42_BUILD		:= $(MLX42_D)build/
-BUILD_D			:= build/
-HEADERS_ADDED	:= $(FT_PRINTF_D)
+SRC_D			= src/
+SRC_UTILS_D		= $(SRC_D)utils/
+LIBS_D			= libs/
+FT_PRINTF_D		= $(LIBS_D)ft_printf/
+GNL_D			= $(LIBS_D)gnl/
+LIBFT_D			= $(LIBS_D)libft/
+MLX42_D			= $(LIBS_D)codam/
+MLX42_BUILD		= $(MLX42_D)build/
+BUILD_D			= build/
+HEADERS			= headers/ $(HEADERS_ADDED)
+HEADERS_ADDED	= $(FT_PRINTF_D)
 HEADERS_ADDED	+= $(GNL_D)
 HEADERS_ADDED	+= $(LIBFT_D)
 HEADERS_ADDED	+= $(MLX42_D)include/MLX42/
-HEADERS			:= headers/ $(HEADERS_ADDED)
 
 # **************************************************************************** #
 #								FILES										   #
 # **************************************************************************** #
 
-FT_PRINTF		= libs/ft_printf/ft_printf.a
-GNL				= libs/gnl/gnl.a
-
-#FT_PRINTF		= $(addprefix $(FT_PRINTF_D), ft_printf.a)
-#GNL				= $(addprefix $(GNL_D), gnl.a)
+FT_PRINTF		= $(addprefix $(FT_PRINTF_D), ft_printf.a)
+GNL				= $(addprefix $(GNL_D), gnl.a)
 LIBTF			= $(addprefix $(LIBFT_D), libft.a)
 MLX42			= $(addprefix $(MLX42_BUILD), mlx_lib42.a)
 LIBS			= $(FT_PRINTF) $(GNL) $(LIBTF) $(MLX42)
@@ -65,21 +62,18 @@ SRCS			= $(addprefix $(SRC_D), main.c)
 SCRS_BONUS		= 
 
 OBJS			= $(addprefix $(BUILD_D), $(SRCS:%.c=%.o))
-OBJS_UTILS		= $(addprefix $(BUILD_D), $(SRCS_UTILS:%.c=%.o))
+#OBJS_UTILS		= $(addprefix $(BUILD_D), $(SRCS_UTILS:%.c=%.o))
 OBJS_ALL		= $(OBJS) $(OBJS_UTILS)
 
-BONUS_FILES		= $(SCRS_BONUS:%.=%.o)
-BONUS_OBJS		= $(BONUS_FILES:%.c=$(BUILD_D)%.o)
-
-#DEPENDENCIES	= $(OBJS:.o=.d) $(OBJS_UTILS:.o=.d)
+#BONUS_FILES	= $(SCRS_BONUS:%.=%.o)
+#BONUS_OBJS		= $(BONUS_FILES:%.c=$(BUILD_D)%.o)
 
 # **************************************************************************** #
 #								COMMANDS									   #
 # **************************************************************************** #
 
-#AR				= ar -rcs
 RM				= rm -rf
-MKDIR			= mkdir -p $@
+MKDIR			= mkdir -p
 MV_OBJS			= find . -type f \( -name '.o' -o -name '.a'\) -exec mv {} \
 
 # **************************************************************************** #
@@ -103,12 +97,11 @@ COMPILE_EXE		= $(CC) $(LDFLAGS) $(OBJS_ALL) $(LDLIBS) -o $(NAME)
 
 all:			ft_printf_lib gnl_lib libft_lib mlx_lib $(NAME)
 
-$(BUILD_D):
-				$(MKDIR)
-
-$(BUILD_D)%.o:	%.c | $(BUILD_D)
+$(BUILD_D)%.o:	%.c 
+				$(MKDIR) $(dir $@)
 				$(COMPILE_OBJS)
 				@echo "Compiling: $(notdir $<)"
+
 
 $(NAME):		$(OBJS_ALL)
 				$(COMPILE_EXE)
@@ -123,8 +116,6 @@ ft_printf_lib:
 gnl_lib:
 				@printf "$(YELLOW)"
 				$(MAKE) -C $(GNL_D)
-#				$(MKDIR) $(BUILD_D)$(GNL_D)
-#				$(MV_OBJS) $(BUILD_D)$(GNL_D)
 				@printf "$(RESET)"
 
 libft_lib:
@@ -138,29 +129,20 @@ mlx_lib:
 
 bonus:			libft_lib mlx_lib $(NAME_BONUS)
 
-$(NAME_BONUS):	$(BONUS_OBJS)
-#				$(AR) $(NAME_BONUS) $(BONUS_OBJS)
-#				$(CC) $(BONUS_OBJS) $(LIBS) \
-#				-ldl -lglfw -pthread -lm $(HEADERS) -o $(NAME_BONUS) $(CFLAGS)
-#				@echo "Game BONUS Ready!"
+#$(NAME_BONUS):	$(BONUS_OBJS)
 
 clean:
 				$(RM) $(OBJS_ALL)
-				$(RM) $(BUILD_DIR)
+				$(RM) $(BUILD_D)
 				$(RM) $(MLX42_BUILD)
-				$(MAKE) -C $(FT_PRINTF_D) clean
-				$(MAKE) -C $(GNL_D) clean
-				$(MAKE) -C $(LIBFT_D) clean
-
-fclean:			clean
-				$(RM) $(NAME)
 				$(MAKE) -C $(FT_PRINTF_D) fclean
 				$(MAKE) -C $(GNL_D) fclean
 				$(MAKE) -C $(LIBFT_D) fclean
 
+fclean:			clean
+				$(RM) $(NAME)
+
 re:				fclean all
 rebonus:		fclean bonus
 
-.PHONY:			all clean fclean re bonus rebonus
-
-#.INCLUDE:		$(LIBS)
+.PHONY:			all clean fclean re bonus rebonus $(NAME)
