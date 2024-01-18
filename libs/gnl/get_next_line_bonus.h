@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 16:20:08 by umeneses          #+#    #+#             */
-/*   Updated: 2023/09/29 17:41:37 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/18 17:08:59 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include "../libft/libft.h"
 /* Mandatory Libraries */
 
 # ifndef BUFFER_SIZE
@@ -54,7 +55,5 @@ char	*ft_clear_nodes(t_char *str);
 /* get_next_line_utils prototype functions */
 
 void	*ft_calloc(size_t n_items, size_t size);
-void	*ft_memset(void *str, int c, size_t size);
-/* libft prototype functions inside get_next_line_utils*/
 
 #endif

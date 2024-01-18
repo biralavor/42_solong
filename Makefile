@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/03 15:54:10 by umeneses          #+#    #+#              #
-#    Updated: 2024/01/18 13:13:35 by umeneses         ###   ########.fr        #
+#    Updated: 2024/01/18 17:03:43 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,33 +27,34 @@ RESET			:= \033[0m
 
 SRC_D			= src/
 SRC_UTILS_D		= $(SRC_D)utils/
-LIBS_D			= libs/
+LIBS_D			= ./libs/
 FT_PRINTF_D		= $(LIBS_D)ft_printf/
 GNL_D			= $(LIBS_D)gnl/
 LIBFT_D			= $(LIBS_D)libft/
 MLX42_D			= $(LIBS_D)codam/
 MLX42_BUILD		= $(MLX42_D)build/
-BUILD_D			= build/
-HEADERS			= headers/ $(HEADERS_ADDED)
-HEADERS_ADDED	= $(FT_PRINTF_D)
-HEADERS_ADDED	+= $(GNL_D)
-HEADERS_ADDED	+= $(LIBFT_D)
+BUILD_D			= ./build/
+HEADERS			= ./headers/ $(HEADERS_ADDED)
+HEADERS_ADDED	= $(LIBFT_D)
+HEADERS_ADDED	+= $(FT_PRINTF_D)
 HEADERS_ADDED	+= $(MLX42_D)include/MLX42/
+HEADERS_ADDED	+= $(GNL_D)
 
 # **************************************************************************** #
 #								FILES										   #
 # **************************************************************************** #
 
-FT_PRINTF		= $(addprefix $(FT_PRINTF_D), ft_printf.a)
-GNL				= $(addprefix $(GNL_D), gnl.a)
 LIBTF			= $(addprefix $(LIBFT_D), libft.a)
-MLX42			= $(addprefix $(MLX42_BUILD), mlx_lib42.a)
-LIBS			= $(FT_PRINTF) $(GNL) $(LIBTF) $(MLX42)
+FT_PRINTF		= $(addprefix $(FT_PRINTF_D), ft_printf.a)
+MLX42			= $(addprefix $(MLX42_BUILD), libmlx42.a)
+GNL				= $(addprefix $(GNL_D), gnl.a)
+LIBS			= $(LIBTF) $(FT_PRINTF) $(MLX42) $(GNL)
 
 NAME			= so_long
 NAME_BONUS		= so_long_bonus
 
-SRCS			= $(addprefix $(SRC_D), main.c)
+FILES			= main.c
+SRCS			= $(addprefix $(SRC_D), $(FILES))
 #SRCS			= $(addprefix $(SRC_D), main.c \
 					loading_images.c)
 #SRCS_UTILS		= $(addprefix $(SRC_UTILS_D), \
@@ -86,46 +87,51 @@ CC				= cc
 CFLAGS			= -Ofast
 CPPFLAGS		= $(addprefix -I , $(HEADERS)) -MMD -MP
 DFLAGS			= -g3
-LDFLAGS			= $(addprefix -L , $(dir $(LIBS)))
-LDLIBS			= -lft -lmlx42 -ldl -lglfw -pthread -lm
+#LDLIBS			= $(addprefix -L , $(dir $(LIBS)))
+LDFLAGS			= -ldl -lglfw -pthread -lm
 COMPILE_OBJS	= $(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
-COMPILE_EXE		= $(CC) $(LDFLAGS) $(OBJS_ALL) $(LDLIBS) -o $(NAME)
+COMPILE_EXE		= $(CC) $(OBJS_ALL) $(LDFLAGS) $(LIBS) -o $(NAME)
 
 # **************************************************************************** #
 #								TARGETS										   #
 # **************************************************************************** #
 
-all:			ft_printf_lib gnl_lib libft_lib mlx_lib $(NAME)
+all:			libft_lib mlx_lib ft_printf_lib gnl_lib $(NAME)
 
 $(BUILD_D)%.o:	%.c 
 				$(MKDIR) $(dir $@)
 				$(COMPILE_OBJS)
 				@echo "Compiling: $(notdir $<)"
 
-
 $(NAME):		$(OBJS_ALL)
 				$(COMPILE_EXE)
 				@echo "Game Ready!"
 				@echo "Now, hit on terminal: './so_long map/CHOSE-YOUR-MAP'"
 
-ft_printf_lib:
-				@printf "$(PURPLE)"
-				$(MAKE) -C $(FT_PRINTF_D)
-				@printf "$(RESET)"
-
-gnl_lib:
-				@printf "$(YELLOW)"
-				$(MAKE) -C $(GNL_D)
-				@printf "$(RESET)"
-
 libft_lib:
 				@printf "$(CYAN)"
 				$(MAKE) -C $(LIBFT_D)
+				@echo "Checking File..."
+				nm $(LIBTF)
 				@printf "$(RESET)"
 
 mlx_lib:
 				@cmake $(MLX42_D) -B $(MLX42_D)build
 				$(MAKE) -C $(MLX42_D)build -j4
+
+ft_printf_lib:
+				@printf "$(PURPLE)"
+				$(MAKE) -C $(FT_PRINTF_D)
+				@echo "Checking File..."
+				nm $(FT_PRINTF)
+				@printf "$(RESET)"
+
+gnl_lib:
+				@printf "$(YELLOW)"
+				$(MAKE) -C $(GNL_D)
+				@echo "Checking File..."
+				nm $(GNL)
+				@printf "$(RESET)"
 
 bonus:			libft_lib mlx_lib $(NAME_BONUS)
 

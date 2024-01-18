@@ -6,12 +6,11 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 15:33:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/16 16:40:39 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/18 17:06:35 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "../libft/libft.h"
 
 int	ft_putnbrbase(long long int n, char *base)
 {

@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/16 13:44:42 by umeneses          #+#    #+#              #
-#    Updated: 2024/01/16 14:01:17 by umeneses         ###   ########.fr        #
+#    Updated: 2024/01/18 10:58:56 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,8 @@ RM				= rm -rf
 CC				= cc
 
 CFLAGS			= -Wall -Wextra -Werror
+
+ftprintf:		all
 
 all:			$(NAME)
 

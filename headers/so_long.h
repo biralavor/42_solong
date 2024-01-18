@@ -6,17 +6,17 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:46:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/18 11:29:18 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/18 16:58:12 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef	SO_LONG_H
 # define SO_LONG_H
 
-# include "../libs/ft_printf/ft_printf.h"
-# include "../libs/gnl/get_next_line.h"
 # include "../libs/libft/libft.h"
 # include "../libs/codam/include/MLX42/MLX42.h"
+# include "../libs/gnl/get_next_line.h"
+# include "../libs/ft_printf/ft_printf.h"
 # include <stdio.h>
 # include <fcntl.h>
 # include <stdarg.h>
