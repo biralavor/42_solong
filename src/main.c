@@ -6,11 +6,12 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:47:07 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/16 13:30:17 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/17 15:51:43 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../headers/so_long.h"
+#include <stdio.h>
 
 static void error(void)
 {
@@ -108,18 +109,22 @@ int32_t main(int32_t argc, char **argv)
 	if (argc == 2)
 	{
 		fd = open(argv[1], O_RDONLY);
+		gnl_temp = "";
 		while (gnl_temp)
 		{
 			COLOR_CYAN;
-			ft_printf(" Reading map file: %s \n", argv[1]);
+			printf(" Reading Program: %s \n", argv[0]);
+			printf(" Reading map file: %s \n", argv[1]);
 			COLOR_PURPLE;
-			ft_printf("MAP line %i = ", index);
+			printf("MAP line %i = ", index);
 			gnl_temp = get_next_line(fd);
-			ft_printf("%s", gnl_temp);
+			printf("%s", gnl_temp);
 			free(gnl_temp);
 			index++;
 		}
 		COLOR_RESET;
+		close (fd);
+		printf("\n\nfd was closed.\n");
 		// map_builder(fd, game);
 	}
 	// game = structures_init();
