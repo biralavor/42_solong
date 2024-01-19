@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:47:07 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/19 16:32:42 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/19 16:47:56 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,11 @@ int32_t main(int32_t argc, char **argv)
 		ft_printf("\n\nfd was closed.\n");
 		map_builder(fd, game);
 	}
+
+	
+
+
+	
 	// game = structures_init();
 	// game->mlx = mlx_init(WIDTH, HEIGHT, "42_Astronauts_So_Long_Game", true);
 	// load_texture(game);
