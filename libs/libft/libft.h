@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 20:30:01 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/18 18:51:45 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/19 10:52:53 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,15 +69,15 @@ char			**ft_split(char const *s, char c);
 char			*ft_strtrim(char const *s1, char const *set);
 /* Mandatory Part 2 Functions */
 
-t_list			*ft_lstnew(void *content);
-void			ft_lstadd_front(t_list **lst, t_list *new);
-int				ft_lstsize(t_list *lst);
-t_list			*ft_lstlast(t_list *lst);
-void			ft_lstadd_back(t_list **lst, t_list *new);
-void			ft_lstdelone(t_list *lst, void (*del)(void*));
-void			ft_lstclear(t_list **lst, void (*del)(void *));
-void			ft_lstiter(t_list *lst, void (*f)(void *));
-t_list			*ft_lstmap(t_list *lst, void *(*f)(void *), \
+t_list			*ft_lstnew_t_list(void *content);
+void			ft_lstadd_front_void(t_list **lst, t_list *new);
+int				ft_lstsize_int(t_list *lst);
+t_list			*ft_lstlast_t_list(t_list *lst);
+void			ft_lstadd_back_void(t_list **lst, t_list *new);
+void			ft_lstdelone_void(t_list *lst, void (*del)(void*));
+void			ft_lstclear_void(t_list **lst, void (*del)(void *));
+void			ft_lstiter_void(t_list *lst, void (*f)(void *));
+t_list			*ft_lstmap_t_list(t_list *lst, void *(*f)(void *), \
 					void (*del)(void *));
 /* Bonus Functions */
 

@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/26 20:31:36 by umeneses          #+#    #+#              #
-#    Updated: 2024/01/18 19:00:31 by umeneses         ###   ########.fr        #
+#    Updated: 2024/01/19 10:54:48 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,15 +57,15 @@ SRC_FTS				+= ft_putnbrbase.c
 SRC_FTS				+= ft_putptr.c
 # ****** ft_printf functions ****** #
 
-BONUS_FTS			= ft_lstadd_front_bonus.c
-BONUS_FTS			+= ft_lstadd_back_bonus.c
-BONUS_FTS			+= ft_lstclear_bonus.c
-BONUS_FTS			+= ft_lstdelone_bonus.c
-BONUS_FTS			+= ft_lstiter_bonus.c
-BONUS_FTS			+= ft_lstlast_bonus.c
-BONUS_FTS			+= ft_lstmap_bonus.c
-BONUS_FTS			+= ft_lstnew_bonus.c
-BONUS_FTS			+= ft_lstsize_bonus.c
+BONUS_FTS			+= ft_lstadd_back_void.c
+BONUS_FTS			= ft_lstadd_front_void.c
+BONUS_FTS			+= ft_lstclear_void.c
+BONUS_FTS			+= ft_lstdelone_void.c
+BONUS_FTS			+= ft_lstiter_void.c
+BONUS_FTS			+= ft_lstlast_t_list.c
+BONUS_FTS			+= ft_lstmap_t_list.c
+BONUS_FTS			+= ft_lstnew_t_list.c
+BONUS_FTS			+= ft_lstsize_int.c
 # ****** bonus libft functions ****** #
 
 INCLUDE				= libft.h
