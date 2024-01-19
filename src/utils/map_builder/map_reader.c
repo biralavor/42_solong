@@ -1,25 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_build.c                                        :+:      :+:    :+:   */
+/*   map_reader.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/11 16:50:18 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/16 12:07:42 by umeneses         ###   ########.fr       */
+/*   Created: 2024/01/10 14:29:17 by umeneses          #+#    #+#             */
+/*   Updated: 2024/01/19 16:34:55 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char	**map_builder(int32_t fd, t_game *game)
+char	*map_reader(int32_t fd)
 {
-	game->selected_map = read_map(fd);
-	if (!game->selected_map)
+	int32_t	buffer_len;
+	char	*row;
+	char	*buffer;
+
+	buffer_len = 1;
+	row = ft_calloc(1,sizeof(char));
+	buffer = ft_calloc(BUFFERSIZE + 1, sizeof(char));
+	while ((buffer_len > 0))
 	{
-		free(game);
-		return (1);
+		buffer_len = read(fd, buffer, BUFFERSIZE);
+		if (buffer < 0)
+			free (buffer);
+		if (buffer == 0)
+			return (row);
+		buffer[buffer_len] = '\0';
+		row = ft_strjoin(row, buffer);
 	}
-	game->map = ft_split((const char *)game->selected_map, '\n');
-	return (&game->selected_map);
+	close(fd);
+	return (row);
 }
