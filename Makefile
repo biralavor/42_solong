@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/03 15:54:10 by umeneses          #+#    #+#              #
-#    Updated: 2024/01/19 11:34:44 by umeneses         ###   ########.fr        #
+#    Updated: 2024/01/19 13:52:08 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -99,7 +99,9 @@ $(BUILD_D)%.o:	%.c
 
 $(NAME):		$(OBJS_ALL)
 				$(COMPILE_EXE)
+				@printf "$(GREEN)"
 				@echo "Game Ready!"
+				@printf "$(YELLOW)"
 				@echo "Now, hit on terminal: './so_long map/CHOSE-YOUR-MAP'"
 
 libft_lib:

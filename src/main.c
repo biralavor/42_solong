@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:47:07 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/19 11:40:41 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/19 13:35:54 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,21 +108,21 @@ int32_t main(int32_t argc, char **argv)
 	index = 0;
 	if (argc == 2)
 	{
+		ft_printf(COLOR_CYAN);
+		ft_printf("Reading Program: %s \n", argv[0]);
+		ft_printf("Reading map file: %s \n", argv[1]);
 		fd = open(argv[1], O_RDONLY);
 		gnl_temp = "";
 		while (gnl_temp)
 		{
-			// COLOR_CYAN;
-			ft_printf(" Reading Program: %s \n", argv[0]);
-			ft_printf(" Reading map file: %s \n", argv[1]);
-			// COLOR_PURPLE;
+			ft_printf(COLOR_PURPLE);
 			ft_printf("MAP line %i = ", index);
 			gnl_temp = ft_get_next_line(fd);
 			ft_printf("%s", gnl_temp);
 			free(gnl_temp);
 			index++;
 		}
-		// COLOR_RESET;
+		ft_printf(COLOR_RESET);
 		close (fd);
 		ft_printf("\n\nfd was closed.\n");
 		// map_builder(fd, game);
