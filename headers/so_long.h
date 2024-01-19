@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:46:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/18 19:10:21 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/19 11:38:38 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,9 @@
 
 # include "../libs/libft/libft.h"
 # include "../libs/codam/include/MLX42/MLX42.h"
-# include "../libs/gnl/get_next_line.h"
 # include <stdio.h>
 # include <fcntl.h>
-# include <stdarg.h>
 # include <stdint.h>
-# include <stdlib.h>
 # include <stdbool.h>
 
 # define WIDTH 512
@@ -70,6 +67,5 @@ void	*ft_memset(void *str, int c, size_t size);
 void	load_texture(t_game *game);
 char	*read_map(int32_t fd);
 char	**map_builder(int32_t fd, t_game *game);
-
 
 #endif

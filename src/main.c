@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:47:07 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/18 11:30:46 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/19 11:40:41 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,18 +113,18 @@ int32_t main(int32_t argc, char **argv)
 		while (gnl_temp)
 		{
 			// COLOR_CYAN;
-			// printf(" Reading Program: %s \n", argv[0]);
-			// printf(" Reading map file: %s \n", argv[1]);
+			ft_printf(" Reading Program: %s \n", argv[0]);
+			ft_printf(" Reading map file: %s \n", argv[1]);
 			// COLOR_PURPLE;
-			printf("MAP line %i = ", index);
-			gnl_temp = get_next_line(fd);
-			printf("%s", gnl_temp);
+			ft_printf("MAP line %i = ", index);
+			gnl_temp = ft_get_next_line(fd);
+			ft_printf("%s", gnl_temp);
 			free(gnl_temp);
 			index++;
 		}
 		// COLOR_RESET;
 		close (fd);
-		// printf("\n\nfd was closed.\n");
+		ft_printf("\n\nfd was closed.\n");
 		// map_builder(fd, game);
 	}
 	// game = structures_init();
@@ -148,5 +148,5 @@ int32_t main(int32_t argc, char **argv)
 	// mlx_loop(game->mlx);
 	// mlx_close_window(game->mlx);
 	// mlx_terminate(game->mlx);
-	return (EXIT_SUCCESS);
+	return (0);
 }

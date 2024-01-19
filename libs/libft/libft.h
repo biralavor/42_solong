@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 20:30:01 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/19 10:52:53 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/19 11:42:00 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-/*	Headers for mandatory functions */
+/* Headers for LIBFT && GNL mandatory functions */
 # include <stdarg.h>
 /* Headers for ft_printf */
 
@@ -24,11 +24,39 @@
 # define HEXU "0123456789ABCDEF"
 /* Definitions for ft_printf */
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 10
+# endif
+
+# ifndef MAX_FDS
+#  define MAX_FDS 1024
+# endif
+/* Definitions for GNL BUFFER */
+
 typedef struct lib_s_list
 {
 	void				*content;
 	struct lib_s_list	*next;
 }						t_list;
+/* libft structures */
+
+typedef struct s_list	t_char;
+struct s_list
+{
+	char	c;
+	t_char	*next;
+};
+
+typedef struct s_file_container
+{
+	int		index;
+	int		read;
+	int		len;
+	int		fd;
+	char	buffer[BUFFER_SIZE];
+	t_char	*str;
+}			t_file_container;
+/* gnl structures */
 
 int				ft_atoi(const char *str);
 void			ft_bzero(void *s, size_t n);
@@ -54,7 +82,7 @@ char			*ft_strnstr(const char *haystack, const char *tofind, \
 char			*ft_strrchr(const char *str, int c);
 int				ft_tolower(int c);
 int				ft_toupper(int c);
-/* Mandatory Part 1 Functions */
+/* libft Mandatory Part 1 Functions */
 
 char			*ft_substr(char const *s, unsigned int start, size_t len);
 char			*ft_itoa(int n);
@@ -67,7 +95,7 @@ char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char			*ft_strjoin(char const *s1, char const *s2);
 char			**ft_split(char const *s, char c);
 char			*ft_strtrim(char const *s1, char const *set);
-/* Mandatory Part 2 Functions */
+/* libft Mandatory Part 2 Functions */
 
 t_list			*ft_lstnew_t_list(void *content);
 void			ft_lstadd_front_void(t_list **lst, t_list *new);
@@ -79,14 +107,23 @@ void			ft_lstclear_void(t_list **lst, void (*del)(void *));
 void			ft_lstiter_void(t_list *lst, void (*f)(void *));
 t_list			*ft_lstmap_t_list(t_list *lst, void *(*f)(void *), \
 					void (*del)(void *));
-/* Bonus Functions */
+/* libft Bonus Functions */
 
 int				ft_printf(const char *format, ...);
 int				ft_printf_placeholder(char format, va_list ptr);
 int				ft_putnbrbase(long long int n, char *base);
 int				ft_putptr(long long int n, char *base);
 int				ft_put_unsigned_nbr(unsigned long long int n, char *base);
-
 /* ft_printf functions */
+
+char			*ft_get_next_line(int fd);
+char			*ft_gnl_get_line(t_file_container *file);
+char			*ft_gnl_join_line(t_file_container *file);
+/* gnl main prototype functions */
+
+t_char			*ft_gnl_get_let(char let);
+void			ft_gnl_join_let(t_char **head, t_char *new_let);
+char			*ft_gnl_clear_nodes(t_char *str);
+/* gnl prototype functions */
 
 #endif
