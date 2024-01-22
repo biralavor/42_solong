@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:46:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/19 16:34:42 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/22 17:07:05 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_game
 	int				img_h;
 	char			*selected_map;
 	char			**map;
+	int32_t			fd;
 	mlx_texture_t	*ship;
 	mlx_image_t		*ship_img;
 	mlx_texture_t	*background;
@@ -65,7 +66,12 @@ typedef struct s_game
 
 void	*ft_memset(void *str, int c, size_t size);
 void	load_texture(t_game *game);
+
 char	*map_reader(int32_t fd);
-char	**map_builder(int32_t fd, t_game *game);
+char	**map_builder(t_game *game);
+/* map funtions */
+
+void	error_check(char **argv);
+/* validation funtions */
 
 #endif

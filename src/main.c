@@ -6,12 +6,11 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:47:07 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/19 16:47:56 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/22 17:07:01 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/so_long.h"
-#include <stdio.h>
+#include "so_long.h"
 
 // static void error(void)
 // {
@@ -101,17 +100,24 @@
 int32_t main(int32_t argc, char **argv)
 {
 	t_game	*game;
-	int32_t	fd;
 	char	*gnl_temp;
 	int		index;
+	int32_t	fd;
 
 	index = 0;
 	if (argc == 2)
 	{
+		if (fd == -1)
+			return (ft_putendl_fd("Error!\nInvalid file T.T", \
+					STDOUT_FILENO), EXIT_FAILURE);
+		ft_printf("before error check, argv[1] len = %d\n", ft_strlen(argv[1]));
+		error_check(argv);
+		
 		ft_printf(COLOR_CYAN);
 		ft_printf("Reading Program: %s \n", argv[0]);
 		ft_printf("Reading map file: %s \n", argv[1]);
 		fd = open(argv[1], O_RDONLY);
+		// ft_printf("\nchecking fd number, before loop = %d\n", fd);
 		gnl_temp = "";
 		while (gnl_temp)
 		{
@@ -123,10 +129,19 @@ int32_t main(int32_t argc, char **argv)
 			index++;
 		}
 		ft_printf(COLOR_RESET);
+		ft_printf("\nclosing fd number %d\n", fd);
 		close (fd);
-		ft_printf("\n\nfd was closed.\n");
-		map_builder(fd, game);
+		// ft_printf("\n\nGNL service - fd was closed.\n");
+		// ft_printf("now, running 'map_builder function'\n");
+		// ft_printf("map builder = %s\n", map_builder(game));
 	}
+	else if (argc > 2)
+		return (ft_putendl_fd("Error\nToo many arguments, buddy.", \
+				STDOUT_FILENO), EXIT_FAILURE);
+	else
+		return (ft_putendl_fd("Ops!\nWhere is your map?", \
+				STDOUT_FILENO), EXIT_FAILURE);
+	
 
 	
 

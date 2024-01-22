@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/03 15:54:10 by umeneses          #+#    #+#              #
-#    Updated: 2024/01/19 13:52:08 by umeneses         ###   ########.fr        #
+#    Updated: 2024/01/22 16:00:08 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,17 +47,19 @@ LIBS			= $(LIBTF) $(MLX42)
 NAME			= so_long
 NAME_BONUS		= so_long_bonus
 
-FILES			= main.c
+FILES			= main.c \
+					loading_images.c
+FILES_UTILS		= error_check.c \
+					map_builder/map_builder.c \
+					map_builder/map_reader.c
+
 SRCS			= $(addprefix $(SRC_D), $(FILES))
-#SRCS			= $(addprefix $(SRC_D), main.c \
-					loading_images.c)
-#SRCS_UTILS		= $(addprefix $(SRC_UTILS_D), \
-					map_builder/map_build.c \
-					map_builder/map_read.c)
-SCRS_BONUS		= 
+SRCS_UTILS		= $(addprefix $(SRC_UTILS_D), $(FILES_UTILS))
+
+#SCRS_BONUS		= 
 
 OBJS			= $(addprefix $(BUILD_D), $(SRCS:%.c=%.o))
-#OBJS_UTILS		= $(addprefix $(BUILD_D), $(SRCS_UTILS:%.c=%.o))
+OBJS_UTILS		= $(addprefix $(BUILD_D), $(SRCS_UTILS:%.c=%.o))
 OBJS_ALL		= $(OBJS) $(OBJS_UTILS)
 
 #BONUS_FILES	= $(SCRS_BONUS:%.=%.o)
@@ -92,7 +94,7 @@ COMPILE_EXE		= $(CC) $(OBJS_ALL) $(LDFLAGS) $(LIBS) -o $(NAME)
 
 all:			libft_lib mlx_lib $(NAME)
 
-$(BUILD_D)%.o:	%.c 
+$(BUILD_D)%.o:	%.c
 				$(MKDIR) $(dir $@)
 				$(COMPILE_OBJS)
 				@echo "Compiling: $(notdir $<)"
