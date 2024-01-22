@@ -6,15 +6,15 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 16:50:18 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/19 16:35:13 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/22 14:35:02 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char	**map_builder(int32_t fd, t_game *game)
+char	**map_builder(t_game *game)
 {
-	game->selected_map = map_reader(fd);
+	game->selected_map = map_reader(game->fd);
 	if (!game->selected_map)
 	{
 		free(game);

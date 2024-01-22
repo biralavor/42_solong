@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 14:29:17 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/19 16:34:55 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/22 14:38:29 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ char	*map_reader(int32_t fd)
 		if (buffer == 0)
 			return (row);
 		buffer[buffer_len] = '\0';
+		ft_printf("buffer before ft_strjoin = %s\n", buffer[buffer_len]);
 		row = ft_strjoin(row, buffer);
 	}
 	close(fd);
