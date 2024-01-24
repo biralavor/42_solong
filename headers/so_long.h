@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:46:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/24 14:10:46 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/24 17:19:05 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,28 +20,42 @@
 # include <stdint.h>
 # include <stdbool.h>
 
-# define WIDTH 512
-# define HEIGHT 512
-# define BPP sizeof(int32_t)
-# define BUFFERSIZE 30
-# define SPACESHIP "./textures/ref-space-shuttle-redux.png"
-# define SPACEFIELD "./textures/ref-background-hsl-70.png"
-# define DEATH "./textures/ref-death-icon-50.png"
-# define BOUNDARY "./textures/asteroid-35px-hsl.png"
-# define ASTRONAUT "./textures/astronaut-38px.png"
-# define EARTH "./textures/earth-40px.png"
 # define COLOR_RED "\033[0;31m"
 # define COLOR_GREEN "\033[0;32m"
 # define COLOR_YELLOW "\033[0;33m"
 # define COLOR_PURPLE "\033[0;35m"
 # define COLOR_CYAN "\033[0;36m"
 # define COLOR_RESET "\033[0m"
+/* Color definitions */
+
+# define WIDTH 512
+# define HEIGHT 512
+# define MAX_MAP_WIDTH 30
+# define MAX_MAP_HEIGHT 30
+/* Map definitions */
+
+# define BPP sizeof(int32_t)
+# define BUFFERSIZE 30
+/* MLX definitions */
+
+# define SPACESHIP "./textures/ref-space-shuttle-redux.png"
+# define SPACEFIELD "./textures/ref-background-hsl-70.png"
+# define DEATH "./textures/ref-death-icon-50.png"
+# define BOUNDARY "./textures/asteroid-35px-hsl.png"
+# define ASTRONAUT "./textures/astronaut-38px.png"
+# define EARTH "./textures/earth-40px.png"
+/* Sprite definitions */
 
 typedef struct s_map
 {
 	char			**map;
-	int32_t			index;
 	int32_t			fd;
+	int32_t			index;
+	int				width;
+	int				height;
+	int				size;
+	char			*line;
+	bool			bad_format;
 }					t_map;
 
 typedef struct s_sprite
@@ -67,10 +81,13 @@ void	*ft_memset(void *str, int c, size_t size);
 void	load_texture(t_game *game);
 
 char	*map_reader(int32_t fd);
-char	*map_builder(char **argv, t_map map);
+char	map_builder(char **argv, t_map map);
 /* map funtions */
 
 bool	map_extension_check(char **argv);
+void	map_size_check(t_map map);
+void	err_msg_free(int i, char *msg, int stage, t_game *game);
+void	free_map(t_map *map);
 /* validation funtions */
 
 #endif

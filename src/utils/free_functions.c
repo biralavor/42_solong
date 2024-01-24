@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_builder.c                                      :+:      :+:    :+:   */
+/*   free_functions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/11 16:50:18 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/24 16:27:35 by umeneses         ###   ########.fr       */
+/*   Created: 2024/01/24 17:11:16 by umeneses          #+#    #+#             */
+/*   Updated: 2024/01/24 17:14:52 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char	map_builder(char **argv, t_map map)
+void	free_map(t_map *map)
 {
-
-	ft_printf("\nft MAP BUILDER loading...\n");
-	ft_printf("\nargv = %s\n", argv[1]);
-	map.fd = open(argv[1], O_RDONLY);
-	ft_printf("\nft MAP SIZE CHECK loading...\n");
-	map.index = 0;
-	map_size_check(map);
-
-	// game->selected_map = map_reader(game->fd);
-	ft_printf("\ngame map = ft_split init\n");
-	// game->map = ft_split((const char *)game->selected_map, '\n');
-	return (0);
+	int	index;
+	
+	index = -1;
+	while (++index < map->height)
+		free(map->map[index]);
+	free(map->map);
 }
-
-
