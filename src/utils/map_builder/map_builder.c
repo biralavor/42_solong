@@ -6,20 +6,32 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 16:50:18 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/22 14:35:02 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/24 14:13:21 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char	**map_builder(t_game *game)
+char	*map_builder(char **argv, t_map map)
 {
-	game->selected_map = map_reader(game->fd);
-	if (!game->selected_map)
+	char	*gnl_temp;
+
+	gnl_temp = "";
+	map.fd = open(argv[1], O_RDONLY);
+	map.index = 0;
+	ft_printf("\nEntering into MAP BUILDER\n");
+	while (gnl_temp)
 	{
-		free(game);
-		return (1);
+		ft_printf(COLOR_CYAN);
+		ft_printf("GNL MAP BUILDER %i = ", map.index);
+		gnl_temp = ft_get_next_line(map.fd);
+		ft_printf("%s", gnl_temp);
+		free(gnl_temp);
+		map.index++;
 	}
-	game->map = ft_split((const char *)game->selected_map, '\n');
-	return (&game->selected_map);
+	ft_get_next_line(map.fd);
+	// game->selected_map = map_reader(game->fd);
+	ft_printf("\ngame map = ft_split init\n");
+	// game->map = ft_split((const char *)game->selected_map, '\n');
+	return (0);
 }

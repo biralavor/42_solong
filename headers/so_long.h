@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:46:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/22 17:07:05 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/24 14:10:46 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,22 @@
 # define COLOR_CYAN "\033[0;36m"
 # define COLOR_RESET "\033[0m"
 
+typedef struct s_map
+{
+	char			**map;
+	int32_t			index;
+	int32_t			fd;
+}					t_map;
+
+typedef struct s_sprite
+{
+	mlx_texture_t	*spr_texture;
+	mlx_image_t		*spr_img;
+}					t_sprite;
+
 typedef struct s_game
 {
+	t_map			*map;
 	mlx_t			*mlx;
 	mlx_image_t		*play_img;
 	mlx_image_t		*cvs_img;
@@ -47,31 +61,16 @@ typedef struct s_game
 	void			*window;
 	int				img_w;
 	int				img_h;
-	char			*selected_map;
-	char			**map;
-	int32_t			fd;
-	mlx_texture_t	*ship;
-	mlx_image_t		*ship_img;
-	mlx_texture_t	*background;
-	mlx_image_t		*back_img;
-	mlx_texture_t	*enemy;
-	mlx_image_t		*enemy_img;
-	mlx_texture_t	*border;
-	mlx_image_t		*border_img;
-	mlx_texture_t	*astro;
-	mlx_image_t		*astro_img;
-	mlx_texture_t	*earth;
-	mlx_image_t		*earth_img;
 }					t_game;
 
 void	*ft_memset(void *str, int c, size_t size);
 void	load_texture(t_game *game);
 
 char	*map_reader(int32_t fd);
-char	**map_builder(t_game *game);
+char	*map_builder(char **argv, t_map map);
 /* map funtions */
 
-void	error_check(char **argv);
+bool	map_extension_check(char **argv);
 /* validation funtions */
 
 #endif

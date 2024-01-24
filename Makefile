@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/03 15:54:10 by umeneses          #+#    #+#              #
-#    Updated: 2024/01/22 16:00:08 by umeneses         ###   ########.fr        #
+#    Updated: 2024/01/24 14:04:08 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,8 +48,8 @@ NAME			= so_long
 NAME_BONUS		= so_long_bonus
 
 FILES			= main.c \
-					loading_images.c
-FILES_UTILS		= error_check.c \
+#					loading_images.c
+FILES_UTILS		= errors_check.c \
 					map_builder/map_builder.c \
 					map_builder/map_reader.c
 
@@ -109,8 +109,8 @@ $(NAME):		$(OBJS_ALL)
 libft_lib:
 				@printf "$(CYAN)"
 				$(MAKE) -C $(LIBFT_D)
-				@echo "Checking File..."
-				nm $(LIBTF)
+#				@echo "Checking File..."
+#				nm $(LIBTF)
 				@printf "$(RESET)"
 
 mlx_lib:
