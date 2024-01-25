@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:46:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/24 17:19:05 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/25 15:43:39 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,13 +81,15 @@ void	*ft_memset(void *str, int c, size_t size);
 void	load_texture(t_game *game);
 
 char	*map_reader(int32_t fd);
-char	map_builder(char **argv, t_map map);
+bool	map_check(char **argv, t_map map);
 /* map funtions */
 
 bool	map_extension_check(char **argv);
-void	map_size_check(t_map map);
+bool	map_size_check(t_map map);
 void	err_msg_free(int i, char *msg, int stage, t_game *game);
 void	free_map(t_map *map);
+bool	has_player(char *line);
+bool	has_wall(char *line);
 /* validation funtions */
 
 #endif

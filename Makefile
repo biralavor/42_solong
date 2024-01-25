@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/03 15:54:10 by umeneses          #+#    #+#              #
-#    Updated: 2024/01/24 17:14:19 by umeneses         ###   ########.fr        #
+#    Updated: 2024/01/25 15:07:14 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,12 +47,13 @@ LIBS			= $(LIBTF) $(MLX42)
 NAME			= so_long
 NAME_BONUS		= so_long_bonus
 
-FILES			= main.c						\
+FILES			= main.c							\
 #					loading_images.c
-FILES_UTILS		= errors_check.c				\
-					free_functions.c			\
-					map_builder/map_builder.c	\
-					map_builder/map_reader.c
+FILES_UTILS		= errors_check.c					\
+					free_functions.c				\
+					map_builder/map_checker.c		\
+					map_builder/map_reader.c		\
+					map_builder/map_validation_1.c
 
 SRCS			= $(addprefix $(SRC_D), $(FILES))
 SRCS_UTILS		= $(addprefix $(SRC_UTILS_D), $(FILES_UTILS))
