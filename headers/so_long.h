@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:46:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/25 15:43:39 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/26 16:43:34 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,14 @@
 # define COLOR_CYAN "\033[0;36m"
 # define COLOR_RESET "\033[0m"
 /* Color definitions */
-
 # define WIDTH 512
 # define HEIGHT 512
 # define MAX_MAP_WIDTH 30
 # define MAX_MAP_HEIGHT 30
 /* Map definitions */
-
 # define BPP sizeof(int32_t)
 # define BUFFERSIZE 30
 /* MLX definitions */
-
 # define SPACESHIP "./textures/ref-space-shuttle-redux.png"
 # define SPACEFIELD "./textures/ref-background-hsl-70.png"
 # define DEATH "./textures/ref-death-icon-50.png"
@@ -48,7 +45,7 @@
 
 typedef struct s_map
 {
-	char			**map;
+	char			**matrix;
 	int32_t			fd;
 	int32_t			index;
 	int				width;
@@ -80,13 +77,14 @@ typedef struct s_game
 void	*ft_memset(void *str, int c, size_t size);
 void	load_texture(t_game *game);
 
+bool	map_opener(char **argv, t_map *map);
 char	*map_reader(int32_t fd);
-bool	map_check(char **argv, t_map map);
+bool	map_check(char **argv, t_map *map);
 /* map funtions */
 
 bool	map_extension_check(char **argv);
-bool	map_size_check(t_map map);
-void	err_msg_free(int i, char *msg, int stage, t_game *game);
+bool	map_size_check(t_map *map);
+void	err_msg_free(int i, char *msg, int stage, t_map *map);
 void	free_map(t_map *map);
 bool	has_player(char *line);
 bool	has_wall(char *line);

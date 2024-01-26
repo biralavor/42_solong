@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 17:11:16 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/24 17:14:52 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/26 16:00:51 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@ void	free_map(t_map *map)
 	
 	index = -1;
 	while (++index < map->height)
-		free(map->map[index]);
-	free(map->map);
+		free(map->matrix[index]);
+	free(map->matrix);
 }

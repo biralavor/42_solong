@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:38:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/25 16:31:29 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/26 15:44:17 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,37 +37,40 @@ bool	map_extension_check(char **argv)
 	}
 }
 
-bool	map_size_check(t_map map)
+bool	map_size_check(t_map *map)
 {
-	map.width = 0;
-	map.height = 0;
-	map.bad_format = false;
-	map.line = "";
-	while (map.line)
+	map->width = 0;
+	map->height = 0;
+	map->bad_format = false;
+	map->line = "";
+	while (map->line)
 	{
-		map.line = ft_get_next_line(map.fd);
-		if (map.line == (void *)0)
+		map->line = ft_get_next_line(map->fd);
+		if (map->line == (void *)0)
 			break ;
-		if (map.width == 0)
-			map.width = (ft_strlen(map.line) - 1);
-		if ((map.width != ft_strlen(map.line) - 1) && \
-				map.line[map.width] != '\0')
-			map.bad_format = true;
-		map.height++;
-		free(map.line);
+		if (map->width == 0)
+			map->width = (ft_strlen(map->line) - 1);
+		if ((map->width != ft_strlen(map->line) - 1) && \
+				map->line[map->width] != '\0')
+			map->bad_format = true;
+		map->height++;
+		free(map->line);
 	}
-	if (map.bad_format == true)
+	if (map->bad_format == true)
 	{
 		err_msg_free(1, "\nError\nMap requirements doesn't match.\n", 0, NULL);
 		return (false);
 	}
-	if (map.width > MAX_MAP_WIDTH || map.height > MAX_MAP_HEIGHT)
+	if (map->width > MAX_MAP_WIDTH || map->height > MAX_MAP_HEIGHT)
 	{
-		err_msg_free(2, "\nError\nMap it too big.\n", 0, NULL);
+		err_msg_free(2, "\nError\nMap is too big.\n", 0, NULL);
 		return (false);
 	}
-	map.size = map.height * map.width;
-	close(map.fd);
+	map->size = map->height * map->width;
+	ft_printf("map->size = %d\n", map->size);
+	ft_printf("map->width = %d\n", map->width);
+	ft_printf("map->height = %d\n", map->height);
+	close(map->fd);
 	return (true);
 }
 
@@ -91,7 +94,11 @@ bool	has_wall(char *line)
 
 	index = ft_strlen(line);
 	tofind = "1";
-	if (line[0] == tofind[1] && line[index] == tofind[1])
+	ft_printf("index = %d\n", index);
+	ft_printf("tofind = %s\n", tofind);
+	ft_printf("line[0] = %s\n", line[0]);
+	ft_printf("line[index] = %s\n", line[index]);
+	if ((line[0] == tofind[1]) && (line[index] == tofind[1]))
 		return (true);
 	return (false);
 }
