@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 14:29:17 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/26 16:52:01 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/29 11:21:53 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,26 +25,26 @@ bool	map_opener(char **argv, t_map *map)
 	return (true);
 }
 
-bool	*map_reader(t_map map)
+bool	map_reader(t_map *map)
 {
 	int32_t	buffer_len;
 	char	*buffer;
 
 	buffer_len = 1;
-	map.line = ft_calloc(1,sizeof(char));
+	map->line = ft_calloc(1,sizeof(char));
 	buffer = ft_calloc(BUFFERSIZE + 1, sizeof(char));
 	while ((buffer_len > 0))
 	{
-		buffer_len = read(fd, buffer, BUFFERSIZE);
+		buffer_len = read(map->fd, buffer, BUFFERSIZE);
 		if (buffer < 0)
 		{
 			free (buffer);
 			return (false);
 		}
 		// if (buffer == 0)
-		// 	return (map.line);
+		// 	return (map->line);
 		buffer[buffer_len] = '\0';
-		map.line = ft_strjoin(map.line, buffer);
+		map->line = ft_strjoin(map->line, buffer);
 	}
 	// close(fd);
 	return (true);

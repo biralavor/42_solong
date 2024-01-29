@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:46:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/26 16:43:34 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/29 11:21:26 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	*ft_memset(void *str, int c, size_t size);
 void	load_texture(t_game *game);
 
 bool	map_opener(char **argv, t_map *map);
-char	*map_reader(int32_t fd);
+bool	map_reader(t_map *map);
 bool	map_check(char **argv, t_map *map);
 /* map funtions */
 
