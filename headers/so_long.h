@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:46:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/29 14:36:27 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/29 18:53:33 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ typedef struct s_map
 	char			**matrix;
 	int32_t			fd;
 	int32_t			index;
-	int				width;
-	int				height;
+	int32_t			width;
+	int32_t			height;
 	int				size;
 	char			*line;
 	bool			bad_format;
@@ -75,12 +75,14 @@ bool	map_reader(t_map *map);
 bool	*map_build_matrix(char **argv, t_map *map);
 /* map funtions */
 
-bool	map_extension_check(char **argv);
-bool	*map_size_check(t_map *map);
+bool	map_extension_checker(char **argv);
+bool	*map_size_checker(t_map *map);
 void	err_msg_free(int i, char *msg, int stage, t_map *map);
 void	free_map(t_map *map);
-bool	has_player(char *line);
-bool	has_wall(char *line);
 /* validation funtions */
+
+bool	*has_player(t_map *map);
+bool	has_wall(char *line);
+/* validation map items */
 
 #endif

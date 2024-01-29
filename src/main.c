@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:47:07 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/29 14:36:57 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/29 17:15:18 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,25 @@
 
 int32_t main(int32_t argc, char **argv)
 {
-	t_game	game;
+	t_game	*game;
 
+	game = (t_game *)ft_calloc(BUFFERSIZE, sizeof(t_game));
 	if (argc == 2)
 	{
-		if (map_extension_check(argv) == true)
+		if (map_extension_checker(argv) == true && \
+			map_opener(argv, &game->map) == true && \
+			map_size_checker(&game->map) == true)
 		{
-			ft_printf("extension = true\n");
-			if (map_opener(argv, &game.map) == true)
-				ft_printf("map opener = true\n");
-			if (map_size_check(&game.map) == true)
-				ft_printf("map size check = true\n");
-			if (map_build_matrix(argv, &game.map) == true)
+			ft_printf("\nmap size checker = true\n");
+			// if (map_items_checker(&game->map) == true)
+			// 	ft_printf("\nmap items checker = true\n");
+
+			if (map_build_matrix(argv, &game->map) == true)
 				ft_printf("map matrix = done\n");
-			// if (map_reader(game.map) == true)
-			// {
-			// 	ft_printf("map reader = true\n");
-			// }
-			// if (map_check(argv, game.map) == true)
-			// {
-			// 	ft_printf("\n map approved! \n");
-			// 	close (game.map->fd);
-			// }
+
+			// ft_printf("\n map approved! \n");
+			// free (&game.map->line);
+			// close (&game.map->fd);
 		}
 	}
 	else if (argc > 2)
@@ -46,7 +43,6 @@ int32_t main(int32_t argc, char **argv)
 				STDOUT_FILENO), EXIT_FAILURE);
 	return (0);
 }
-
 
 // game = structures_init();
 // game->mlx = mlx_init(WIDTH, HEIGHT, "42_Astronauts_So_Long_Game", true);

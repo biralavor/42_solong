@@ -6,13 +6,13 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:38:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/29 14:31:33 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/29 17:14:32 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-bool	map_extension_check(char **argv)
+bool	map_extension_checker(char **argv)
 {
 	size_t	index;
 	size_t	filename_len;
@@ -38,10 +38,12 @@ bool	map_extension_check(char **argv)
 	return (false);
 }
 
-bool	*map_size_check(t_map *map)
+bool	*map_size_checker(t_map *map)
 {
 	map->width = 0;
 	map->height = 0;
+	map->line = "";
+	map->bad_format = false;
 	while (map->line)
 	{
 		map->line = ft_get_next_line(map->fd);
@@ -67,25 +69,49 @@ bool	*map_size_check(t_map *map)
 		return (false);
 	}
 	map->size = map->height * map->width;
-	ft_printf("\nmap->size = %d\n", map->size);
+	ft_printf("\nmap_size_checker() results:\n");
+	ft_printf("map->size = %d\n", map->size);
 	ft_printf("map->width = %d\n", map->width);
 	ft_printf("map->height = %d\n", map->height);
-	ft_printf("map->fd TAIL of map size check = %d\n", map->fd);
+	ft_printf("map->fd TAIL = %d\n", map->fd);
 	close(map->fd);
 	return (true);
 }
 
-bool	has_player(char *line)
+bool	*has_player(t_map *map)
 {
 	char	*tofind;
-	char	*result;
+	char	*line;
+	int		i;
+	int		j;
 
-	ft_printf("has_player map.line = %s\n", line);
 	tofind = "P";
-	result = ft_strnstr(line, tofind, ft_strlen(line));
-	if (result == tofind)
-		return (true);
-	return (false);
+	i = 0;
+	j = 0;
+	ft_printf("has_player map.width = %d\n", map->width);
+	ft_printf("has_player map.height = %d\n", map->height);
+	// ft_printf("matrix = %c %c\n", map->matrix[i][j]);
+	// while (i >= map->width)
+	// {
+	// 	ft_printf("matrix = %s\n", map->matrix[i][j]);
+	// 	i++;
+	// 	while (j >= map->height)
+	// 		ft_printf("matrix = %s\n", map->matrix[i][j]);
+	// 	j++;
+	// }
+	
+	// while (map->matrix[i, j] <= map->matrix[map->width, map->height])
+	// {
+	// 	line = ft_strnstr(map->matrix[i], tofind, map->width);
+	// 	if (line != tofind)
+	// 	{
+	// 		ft_putendl_fd("Error\nPlayer not found!\n", STDOUT_FILENO);
+	// 		return (false);
+	// 	}
+	// 	i++;
+	// 	j++;
+	// }
+	return (true);
 }
 
 bool	has_wall(char *line)
