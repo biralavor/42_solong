@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:38:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/26 15:44:17 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/29 14:31:33 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,13 @@ bool	map_extension_check(char **argv)
 							It needs to be '.ber'\n", STDOUT_FILENO), false);
 		break ;
 	}
+	return (false);
 }
 
-bool	map_size_check(t_map *map)
+bool	*map_size_check(t_map *map)
 {
 	map->width = 0;
 	map->height = 0;
-	map->bad_format = false;
-	map->line = "";
 	while (map->line)
 	{
 		map->line = ft_get_next_line(map->fd);
@@ -58,18 +57,20 @@ bool	map_size_check(t_map *map)
 	}
 	if (map->bad_format == true)
 	{
-		err_msg_free(1, "\nError\nMap requirements doesn't match.\n", 0, NULL);
+		ft_putendl_fd("\nError\nMap requirements doesn't match.\n", \
+						STDOUT_FILENO);
 		return (false);
 	}
 	if (map->width > MAX_MAP_WIDTH || map->height > MAX_MAP_HEIGHT)
 	{
-		err_msg_free(2, "\nError\nMap is too big.\n", 0, NULL);
+		ft_putendl_fd("\nError\nMap is too big.\n", STDOUT_FILENO);
 		return (false);
 	}
 	map->size = map->height * map->width;
-	ft_printf("map->size = %d\n", map->size);
+	ft_printf("\nmap->size = %d\n", map->size);
 	ft_printf("map->width = %d\n", map->width);
 	ft_printf("map->height = %d\n", map->height);
+	ft_printf("map->fd TAIL of map size check = %d\n", map->fd);
 	close(map->fd);
 	return (true);
 }

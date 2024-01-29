@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/03 15:54:10 by umeneses          #+#    #+#              #
-#    Updated: 2024/01/26 16:15:25 by umeneses         ###   ########.fr        #
+#    Updated: 2024/01/29 12:33:43 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,7 @@ FILES			= main.c
 FILES_UTILS		= map_builder/map_validation_1.c
 FILES_UTILS		+= errors_check.c
 FILES_UTILS		+= free_functions.c
-FILES_UTILS		+= map_builder/map_checker.c
+FILES_UTILS		+= map_builder/map_builder.c
 FILES_UTILS		+= map_builder/map_reader.c
 					
 

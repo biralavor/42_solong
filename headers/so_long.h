@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:46:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/29 11:21:26 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/29 14:36:27 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,6 @@
 # include <stdint.h>
 # include <stdbool.h>
 
-# define COLOR_RED "\033[0;31m"
-# define COLOR_GREEN "\033[0;32m"
-# define COLOR_YELLOW "\033[0;33m"
-# define COLOR_PURPLE "\033[0;35m"
-# define COLOR_CYAN "\033[0;36m"
-# define COLOR_RESET "\033[0m"
-/* Color definitions */
 # define WIDTH 512
 # define HEIGHT 512
 # define MAX_MAP_WIDTH 30
@@ -77,13 +70,13 @@ typedef struct s_game
 void	*ft_memset(void *str, int c, size_t size);
 void	load_texture(t_game *game);
 
-bool	map_opener(char **argv, t_map *map);
+bool	*map_opener(char **argv, t_map *map);
 bool	map_reader(t_map *map);
-bool	map_check(char **argv, t_map *map);
+bool	*map_build_matrix(char **argv, t_map *map);
 /* map funtions */
 
 bool	map_extension_check(char **argv);
-bool	map_size_check(t_map *map);
+bool	*map_size_check(t_map *map);
 void	err_msg_free(int i, char *msg, int stage, t_map *map);
 void	free_map(t_map *map);
 bool	has_player(char *line);

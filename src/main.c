@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:47:07 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/29 11:22:15 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/29 14:36:57 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,19 @@ int32_t main(int32_t argc, char **argv)
 		if (map_extension_check(argv) == true)
 		{
 			ft_printf("extension = true\n");
-			if (map_opener(argv, game.map) == true)
-			{
+			if (map_opener(argv, &game.map) == true)
 				ft_printf("map opener = true\n");
-			}
+			if (map_size_check(&game.map) == true)
+				ft_printf("map size check = true\n");
+			if (map_build_matrix(argv, &game.map) == true)
+				ft_printf("map matrix = done\n");
 			// if (map_reader(game.map) == true)
 			// {
-			// 	ft_printf("map opener = true\n");
+			// 	ft_printf("map reader = true\n");
 			// }
 			// if (map_check(argv, game.map) == true)
 			// {
-			// 	ft_printf(COLOR_CYAN);
 			// 	ft_printf("\n map approved! \n");
-			// 	ft_printf(COLOR_RESET);
 			// 	close (game.map->fd);
 			// }
 		}
