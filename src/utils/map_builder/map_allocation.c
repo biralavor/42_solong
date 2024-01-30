@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mem_alloc.c                                        :+:      :+:    :+:   */
+/*   map_allocation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 19:24:16 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/30 13:02:31 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/30 15:00:57 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char	**mem_alloc(char **matrix, char *line, size_t size)
+char	**map_allocation(char **matrix, char *line, size_t size)
 {
 	size_t	index;
 	char	**matrix_temp;

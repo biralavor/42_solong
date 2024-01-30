@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:46:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/30 12:25:07 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/30 15:01:11 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define HEIGHT 512
 # define MAX_MAP_WIDTH 30
 # define MAX_MAP_HEIGHT 30
+# define MIN_MAP_HEIGHT 3
 /* Map definitions */
 # define BPP sizeof(int32_t)
 # define BUFFERSIZE 30
@@ -73,11 +74,14 @@ void	load_texture(t_game *game);
 bool	*map_opener(char **argv, t_map *map);
 bool	map_reader(t_map *map);
 bool	*map_build_matrix(char **argv, t_map *map);
-char	**mem_alloc(char **matrix, char *line, size_t size);
+char	**map_allocation(char **matrix, char *line, size_t size);
 /* map funtions */
 
 bool	map_extension_checker(char **argv);
 bool	*map_size_checker(t_map *map);
+bool	map_bad_format(t_map *map);
+bool	map_too_big(t_map *map);
+bool	map_too_tiny(t_map *map);
 void	err_msg_free(int i, char *msg, int stage, t_map *map);
 void	free_map(t_map *map);
 /* validation funtions */
