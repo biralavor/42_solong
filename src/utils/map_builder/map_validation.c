@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:38:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/30 15:01:45 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/30 16:47:52 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,14 @@ bool	*map_size_checker(t_map *map)
 		ft_printf("map->width = %d\n", map->width);
 		ft_printf("map->height = %d\n", map->height);
 		ft_printf("map->fd TAIL = %d\n", map->fd);
-		ft_printf("map_matrix[2] = %s\n",map->matrix[2]);
+		ft_printf("map_matrix[0] = %s",map->matrix[0]);
+		ft_printf("map_matrix[1] = %s",map->matrix[1]);
+		ft_printf("map_matrix[2] = %s",map->matrix[2]);
+		ft_printf("map_matrix[?] = . . . \n");
+		ft_printf("map_matrix[?] = %s",map->matrix[map->height - 3]);
+		ft_printf("map_matrix[?] = %s",map->matrix[map->height - 2]);
+		ft_printf("map_matrix[?] = %s",map->matrix[map->height - 1]);
+		ft_printf("\nmap size checker = true\n");
 		close(map->fd);
 	}
 	return (true);

@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 16:50:18 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/29 19:52:38 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/30 16:49:04 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 bool	*map_build_matrix(char **argv, t_map *map)
 {
 	map->fd = open(argv[1], O_RDONLY);
-	ft_printf("\ninside matrix map.line = %s\n", map->line);
 	ft_printf("inside matrix map->size = %d\n", map->size);
 	ft_printf("inside matrix map->width = %d\n", map->width);
 	ft_printf("inside matrix map->height = %d\n", map->height);
@@ -30,29 +29,13 @@ bool	*map_build_matrix(char **argv, t_map *map)
 		close(map->fd);
 		return (false);
 	}
-	/* START MEMORY ALLOCATION */
-	map->matrix = ft_calloc(2, sizeof(char *));
-	map->index = 0;	
-	while (map->index < map->height)
-	{
-		map->matrix[map->index] = ft_calloc(2, sizeof(char *));
-		map->index++;
-	}
-	/* END MEMORY ALLOCATION */
-	map->matrix = ft_split(ft_get_next_line(map->fd), '\n');
-	if ((map->matrix == (void *)0) || !map->matrix)
-	{
-		ft_putendl_fd("\nMemory Map allocation error.\n", STDOUT_FILENO);
-		free (map->matrix);
-		close (map->fd);
-		return (false);
-	}
+
 	/* START CHECKING MATRIX */
-	int32_t x = 0;
-	int32_t	y = 0;
 	ft_printf("\nprinting matrix now\n");
-	while (x <= map->height)
+	int32_t x = 0;
+	while (x <= map->height - 1)
 	{
+		int32_t	y = 0;
 		while (y <= map->width)
 		{
 			ft_printf("%c", map->matrix[x][y]);
@@ -61,10 +44,11 @@ bool	*map_build_matrix(char **argv, t_map *map)
 		x++;
 	}
 	/* END CHECKING MATRIX */
-	
+
 	ft_printf("\nend of matrix \n");
 	// free (map->line);
 	// free (map->matrix);
 	// close (map->fd);
+	ft_printf("map matrix = done\n");
 	return (true);
 }
