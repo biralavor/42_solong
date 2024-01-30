@@ -6,54 +6,45 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:38:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/30 15:03:48 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/30 18:12:32 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-bool	*map_items_checker(t_map *map)
+bool	*map_contens_checker(t_map *map)
 {
-	if (has_player(map) == true)
-	{
-		ft_printf("player = true\n");
-	}
+	ft_printf("\nEntering MAP_ITEMS_CHECKER:\n");
+	if (has_specific_char(map, "P") == true)
+		ft_printf("\nPlayer = true\n");
+	if (has_specific_char(map, "C") == true)
+		ft_printf("\nCollectable = true\n");
+	if (has_specific_char(map, "E") == true)
+		ft_printf("\nExit = true\n");
 	return (false);
 }
 
-bool	*has_player(t_map *map)
+bool	*has_specific_char(t_map *map, char *tofind)
 {
-	char	*tofind;
-	char	*line;
-	int		i;
-	int		j;
+	char		*line;
+	int32_t		x;
 
-	tofind = "P";
-	i = 0;
-	j = 0;
-	ft_printf("has_player map.width = %d\n", map->width);
-	ft_printf("has_player map.height = %d\n", map->height);
-	// ft_printf("matrix = %c %c\n", map->matrix[i][j]);
-	// while (i >= map->width)
-	// {
-	// 	ft_printf("matrix = %s\n", map->matrix[i][j]);
-	// 	i++;
-	// 	while (j >= map->height)
-	// 		ft_printf("matrix = %s\n", map->matrix[i][j]);
-	// 	j++;
-	// }
-	
-	// while (map->matrix[i, j] <= map->matrix[map->width, map->height])
-	// {
-	// 	line = ft_strnstr(map->matrix[i], tofind, map->width);
-	// 	if (line != tofind)
-	// 	{
-	// 		ft_putendl_fd("Error\nPlayer not found!\n", STDOUT_FILENO);
-	// 		return (false);
-	// 	}
-	// 	i++;
-	// 	j++;
-	// }
+	x = 0;
+	while (x <= map->height - 1)
+	{
+		line = ft_strnstr(map->matrix[x], tofind, map->width - 1);
+		while (!line)
+		{
+			x++;
+			line = ft_strnstr(map->matrix[x], tofind, map->width - 1);
+			if (x == map->height - 1)
+			{
+				ft_putendl_fd("\nError\nPlayer not found!\n", STDOUT_FILENO);
+				return (false);
+			}
+		}
+		break ;
+	}
 	return (true);
 }
 
