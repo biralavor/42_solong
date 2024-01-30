@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/03 15:54:10 by umeneses          #+#    #+#              #
-#    Updated: 2024/01/29 12:33:43 by umeneses         ###   ########.fr        #
+#    Updated: 2024/01/30 15:01:55 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,11 +49,13 @@ NAME_BONUS		= so_long_bonus
 
 FILES			= main.c
 #FILES			+= loading_images.c
-FILES_UTILS		= map_builder/map_validation_1.c
+FILES_UTILS		= map_builder/map_validation.c
 FILES_UTILS		+= errors_check.c
 FILES_UTILS		+= free_functions.c
-FILES_UTILS		+= map_builder/map_builder.c
+#FILES_UTILS		+= map_builder/map_builder.c
 FILES_UTILS		+= map_builder/map_reader.c
+FILES_UTILS		+= map_builder/map_allocation.c
+#FILES_UTILS		+= map_builder/contents_validation.c
 					
 
 SRCS			= $(addprefix $(SRC_D), $(FILES))
@@ -83,7 +85,7 @@ MV_OBJS			= find . -type f \( -name '.o' -o -name '.a'\) -exec mv {} \
 AUTHOR			= umeneses
 CC				= cc
 #CFLAGS			= -Wall -Wextra -Werror
-CFLAGS			= -Ofast
+CFLAGS			= -g -Ofast
 CPPFLAGS		= $(addprefix -I , $(HEADERS)) -MMD -MP
 DFLAGS			= -g3
 #LDLIBS			= $(addprefix -L , $(dir $(LIBS)))

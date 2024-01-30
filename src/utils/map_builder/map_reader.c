@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 14:29:17 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/29 15:15:25 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/30 15:03:41 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,4 @@ bool	*map_opener(char **argv, t_map *map)
 		return (false);
 	}
 	return (true);
-}
-
-bool	*map_items_checker(t_map *map)
-{
-	if (has_player(map) == true)
-	{
-		ft_printf("player = true\n");
-	}
-	return (false);
 }
