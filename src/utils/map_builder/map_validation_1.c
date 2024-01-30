@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:38:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/29 17:14:32 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/30 12:43:11 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,20 +42,21 @@ bool	*map_size_checker(t_map *map)
 {
 	map->width = 0;
 	map->height = 0;
-	map->line = "";
 	map->bad_format = false;
+	map->line = ft_get_next_line(map->fd);
+	ft_printf("map->fd HEAD of SizeChecker = %d\n", map->fd);
+	ft_printf("\nmap_line = %s\n", map->line);
+	ft_printf("\nmap_size_checker() results:\n");
 	while (map->line)
 	{
-		map->line = ft_get_next_line(map->fd);
-		if (map->line == (void *)0)
-			break ;
 		if (map->width == 0)
 			map->width = (ft_strlen(map->line) - 1);
 		if ((map->width != ft_strlen(map->line) - 1) && \
 				map->line[map->width] != '\0')
 			map->bad_format = true;
+		map->matrix = mem_alloc(map->matrix, map->line, map->height);
 		map->height++;
-		free(map->line);
+		map->line = ft_get_next_line(map->fd);
 	}
 	if (map->bad_format == true)
 	{
@@ -69,11 +70,11 @@ bool	*map_size_checker(t_map *map)
 		return (false);
 	}
 	map->size = map->height * map->width;
-	ft_printf("\nmap_size_checker() results:\n");
 	ft_printf("map->size = %d\n", map->size);
 	ft_printf("map->width = %d\n", map->width);
 	ft_printf("map->height = %d\n", map->height);
 	ft_printf("map->fd TAIL = %d\n", map->fd);
+	ft_printf("map_matrix[2] = %s\n",map->matrix[2]);
 	close(map->fd);
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:47:07 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/29 17:15:18 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/30 12:26:07 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int32_t main(int32_t argc, char **argv)
 			// if (map_items_checker(&game->map) == true)
 			// 	ft_printf("\nmap items checker = true\n");
 
-			if (map_build_matrix(argv, &game->map) == true)
-				ft_printf("map matrix = done\n");
+			// if (map_build_matrix(argv, &game->map) == true)
+			// 	ft_printf("map matrix = done\n");
 
 			// ft_printf("\n map approved! \n");
 			// free (&game.map->line);

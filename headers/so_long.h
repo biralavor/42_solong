@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:46:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/29 18:53:33 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/30 12:25:07 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	load_texture(t_game *game);
 bool	*map_opener(char **argv, t_map *map);
 bool	map_reader(t_map *map);
 bool	*map_build_matrix(char **argv, t_map *map);
+char	**mem_alloc(char **matrix, char *line, size_t size);
 /* map funtions */
 
 bool	map_extension_checker(char **argv);
