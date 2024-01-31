@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:38:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/31 16:24:28 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/31 17:18:36 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ bool	*map_contens_checker(t_map *map)
 	ft_printf("\nEntering MAP_ITEMS_CHECKER:\n");
 	if (has_specific_char(map, 'P', 1) == true)
 		ft_printf("Player = true\n");
-	if (has_specific_char(map, 'C', NULL) == true)
+	if (has_specific_char(map, 'C', 0) == true)
 		ft_printf("Collectable = true\n");
 	if (has_specific_char(map, 'E', 1) == true)
 		ft_printf("Exit = true\n");
@@ -31,27 +31,24 @@ bool	*has_specific_char(t_map *map, char tofind, int limiter)
 	int32_t	y;
 
 	found = 0;
-	x = 0;
-	while ((x <= map->height - 1) && map->matrix)
+	x = -1;
+	while ((++x <= map->height - 1) && map->matrix)
 	{
-		y = 0;
-		while (y <= map->width - 1)
+		y = -1;
+		while (++y <= map->width - 1)
 		{
-			ft_printf("map->matrix[%d][%d] = %c\n", x, y, map->matrix[x][y]);
 			if (tofind == map->matrix[x][y])
 				found++;
-			y++;
 		}
 		if ((x == map->height - 1) && (y == map->width))
 			break ;
-		x++;
 	}
-	if (limiter == NULL)
+	if (limiter == 0)
 		limiter = 999;
-	ft_printf("%c = %d found! Limiter was = %d\n", tofind, found, limiter);
+	ft_printf("%c = %d found! Limiter was = %d", tofind, found, limiter);
 	if (found > limiter)
 	{
-		ft_putendl_fd("\nError\nToo much specific items on map!\n", \
+		ft_putendl_fd("\nError\nToo much specific items on map!", \
 						STDOUT_FILENO);
 		return (false);
 	}
