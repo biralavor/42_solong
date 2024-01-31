@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:46:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/30 19:07:33 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/01/31 16:09:43 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	matrix_printer(t_map *map);
 /* validation funtions */
 
 bool	*map_contens_checker(t_map *map);
-bool	*has_specific_char(t_map *map, char *tofind, int limiter);
+bool	*has_specific_char(t_map *map, char tofind, int limiter);
 bool	*has_wall(t_map *map);
 /* validation map items */
 
