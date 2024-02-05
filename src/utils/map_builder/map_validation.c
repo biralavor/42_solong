@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:38:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/30 16:47:52 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/02/05 13:23:03 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ bool	map_extension_checker(char **argv)
 	return (false);
 }
 
-bool	*map_size_checker(t_map *map)
+bool	map_size_checker(t_map *map)
 {
 	map->width = 0;
 	map->height = 0;

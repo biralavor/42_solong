@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:46:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/31 16:09:43 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/02/05 13:32:29 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,14 @@ typedef struct s_game
 	int				img_h;
 }					t_game;
 
-bool	*map_opener(char **argv, t_map *map);
+bool	map_opener(char **argv, t_map *map);
 bool	map_reader(t_map *map);
-bool	*map_build_matrix(char **argv, t_map *map);
+bool	map_build_matrix(char **argv, t_map *map);
 char	**map_allocation(char **matrix, char *line, size_t size);
 /* map funtions */
 
 bool	map_extension_checker(char **argv);
-bool	*map_size_checker(t_map *map);
+bool	map_size_checker(t_map *map);
 bool	map_bad_format(t_map *map);
 bool	map_too_big(t_map *map);
 bool	map_too_tiny(t_map *map);
@@ -84,9 +84,9 @@ void	free_map(t_map *map);
 void	matrix_printer(t_map *map);
 /* validation funtions */
 
-bool	*map_contens_checker(t_map *map);
-bool	*has_specific_char(t_map *map, char tofind, int limiter);
-bool	*has_wall(t_map *map);
+bool	map_contens_checker(t_map *map);
+bool	has_specific_char(t_map *map, char tofind, int limiter);
+bool	has_wall(t_map *map);
 /* validation map items */
 
 void	*ft_memset(void *str, int c, size_t size);

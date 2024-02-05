@@ -6,13 +6,13 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 14:29:17 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/30 15:03:41 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/02/05 13:23:09 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-bool	*map_opener(char **argv, t_map *map)
+bool	map_opener(char **argv, t_map *map)
 {
 	map->fd = open(argv[1], O_RDONLY);
 	ft_printf("map->fd = %d\n", map->fd);

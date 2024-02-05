@@ -6,25 +6,23 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:38:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/31 17:50:01 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/02/05 13:34:05 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-bool	*map_contens_checker(t_map *map)
+bool	map_contens_checker(t_map *map)
 {
 	ft_printf("\nEntering MAP_ITEMS_CHECKER:\n");
-	if (has_specific_char(map, 'P', 1) == true)
-		ft_printf(" ---> Player = true\n");
-	if (has_specific_char(map, 'E', 1) == true)
-		ft_printf(" ---> Exit = true\n");
-	if (has_specific_char(map, 'C', 999) == true)
-		ft_printf(" ---> Collectable = true\n");
+	if ((has_specific_char(map, 'P', 1) == true) &&		\
+		(has_specific_char(map, 'E', 1) == true) &&		\
+		(has_specific_char(map, 'C', 999) == true))
+		return (true);
 	return (false);
 }
 
-bool	*has_specific_char(t_map *map, char tofind, int limiter)
+bool	has_specific_char(t_map *map, char tofind, int limiter)
 {
 	int32_t	found;
 	int32_t	x;
@@ -43,7 +41,7 @@ bool	*has_specific_char(t_map *map, char tofind, int limiter)
 		if ((x == map->height - 1) && (y == map->width))
 			break ;
 	}
-	ft_printf("%c = %d found! Limiter was = %d", tofind, found, limiter);
+	ft_printf("%c = %d found! Limiter was = %d\n", tofind, found, limiter);
 	if ((found > limiter) || (tofind == 'C' && found == 0))
 	{
 		ft_putendl_fd("\nError \
@@ -55,7 +53,7 @@ bool	*has_specific_char(t_map *map, char tofind, int limiter)
 	return (true);
 }
 
-// bool	*has_wall(t_map *map)
+// bool	has_wall(t_map *map)
 // {
 // 	char	*tofind;
 // 	int		wall_topdown;
@@ -79,3 +77,6 @@ bool	*has_specific_char(t_map *map, char tofind, int limiter)
 // 	}
 // 	return (true);
 // }
+
+
+// bool	is_char_locked(t_map *map)

@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 16:50:18 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/30 17:58:41 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/02/05 13:32:16 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /* TODO = 2 blocks ARE definitely lost here. Search and destroy it! */
 
-bool	*map_build_matrix(char **argv, t_map *map)
+bool	map_build_matrix(char **argv, t_map *map)
 {
 	ft_printf("inside matrix map->size = %d\n", map->size);
 	ft_printf("inside matrix map->width = %d\n", map->width);
