@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   contents_validation.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bira <bira@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:38:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/05 18:56:46 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/02/06 20:44:56 by bira             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@ bool	map_contens_checker(t_map *map)
 	ft_printf("\nEntering MAP_ITEMS_CHECKER:\n");
 	if ((has_specific_char(map, 'P', 1) == true) &&		\
 		(has_specific_char(map, 'E', 1) == true) &&		\
-		(has_specific_char(map, 'C', 999) == true) &&	\
-		(has_walls(map) == true))
+		(has_specific_char(map, 'C', 999) == true))
+		if (has_walls(map) == true)
+			ft_printf("\nhas wall = true\n");
 		return (true);
 	return (false);
 }
@@ -63,46 +64,52 @@ bool	has_walls(t_map *map)
 	tofind = '1';
 	x = 0;
 	y = 0;
-	while ((x <= map->height - 1) && (map->matrix) && (y <= map->width - 1))
+	while ((y <= map->height - 1) && (map->matrix) && (x <= map->width - 1))
 	{
-		while ((x == 0) && (y <= map->width - 1))
+		while ((y == 0) && (x <= map->width - 1))
 		{
-			ft_printf("matching map->matrix[%d][%d] = %c\n", x, y, map->matrix[x][y]);
-			if (matching_matrix_x_pos(x, y, map, tofind) == true)
-				y++;
-			else
-				break ;
-		}
-		x++;
-		ft_printf("x = %d\n", x);
-		y = 0;
-		while (x >= 1)
-		{
-			if ((tofind == map->matrix[x][0]) && (tofind == map->matrix[x][map->height - 1]))
+			if (matching_matrix_x_pos(y, x, map, tofind) == true)
 			{
-				ft_printf("matching map->matrix[%d][%d] = %c\n", x, y, map->matrix[x][y]);
+				ft_printf("matching map->matrix topo [%d][%d] = %c\n", y, x, map->matrix[y][x]);
 				x++;
 			}
 			else
 				break ;
 		}
-		while ((x == map->height - 1) && (y <= map->width - 1))
+		x = 0;
+		ft_printf("y = %d\n", y);
+		ft_printf("x = %d\n", x);
+		ft_printf("map->matrix[%d][%d] = %c\n", y, x, map->matrix[y][x]);
+		while ((y >= 1) && (y <= map->height - 1) && (x <= map->width - 1))
 		{
-			if (matching_matrix_x_pos(x, y, map, tofind) == true)
-				y++;
+			if ((tofind == map->matrix[y][x]) && (tofind == map->matrix[y][map->width - 1]))
+			{
+				ft_printf("matching map->matrix meio [%d][%d] = %c\n", y, x, map->matrix[y][x]);
+				ft_printf("matching map->matrix meio [%d][%d] = %c\n", y, map->width - 1, map->matrix[y][map->width - 1]);
+				ft_printf("y inside = %d\n", y);
+			}
 			else
 				break ;
+			y++;
 		}
+		if ((y == map->height - 1) && (matching_matrix_x_pos(y, x, map, tofind) == true))
+		{
+			ft_printf("matching map->matrix final [%d][%d] = %c\n", y, x, map->matrix[y][x]);
+			// x++;
+		}
+		y++;
+		ft_printf("y end code = %d\n", y);
+		ft_printf("x end code = %d\n", x);
 	}
 	return (false);
 }
 
-bool	matching_matrix_x_pos(int32_t x, int32_t y, t_map *map, char tofind)
+bool	matching_matrix_x_pos(int32_t y, int32_t x, t_map *map, char tofind)
 {
-	while (y <= map->width - 1)
+	while (x <= map->width - 1)
 	{
-		if (tofind == map->matrix[x][y])
-			y++;
+		if (tofind == map->matrix[y][x])
+			x++;
 		else
 		{
 			ft_putendl_fd("\nError\nYou has a breach on the Wall!\n", STDOUT_FILENO);
