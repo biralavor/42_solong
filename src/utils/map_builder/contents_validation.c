@@ -6,7 +6,7 @@
 /*   By: bira <bira@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:38:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/06 21:47:08 by bira             ###   ########.fr       */
+/*   Updated: 2024/02/07 03:12:53 by bira             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,10 @@ bool	has_walls(t_map *map)
 				ft_printf("middle matrix [%d][%d] = %c\n", y, x, map->matrix[y][x]);
 				ft_printf("middle matrix [%d][%d] = %c\n", y, map->width - 1, map->matrix[y][map->width - 1]);
 				y++;
-			}	
+			}
 			else
 			{
-				return (false);
+				return (wall_err_msg());
 				break ;
 			}
 		}
@@ -115,12 +115,17 @@ bool	matching_matrix_x_pos(int32_t y, int32_t x, t_map *map, char tofind)
 			x++;
 		else
 		{
-			ft_putendl_fd("\nError\nYou has a breach on the Wall!\n", STDOUT_FILENO);
+			wall_err_msg();
 			return (false);
-			break ;
 		}
 	}
 	return (true);
+}
+
+int	wall_err_msg(void)
+{
+	ft_putendl_fd("\nError\nYou has a breach on the Wall!\n", STDOUT_FILENO);
+	return (0);
 }
 
 // bool	is_char_locked(t_map *map)
