@@ -6,7 +6,7 @@
 /*   By: bira <bira@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:38:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/06 20:44:56 by bira             ###   ########.fr       */
+/*   Updated: 2024/02/06 21:17:24 by bira             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ bool	has_walls(t_map *map)
 
 	tofind = '1';
 	x = 0;
-	y = 0;
-	while ((y <= map->height - 1) && (map->matrix) && (x <= map->width - 1))
+	y = -1;
+	while ((++y <= map->height - 1) && (map->matrix) && (x <= map->width - 1))
 	{
 		while ((y == 0) && (x <= map->width - 1))
 		{
@@ -76,30 +76,37 @@ bool	has_walls(t_map *map)
 			else
 				break ;
 		}
+		ft_printf("----primeiro while já foi\n");
 		x = 0;
-		ft_printf("y = %d\n", y);
-		ft_printf("x = %d\n", x);
-		ft_printf("map->matrix[%d][%d] = %c\n", y, x, map->matrix[y][x]);
-		while ((y >= 1) && (y <= map->height - 1) && (x <= map->width - 1))
+		ft_printf("y após primeiro while = %d\n", y);
+		ft_printf("x após primeiro while = %d\n", x);
+		while ((y >= 1) && (y < map->height - 1) && (x <= map->width - 1))
 		{
 			if ((tofind == map->matrix[y][x]) && (tofind == map->matrix[y][map->width - 1]))
 			{
 				ft_printf("matching map->matrix meio [%d][%d] = %c\n", y, x, map->matrix[y][x]);
 				ft_printf("matching map->matrix meio [%d][%d] = %c\n", y, map->width - 1, map->matrix[y][map->width - 1]);
 				ft_printf("y inside = %d\n", y);
+				y++;
 			}
 			else
 				break ;
-			y++;
 		}
-		if ((y == map->height - 1) && (matching_matrix_x_pos(y, x, map, tofind) == true))
+		ft_printf("----segundo while foi lido\n");
+		// y++;
+		ft_printf("y após segundo while = %d\n", y);
+		ft_printf("x após segundo while = %d\n", x);
+		ft_printf("map->height[%d] - 1 = %d\n", map->height, map->height - 1);
+		while ((y == map->height - 1) && (x <= map->width - 1))
 		{
-			ft_printf("matching map->matrix final [%d][%d] = %c\n", y, x, map->matrix[y][x]);
-			// x++;
+			if (matching_matrix_x_pos(y, x, map, tofind) == true)
+			{
+				ft_printf("matching map->matrix topo [%d][%d] = %c\n", y, x, map->matrix[y][x]);
+				x++;
+			}
+			else
+				break ;
 		}
-		y++;
-		ft_printf("y end code = %d\n", y);
-		ft_printf("x end code = %d\n", x);
 	}
 	return (false);
 }
