@@ -6,7 +6,7 @@
 /*   By: bira <bira@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:38:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/07 03:12:53 by bira             ###   ########.fr       */
+/*   Updated: 2024/02/07 08:44:12 by bira             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ bool	has_specific_char(t_map *map, char tofind, int limiter)
 	return (true);
 }
 
+/* TODO reduce function size */
+
 bool	has_walls(t_map *map)
 {
 	char	tofind;
@@ -64,11 +66,10 @@ bool	has_walls(t_map *map)
 	tofind = '1';
 	x = 0;
 	y = -1;
-	while ((++y <= map->height - 1) && (map->matrix) && (x <= map->width - 1))
+	while ((++y <= map->height - 1) && (map->matrix) && (x <= map->width))
 	{
-		while ((y == 0) && (x <= map->width - 1))
+		while ((y == 0) && (x <= map->width))
 		{
-			ft_printf("top matrix [%d][%d] = %c\n", y, x, map->matrix[y][x]);
 			if (matching_matrix_x_pos(y, x, map, tofind) == true)
 				x++;
 			else
@@ -78,23 +79,18 @@ bool	has_walls(t_map *map)
 			}
 		}
 		x = 0;
-		while ((y >= 1) && (y < map->height - 1) && (x <= map->width - 1))
+		while ((y >= 1) && (y < map->height - 1))
 		{
-			if ((tofind == map->matrix[y][0]) && (tofind == map->matrix[y][map->width - 1]))
-			{
-				ft_printf("middle matrix [%d][%d] = %c\n", y, x, map->matrix[y][x]);
-				ft_printf("middle matrix [%d][%d] = %c\n", y, map->width - 1, map->matrix[y][map->width - 1]);
+			if ((tofind == map->matrix[y][0]) && (tofind == map->matrix[y][map->width]))
 				y++;
-			}
 			else
 			{
 				return (wall_err_msg());
 				break ;
 			}
 		}
-		while ((y == map->height - 1) && (x <= map->width - 1))
+		while ((y == map->height - 1) && (x <= map->width))
 		{
-			ft_printf("bottom matrix [%d][%d] = %c\n", y, x, map->matrix[y][x]);
 			if (matching_matrix_x_pos(y, x, map, tofind) == true)
 				x++;
 			else
@@ -120,12 +116,6 @@ bool	matching_matrix_x_pos(int32_t y, int32_t x, t_map *map, char tofind)
 		}
 	}
 	return (true);
-}
-
-int	wall_err_msg(void)
-{
-	ft_putendl_fd("\nError\nYou has a breach on the Wall!\n", STDOUT_FILENO);
-	return (0);
 }
 
 // bool	is_char_locked(t_map *map)
