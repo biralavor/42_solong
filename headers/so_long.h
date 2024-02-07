@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bira <bira@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:46:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/05 14:07:05 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/02/07 08:43:59 by bira             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,13 @@ bool	map_size_checker(t_map *map);
 bool	map_bad_format(t_map *map);
 bool	map_too_big(t_map *map);
 bool	map_too_tiny(t_map *map);
-void	err_msg_free(int i, char *msg, int stage, t_map *map);
 void	free_map(t_map *map);
 void	matrix_printer(t_map *map);
 /* validation funtions */
+
+void	err_msg_free(int i, char *msg, int stage, t_map *map);
+int		wall_err_msg(void);
+/* error message functions */
 
 bool	map_contens_checker(t_map *map);
 bool	has_specific_char(t_map *map, char tofind, int limiter);
