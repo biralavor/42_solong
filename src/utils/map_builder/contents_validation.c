@@ -6,7 +6,7 @@
 /*   By: bira <bira@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:38:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/07 08:44:12 by bira             ###   ########.fr       */
+/*   Updated: 2024/02/07 09:01:22 by bira             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,16 @@ bool	has_specific_char(t_map *map, char tofind, int limiter)
 	int32_t	y;
 
 	found = 0;
-	x = -1;
-	while ((++x <= map->height - 1) && map->matrix)
+	y = -1;
+	while ((++y <= map->height - 1) && map->matrix)
 	{
-		y = -1;
-		while (++y <= map->width - 1)
+		x = -1;
+		while (++x <= map->width - 1)
 		{
-			if (tofind == map->matrix[x][y])
+			if (tofind == map->matrix[y][x])
 				found++;
 		}
-		if ((x == map->height - 1) && (y == map->width))
+		if ((y == map->height - 1) && (x == map->width))
 			break ;
 	}
 	ft_printf("%c = %d found! Limiter was = %d\n", tofind, found, limiter);
@@ -119,3 +119,12 @@ bool	matching_matrix_x_pos(int32_t y, int32_t x, t_map *map, char tofind)
 }
 
 // bool	is_char_locked(t_map *map)
+// {
+// 	int32_t	x;
+// 	int32_t	y;
+
+// 	x = 0;
+// 	y = -1;
+	
+// 	return (true);
+// }
