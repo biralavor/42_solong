@@ -6,7 +6,7 @@
 /*   By: bira <bira@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:38:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/07 09:01:22 by bira             ###   ########.fr       */
+/*   Updated: 2024/02/14 19:20:50 by bira             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@ bool	map_contens_checker(t_map *map)
 	ft_printf("\nEntering MAP_ITEMS_CHECKER:\n");
 	if ((has_specific_char(map, 'P', 1) == true) &&		\
 		(has_specific_char(map, 'E', 1) == true) &&		\
-		(has_specific_char(map, 'C', 999) == true))
-		if (has_walls(map) == true)
-			ft_printf("\nhas wall = true\n");
+		(has_specific_char(map, 'C', 999) == true) && 	\
+		(has_walls(map) == true))
+		if (is_char_locked(map) == true)
+			ft_printf("\nis char locked? = true\n");
 		return (true);
 	return (false);
 }
@@ -118,13 +119,34 @@ bool	matching_matrix_x_pos(int32_t y, int32_t x, t_map *map, char tofind)
 	return (true);
 }
 
-// bool	is_char_locked(t_map *map)
-// {
-// 	int32_t	x;
-// 	int32_t	y;
+bool	is_char_locked(t_map *map)
+{
+	int32_t	x;
+	int32_t	y;
+	char	tofind;
 
-// 	x = 0;
-// 	y = -1;
-	
-// 	return (true);
-// }
+	y = -1;
+	tofind = '\0';
+	while ((++y <= map->height - 1) && map->matrix)
+	{
+		x = -1;
+		while (++x <= map->width - 1)
+		{
+			tofind = map->matrix[y][x];
+			if (tofind == 'P' || tofind == 'E' || tofind == 'C')
+				if (map->matrix[--y][x] == '1')
+					if ((y += 2) && (map->matrix[y][x] == '1'))
+						if ((y -= 1) && (x -= 1) \
+								&& (map->matrix[y][x] == '1'))
+							if ((x += 2) && (map->matrix[y][x] == '1'))
+							{
+								ft_putendl_fd("Error\nYour map is locking an item.\n", \
+											STDOUT_FILENO);
+								return (true);	
+							}
+							else
+								break ;
+		}
+	}
+	return (false);
+}
