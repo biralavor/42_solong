@@ -6,7 +6,7 @@
 /*   By: bira <bira@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:38:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/15 13:06:24 by bira             ###   ########.fr       */
+/*   Updated: 2024/02/15 13:16:30 by bira             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,14 +133,11 @@ bool	is_char_locked(t_map *map)
 		{
 			item = map->matrix[y][x];
 			if (item == 'P' || item == 'E' || item == 'C')
-				if ((map->matrix[y - 1][x] == '1') && (map->matrix[y + 1][x] == '1'))
-					if ((map->matrix[y][x - 1] == '1') && (map->matrix[y][x + 1] == '1'))
+				if ((map->matrix[y - 1][x] == '1') && \
+					(map->matrix[y + 1][x] == '1'))
+					if ((map->matrix[y][x - 1] == '1') && \
+						(map->matrix[y][x + 1] == '1'))
 					{
-						ft_printf("found![%d][%d] = %c\n", y, x, map->matrix[y][x]);
-						ft_printf("y-1(B) item[%d][%d] = %c\n", y - 1, x, map->matrix[y - 1][x]);
-						ft_printf("y+2(G) item[%d][%d] = %c\n", y + 1, x, map->matrix[y + 1][x]);
-						ft_printf("x-1(D) item[%d][%d] = %c\n", y, x - 1, map->matrix[y][x - 1]);
-						ft_printf("x+1(E) item[%d][%d] = %c\n", y, x + 1, map->matrix[y][x + 1]);
 						ft_putendl_fd("Error\nYour map is locking an item.\n", \
 									STDOUT_FILENO);
 						return (true);	
