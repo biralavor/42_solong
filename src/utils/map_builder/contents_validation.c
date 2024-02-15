@@ -6,7 +6,7 @@
 /*   By: bira <bira@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:38:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/14 19:20:50 by bira             ###   ########.fr       */
+/*   Updated: 2024/02/15 13:06:24 by bira             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,8 @@ bool	map_contens_checker(t_map *map)
 	if ((has_specific_char(map, 'P', 1) == true) &&		\
 		(has_specific_char(map, 'E', 1) == true) &&		\
 		(has_specific_char(map, 'C', 999) == true) && 	\
-		(has_walls(map) == true))
-		if (is_char_locked(map) == true)
-			ft_printf("\nis char locked? = true\n");
+		(has_walls(map) == true) &&						\
+		(is_char_locked(map) == false))
 		return (true);
 	return (false);
 }
@@ -123,29 +122,31 @@ bool	is_char_locked(t_map *map)
 {
 	int32_t	x;
 	int32_t	y;
-	char	tofind;
+	char	item;
 
+	item = '\0';
 	y = -1;
-	tofind = '\0';
 	while ((++y <= map->height - 1) && map->matrix)
 	{
 		x = -1;
-		while (++x <= map->width - 1)
+		while (++x <= map->width)
 		{
-			tofind = map->matrix[y][x];
-			if (tofind == 'P' || tofind == 'E' || tofind == 'C')
-				if (map->matrix[--y][x] == '1')
-					if ((y += 2) && (map->matrix[y][x] == '1'))
-						if ((y -= 1) && (x -= 1) \
-								&& (map->matrix[y][x] == '1'))
-							if ((x += 2) && (map->matrix[y][x] == '1'))
-							{
-								ft_putendl_fd("Error\nYour map is locking an item.\n", \
-											STDOUT_FILENO);
-								return (true);	
-							}
-							else
-								break ;
+			item = map->matrix[y][x];
+			if (item == 'P' || item == 'E' || item == 'C')
+				if ((map->matrix[y - 1][x] == '1') && (map->matrix[y + 1][x] == '1'))
+					if ((map->matrix[y][x - 1] == '1') && (map->matrix[y][x + 1] == '1'))
+					{
+						ft_printf("found![%d][%d] = %c\n", y, x, map->matrix[y][x]);
+						ft_printf("y-1(B) item[%d][%d] = %c\n", y - 1, x, map->matrix[y - 1][x]);
+						ft_printf("y+2(G) item[%d][%d] = %c\n", y + 1, x, map->matrix[y + 1][x]);
+						ft_printf("x-1(D) item[%d][%d] = %c\n", y, x - 1, map->matrix[y][x - 1]);
+						ft_printf("x+1(E) item[%d][%d] = %c\n", y, x + 1, map->matrix[y][x + 1]);
+						ft_putendl_fd("Error\nYour map is locking an item.\n", \
+									STDOUT_FILENO);
+						return (true);	
+					}
+					else
+						break ;
 		}
 	}
 	return (false);
