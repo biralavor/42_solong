@@ -6,7 +6,7 @@
 /*   By: bira <bira@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:38:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/15 13:16:30 by bira             ###   ########.fr       */
+/*   Updated: 2024/02/15 16:28:37 by bira             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,36 @@ bool	map_contens_checker(t_map *map)
 		(has_specific_char(map, 'E', 1) == true) &&		\
 		(has_specific_char(map, 'C', 999) == true) && 	\
 		(has_walls(map) == true) &&						\
-		(is_char_locked(map) == false))
+		(is_char_locked(map) == false) &&				\
+		(has_illegal_char(map) == false))
 		return (true);
+	return (false);
+}
+
+/* TODO has_illegal_char*/
+
+bool	has_illegal_char(t_map *map)
+{
+	char	found;
+	int32_t	x;
+	int32_t	y;
+
+	found = '\0';
+	y = -1;
+	while ((++y <= map->height - 1) && map->matrix)
+	{
+		x = -1;
+		while (++x <= map->width - 1)
+		{
+			found = map->matrix[y][x];
+			if (!(found == '1' || found == '0' || found == 'P' || found == 'E' || found == 'C'))
+			{
+				ft_putendl_fd("Error\n Your Map has an illegal char.", STDOUT_FILENO);
+				return (true);
+				break ;
+			}
+		}
+	}
 	return (false);
 }
 
