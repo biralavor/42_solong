@@ -6,7 +6,7 @@
 /*   By: bira <bira@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:38:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/16 10:48:12 by bira             ###   ########.fr       */
+/*   Updated: 2024/02/16 13:55:42 by bira             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ bool	map_size_approved(t_map *map)
 	map->line = ft_strtrim(ft_get_next_line(map->fd), toremove);
 	if (map->line != NULL)
 		map->first_lenght = ft_strlen(map->line) - 1;
-	while (map->line)
+	while (map->line != NULL)
 	{
 		map->width = ft_strlen(map->line) - 1;
 		if ((map_too_big(map) == false) && (map_too_tiny(map) == false) && (map_bad_format(map) == false))
@@ -66,6 +66,7 @@ bool	map_size_approved(t_map *map)
 			break ;
 		}
 	}
+	free(map->line);
 	close(map->fd);
 	return (true);
 }

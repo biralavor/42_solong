@@ -6,7 +6,7 @@
 /*   By: bira <bira@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:47:07 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/16 10:47:45 by bira             ###   ########.fr       */
+/*   Updated: 2024/02/16 14:21:39 by bira             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int32_t main(int32_t argc, char **argv)
 			map_size_approved(game->map) == true &&		\
 			map_contens_checker(game->map) == true)
 		{
-			// map_build_matrix(argv, game->map);
 			ft_printf("\nmap approved!\n");
 			// free (&game.map->line);
 			// close (&game.map->fd);
