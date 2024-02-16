@@ -6,7 +6,7 @@
 /*   By: bira <bira@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:38:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/15 16:28:37 by bira             ###   ########.fr       */
+/*   Updated: 2024/02/16 14:57:05 by bira             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ bool	map_contens_checker(t_map *map)
 		return (true);
 	return (false);
 }
-
-/* TODO has_illegal_char*/
 
 bool	has_illegal_char(t_map *map)
 {
@@ -80,6 +78,7 @@ bool	has_specific_char(t_map *map, char tofind, int limiter)
 						STDOUT_FILENO);
 		return (false);
 	}
+	map->coin_index = found;
 	return (true);
 }
 

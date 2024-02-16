@@ -6,7 +6,7 @@
 /*   By: bira <bira@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:46:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/16 10:47:41 by bira             ###   ########.fr       */
+/*   Updated: 2024/02/16 14:52:32 by bira             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct s_map
 	int32_t			first_lenght;
 	int				size;
 	char			*line;
-	bool			bad_format;
+	int32_t			coin_index;
 }					t_map;
 
 typedef struct s_sprite
