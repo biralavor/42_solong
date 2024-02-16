@@ -6,7 +6,7 @@
 /*   By: bira <bira@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:46:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/07 08:57:28 by bira             ###   ########.fr       */
+/*   Updated: 2024/02/15 19:24:01 by bira             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define MAX_MAP_WIDTH 30
 # define MAX_MAP_HEIGHT 30
 # define MIN_MAP_HEIGHT 3
+# define MIN_MAP_WIDTH 3
 /* Map definitions */
 # define BPP sizeof(int32_t)
 # define BUFFERSIZE 30
@@ -44,6 +45,7 @@ typedef struct s_map
 	int32_t			index;
 	int32_t			width;
 	int32_t			height;
+	int32_t			first_lenght;
 	int				size;
 	char			*line;
 	bool			bad_format;
@@ -75,7 +77,7 @@ char	**map_allocation(char **matrix, char *line, size_t size);
 /* map funtions */
 
 bool	map_extension_checker(char **argv);
-bool	map_size_checker(t_map *map);
+bool	map_size_approved(t_map *map);
 bool	map_bad_format(t_map *map);
 bool	map_too_big(t_map *map);
 bool	map_too_tiny(t_map *map);
@@ -92,6 +94,7 @@ bool	has_specific_char(t_map *map, char tofind, int limiter);
 bool	has_walls(t_map *map);
 bool	matching_matrix_x_pos(int32_t x, int32_t y, t_map *map, char tofind);
 bool	is_char_locked(t_map *map);
+bool	has_illegal_char(t_map *map);
 /* validation map items */
 
 void	*ft_memset(void *str, int c, size_t size);
