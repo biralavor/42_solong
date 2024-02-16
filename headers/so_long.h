@@ -6,7 +6,7 @@
 /*   By: bira <bira@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:46:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/15 19:24:01 by bira             ###   ########.fr       */
+/*   Updated: 2024/02/16 10:47:41 by bira             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ bool	map_build_matrix(char **argv, t_map *map);
 char	**map_allocation(char **matrix, char *line, size_t size);
 /* map funtions */
 
-bool	map_extension_checker(char **argv);
+bool	map_extension_approved(char **argv);
 bool	map_size_approved(t_map *map);
 bool	map_bad_format(t_map *map);
 bool	map_too_big(t_map *map);

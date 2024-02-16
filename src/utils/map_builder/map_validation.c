@@ -6,13 +6,13 @@
 /*   By: bira <bira@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:38:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/16 10:36:19 by bira             ###   ########.fr       */
+/*   Updated: 2024/02/16 10:48:12 by bira             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-bool	map_extension_checker(char **argv)
+bool	map_extension_approved(char **argv)
 {
 	size_t	index;
 	size_t	filename_len;
@@ -26,13 +26,14 @@ bool	map_extension_checker(char **argv)
 	while (extension_name != (void *)0)
 	{
 		if (extension_len == 4)
-			if (extension_name[index] == '.')
-				if (extension_name[++index] == 'b')
-					if (extension_name[++index] == 'e')
-						if (extension_name[++index] == 'r')
-							return (true);
-		return (ft_putendl_fd("\nGame Map file extension too long.\n \
-							It needs to be '.ber'\n", STDOUT_FILENO), false);
+			if ((extension_name[index] == '.') && \
+				(extension_name[++index] == 'b') && \
+				(extension_name[++index] == 'e') && \
+				(extension_name[++index] == 'r'))
+					return (true);
+		ft_putendl_fd("Error\nGame Map file extension too long.\n \
+						It needs to be '.ber'\n", STDOUT_FILENO);
+		return (false);
 		break ;
 	}
 	return (false);

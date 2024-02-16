@@ -6,7 +6,7 @@
 /*   By: bira <bira@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:47:07 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/15 17:01:52 by bira             ###   ########.fr       */
+/*   Updated: 2024/02/16 10:47:45 by bira             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int32_t main(int32_t argc, char **argv)
 	game->map = (t_map *)ft_calloc(1, sizeof(t_map));
 	if (argc == 2)
 	{
-		if (map_extension_checker(argv) == true &&		\
+		if (map_extension_approved(argv) == true &&		\
 			map_opener(argv, game->map) == true &&		\
 			map_size_approved(game->map) == true &&		\
 			map_contens_checker(game->map) == true)
