@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putptr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bira <bira@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 18:49:40 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/18 18:49:56 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/02/06 17:48:22 by bira             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,10 @@
 int	ft_putptr(long long int n, char *base)
 {
 	int					len;
-	unsigned long int	base_len;
 	char				*hexalower;
 
-	hexalower = "0123456789abcdef";
+	hexalower = HEXL;
 	len = 0;
-	base_len = ft_strlen(base);
 	if (n == 0)
 		len += ft_putstr_fd("(nil)", 1);
 	else if (base == hexalower)
