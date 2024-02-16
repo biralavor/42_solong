@@ -6,7 +6,7 @@
 /*   By: bira <bira@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:38:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/07 08:40:18 by bira             ###   ########.fr       */
+/*   Updated: 2024/02/15 21:00:31 by bira             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,47 +38,46 @@ bool	map_extension_checker(char **argv)
 	return (false);
 }
 
-bool	map_size_checker(t_map *map)
+bool	map_size_approved(t_map *map)
 {
-	map->width = 0;
 	map->height = 0;
 	map->line = ft_get_next_line(map->fd);
+	if (map->line != NULL)
+		map->first_lenght = ft_strlen(map->line) - 1;
 	while (map->line)
 	{
-		if (map->width == 0)
-			map->width = (ft_strlen(map->line) - 2);
-		if ((map_bad_format(map) == false) && (map_too_big(map) == false))
+		map->width = ft_strlen(map->line) - 1;
+		if ((map_too_big(map) == false) && (map_too_tiny(map) == false) && (map_bad_format(map) == false))
 		{
 			ft_printf("\ninside size checker map->height = %d\n", map->height);
 			ft_printf("inside size checker map->width = %d\n", map->width);
 			ft_printf("inside size checker map->width (str) = %s\n", map->line);
 			map->matrix = map_allocation(map->matrix, map->line, map->height);
+			ft_printf("after alloc map_matrix[%d] = %s", map->height, map->matrix[map->height]);
 			map->height++;
+			map->size = map->height * map->width;
 			map->line = ft_get_next_line(map->fd);
 		}
 		else
 		{
+			free(map->matrix);
+			free(map->line);
 			return (false);
 			break ;
 		}
 	}
-	if ((map_too_tiny(map) == false))
-	{
-		map->size = map->height * map->width;
-		ft_printf("inside too tiny map->size = %d\n", map->size);
-		ft_printf("inside too tiny map->width = %d\n", map->width);
-		ft_printf("inside too tiny map->height = %d\n", map->height);
-		ft_printf("inside too tiny map->fd TAIL = %d\n", map->fd);
-		ft_printf("inside too tiny map_matrix[0] = %s",map->matrix[0]);
-		ft_printf("inside too tiny map_matrix[1] = %s",map->matrix[1]);
-		ft_printf("inside too tiny map_matrix[2] = %s",map->matrix[2]);
-		ft_printf("inside too tiny map_matrix[n] = . . . \n");
-		ft_printf("inside too tiny map_matrix[%d] = %s", map->height - 3, map->matrix[map->height - 3]);
-		ft_printf("inside too tiny map_matrix[%d] = %s", map->height - 2, map->matrix[map->height - 2]);
-		ft_printf("inside too tiny map_matrix[%d] = %s", map->height - 1, map->matrix[map->height - 1]);
-		ft_printf("\nmap size checker = true\n");
-		close(map->fd);
-	}
+	ft_printf("inside too tiny map->fd TAIL = %d\n", map->fd);
+	ft_printf("inside too tiny map_matrix[0] = %s",map->matrix[0]);
+	ft_printf("inside too tiny map_matrix[1] = %s",map->matrix[1]);
+	ft_printf("inside too tiny map_matrix[2] = %s",map->matrix[2]);
+	ft_printf("inside too tiny map_matrix[n] = . . . \n");
+	ft_printf("inside too tiny map_matrix[%d] = %s", map->height - 3, map->matrix[map->height - 3]);
+	ft_printf("inside too tiny map_matrix[%d] = %s", map->height - 2, map->matrix[map->height - 2]);
+	ft_printf("inside too tiny map_matrix[%d] = %s", map->height - 1, map->matrix[map->height - 1]);
+	ft_printf("\nmap size checker = true\n");
+	close(map->fd);
+	
+	map->matrix[map->height + 1] = '\0';
 	return (true);
 }
 
@@ -86,34 +85,44 @@ bool	map_size_checker(t_map *map)
 
 bool	map_bad_format(t_map *map)
 {
-	ft_printf("\nbad format map->width = %d\n", map->width);
-	ft_printf("bad format ft_strlen(map->line -2) = %d\n", ft_strlen(map->line) - 2);
-	ft_printf("map-line is = %s", map->line);
-	if ((map->width != ft_strlen(map->line) - 2) && map->line[map->width] == '\0')
+	if (map->height >= MIN_MAP_HEIGHT)
 	{
-		ft_putendl_fd("\nError\nMap requirements doesn't match.\n", \
-				STDOUT_FILENO);
-		return (true);
+		ft_printf("bad format map-line is = %s\n", map->line);
+		ft_printf("bad format map->width (%d) map->height (%d) \n", map->width, map->height);
+		ft_printf("bad format map->first_lenght = %d\n", map->first_lenght);
+		ft_printf("bad format map_matrix-1[%d] = %s\n", map->height - 1, map->matrix[map->height - 1]);
+		ft_printf("bad format map_matrix[%d] = %s\n", map->height, map->matrix[map->height]);
+		if (map->first_lenght != map->width)
+		{
+			ft_putendl_fd("\nError\nYour Map isn't rectangular.\n", STDOUT_FILENO);
+			return (true);
+		}
 	}
 	return (false);
 }
 
 bool	map_too_big(t_map *map)
 {
-	if (map->width > MAX_MAP_WIDTH || map->height > MAX_MAP_HEIGHT)
+	if (map->line == NULL)
 	{
-		ft_putendl_fd("\nError\nMap is too big.\n", STDOUT_FILENO);
-		return (true);
+		if (map->width > MAX_MAP_WIDTH || map->height > MAX_MAP_HEIGHT)
+		{
+			ft_putendl_fd("\nError\nMap is too big.\n", STDOUT_FILENO);
+			return (true);
+		}
 	}
 	return (false);
 }
 
 bool	map_too_tiny(t_map *map)
 {
-	if (map->height <= MIN_MAP_HEIGHT)
+	if (map->line == NULL)
 	{
-		ft_putendl_fd("\nError\nMap is too tiny.\n", STDOUT_FILENO);
-		return (true);
+		if ((map->height < MIN_MAP_HEIGHT) || (map->width < MIN_MAP_WIDTH))
+		{
+			ft_putendl_fd("\nError\nMap is too tiny.\n", STDOUT_FILENO);
+			return (true);
+		}
 	}
 	return (false);
 }
