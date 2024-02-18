@@ -3,37 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   map_builder.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bira <bira@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 16:50:18 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/05 13:32:16 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/02/18 16:06:26 by bira             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-/* TODO = 2 blocks ARE definitely lost here. Search and destroy it! */
+/* TODO: parse map information to Graphics*/
 
-bool	map_build_matrix(char **argv, t_map *map)
+bool	xx_xxx(t_map *map, char tofind, int limiter)
 {
-	ft_printf("inside matrix map->size = %d\n", map->size);
-	ft_printf("inside matrix map->width = %d\n", map->width);
-	ft_printf("inside matrix map->height = %d\n", map->height);
-	ft_printf("map->fd = %d\n", map->fd);
-	ft_printf("\nrunning matrix now->->->\n");
+	int32_t	found;
+	int32_t	x;
+	int32_t	y;
 
-	/* START CHECKING MATRIX */
-	ft_printf("\nprinting matrix now\n");
-	matrix_printer(map);
-	ft_printf("\nend of matrix \n");
-	/* END CHECKING MATRIX */
+	found = 0;
+	y = -1;
+	while ((++y <= map->height - 1) && map->matrix)
+	{
+		x = -1;
+		while (++x <= map->width - 1)
+		{
+			if (tofind == map->matrix[y][x])
+				found++;
+		}
+		if ((y == map->height - 1) && (x == map->width))
+			break ;
+	}
 
-	// free (map->line);
-	// free (map->matrix);
-	// close (map->fd);
-	ft_printf("map matrix = done\n");
+
+	if ((found > limiter) || (tofind == 'C' && found == 0))
+	{
+		ft_putendl_fd("\nError\nXXXXXX.\n", \
+						STDOUT_FILENO);
+		return (false);
+	}
+	map->coin_index = found;
 	return (true);
 }
-
-	// 	ft_putendl_fd("Error!\nMatrix not built T.T", \
-	// 					STDOUT_FILENO);
