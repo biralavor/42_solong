@@ -6,7 +6,7 @@
 /*   By: bira <bira@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:46:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/16 14:52:32 by bira             ###   ########.fr       */
+/*   Updated: 2024/02/16 22:30:57 by bira             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,24 @@ typedef struct s_sprite
 {
 	mlx_texture_t	*spr_texture;
 	mlx_image_t		*spr_img;
+	mlx_texture_t	*back_tt;
+	mlx_image_t		*back;
+	mlx_texture_t	*enemy_tt;
+	mlx_image_t		*enemy;
+	mlx_texture_t	*border_tt;
+	mlx_image_t		*border;
+	mlx_texture_t	*player_tt;
+	mlx_image_t		*player;
+	mlx_texture_t	*coin_tt;
+	mlx_image_t		*coin;
+	mlx_texture_t	*exit_tt;
+	mlx_image_t		*exit;
 }					t_sprite;
 
 typedef struct s_game
 {
 	t_map			*map;
+	t_sprite		*sprite;
 	mlx_t			*mlx;
 	mlx_image_t		*play_img;
 	mlx_image_t		*cvs_img;
@@ -70,10 +83,13 @@ typedef struct s_game
 	int				img_h;
 }					t_game;
 
+void	matrix_printer(t_map *map);
+/* TO REMOVE functions */
+
 bool	map_opener(char **argv, t_map *map);
 bool	map_reader(t_map *map);
-bool	map_build_matrix(char **argv, t_map *map);
 char	**map_allocation(char **matrix, char *line, size_t size);
+bool	map_init(char **argv, t_game *game);
 /* map funtions */
 
 bool	map_extension_approved(char **argv);
@@ -82,7 +98,6 @@ bool	map_bad_format(t_map *map);
 bool	map_too_big(t_map *map);
 bool	map_too_tiny(t_map *map);
 void	free_map(t_map *map);
-void	matrix_printer(t_map *map);
 /* validation funtions */
 
 void	err_msg_free(int i, char *msg, int stage, t_map *map);
@@ -98,7 +113,11 @@ bool	has_illegal_char(t_map *map);
 /* validation map items */
 
 void	*ft_memset(void *str, int c, size_t size);
-void	load_texture(t_game *game);
 /* mlx functions */
+
+bool	loading_png(char *imagepath, mlx_texture_t *texture);
+bool	preparing_image(t_game *game, mlx_t *mlx, mlx_texture_t *texture, mlx_image_t *image);
+void	displaying_sprites(t_game *game);
+/* parsing map into graphic functions*/
 
 #endif

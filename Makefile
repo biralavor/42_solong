@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
+#    By: bira <bira@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/03 15:54:10 by umeneses          #+#    #+#              #
-#    Updated: 2024/01/30 17:05:45 by umeneses         ###   ########.fr        #
+#    Updated: 2024/02/16 22:19:37 by bira             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,7 @@ NAME			= so_long
 NAME_BONUS		= so_long_bonus
 
 FILES			= main.c
-#FILES			+= loading_images.c
+FILES			+= loading_images.c
 FILES_UTILS		= map_builder/map_validation.c
 FILES_UTILS		+= errors_check.c
 FILES_UTILS		+= free_functions.c
