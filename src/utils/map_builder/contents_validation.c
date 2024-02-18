@@ -6,7 +6,7 @@
 /*   By: bira <bira@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:38:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/16 14:57:05 by bira             ###   ########.fr       */
+/*   Updated: 2024/02/16 18:28:22 by bira             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ bool	has_specific_char(t_map *map, char tofind, int limiter)
 	int32_t	x;
 	int32_t	y;
 
+	map->coin_index = 0;
 	found = 0;
 	y = -1;
 	while ((++y <= map->height - 1) && map->matrix)
@@ -72,9 +73,8 @@ bool	has_specific_char(t_map *map, char tofind, int limiter)
 	ft_printf("%c = %d found! Limiter was = %d\n", tofind, found, limiter);
 	if ((found > limiter) || (tofind == 'C' && found == 0))
 	{
-		ft_putendl_fd("\nError \
-					\nThe specific items on map doesn't match requirements! \
-					\n Player = 1;\n Exit = 1;\n Collectables = 1 or more.\n", \
+		ft_putendl_fd("\nError\nItems on Map doesn't match requirements: \
+						\nPlayer = 1\nExit = 1\nCollectables = 1 or more...\n", \
 						STDOUT_FILENO);
 		return (false);
 	}
