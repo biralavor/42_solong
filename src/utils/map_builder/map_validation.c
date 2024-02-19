@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_validation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bira <bira@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:38:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/16 18:50:08 by bira             ###   ########.fr       */
+/*   Updated: 2024/02/19 16:20:47 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,11 @@ bool	map_size_approved(t_map *map)
 	map->line = ft_strtrim(ft_get_next_line(map->fd), toremove);
 	if (map->line != NULL)
 		map->first_lenght = ft_strlen(map->line) - 1;
-	// else
-	// 	return (free(map->line), false);
 	while (map->line != NULL)
 	{
 		map->width = ft_strlen(map->line) - 1;
-		if ((map_too_big(map) == false) && (map_too_tiny(map) == false) && (map_bad_format(map) == false))
+		if ((map_too_big(map) == false) && (map_too_tiny(map) == false) && \
+			(map_bad_format(map) == false))
 		{
 			map->matrix = map_allocation(map->matrix, map->line, map->height);
 			map->height++;
@@ -62,7 +61,8 @@ bool	map_size_approved(t_map *map)
 		}
 		else
 		{
-			return (free(map->matrix), free(map->line), close(map->fd), false);
+			free(map->line);
+			return (close(map->fd), false);
 			break ;
 		}
 	}
@@ -75,12 +75,10 @@ bool	map_bad_format(t_map *map)
 {
 	if (map->height >= 1)
 	{
-		ft_printf("ft_bad_format map-line = %s\n", map->line);
-		ft_printf("ft_bad_format map->width (%d) at map->height (%d) \n", map->width, map->height);
-		ft_printf("map->first_lenght = %d\n", map->first_lenght);
 		if (map->first_lenght != map->width)
 		{
-			ft_putendl_fd("\nError\nYour Map isn't rectangular.\n", STDOUT_FILENO);
+			ft_putendl_fd("\nError\nYour Map isn't rectangular.\n", \
+							STDOUT_FILENO);
 			return (true);
 		}
 	}
