@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bira <bira@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:47:07 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/16 22:18:39 by bira             ###   ########.fr       */
+/*   Updated: 2024/02/19 11:26:34 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ bool	map_init(char **argv, t_game *game)
 			map_size_approved(game->map) == true &&		\
 			map_contens_checker(game->map) == true)
 			return (true);
-	free_map(game->map);
-	free (game);
 	return (false);
 }
 
