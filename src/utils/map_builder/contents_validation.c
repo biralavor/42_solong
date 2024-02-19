@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:38:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/19 13:32:18 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/02/19 13:34:11 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,34 @@ bool	map_contens_checker(t_map *map)
 		(has_specific_char(map, 'C', 999) == true) && 	\
 		(is_char_locked(map) == false))
 		return (true);
+	return (false);
+}
+
+bool	has_walls(t_map *map)
+{
+	char	tofind;
+	int32_t	x;
+	int32_t	y;
+
+	tofind = '1';
+	y = 0;
+	x = 0;
+	while ((y <= map->height - 1) && (map->matrix))
+	{
+		if  ((map->matrix[y][0] == tofind) && \
+			(map->matrix[y][map->width] == tofind))
+			{
+				y++;
+				if ((y == map-> height - 1) && \
+					(map->matrix[y][0] == tofind) && \
+					(map->matrix[map->height - 1][map->width] == tofind))
+						return (true);
+			}
+		else
+			break ;
+	}
+	ft_putendl_fd("\nError.\nYour MAP has a breach on the wall.\n", \
+					STDOUT_FILENO);
 	return (false);
 }
 
@@ -80,34 +108,6 @@ bool	has_specific_char(t_map *map, char tofind, int limiter)
 	}
 	map->coin_index = found;
 	return (true);
-}
-
-bool	has_walls(t_map *map)
-{
-	char	tofind;
-	int32_t	x;
-	int32_t	y;
-
-	tofind = '1';
-	y = 0;
-	x = 0;
-	while ((y <= map->height - 1) && (map->matrix))
-	{
-		if  ((map->matrix[y][0] == tofind) && \
-			(map->matrix[y][map->width] == tofind))
-			{
-				y++;
-				if ((y == map-> height - 1) && \
-					(map->matrix[y][0] == tofind) && \
-					(map->matrix[map->height - 1][map->width] == tofind))
-						return (true);
-			}
-		else
-			break ;
-	}
-	ft_putendl_fd("\nError.\nYour MAP has a breach on the wall.\n", \
-					STDOUT_FILENO);
-	return (false);
 }
 
 bool	is_char_locked(t_map *map)
