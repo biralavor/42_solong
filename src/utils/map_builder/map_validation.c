@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:38:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/19 16:20:47 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/02/19 19:15:42 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,13 @@ bool	map_extension_approved(char **argv)
 bool	map_size_approved(t_map *map)
 {
 	char	*toremove;
+	char	*gnl_temp;
 
 	toremove = "\n";
 	map->height = 0;
-	map->line = ft_strtrim(ft_get_next_line(map->fd), toremove);
+	gnl_temp = ft_get_next_line(map->fd);
+	map->line = ft_strtrim(gnl_temp, toremove);
+	free (gnl_temp);
 	if (map->line != NULL)
 		map->first_lenght = ft_strlen(map->line) - 1;
 	while (map->line != NULL)
@@ -57,7 +60,9 @@ bool	map_size_approved(t_map *map)
 			map->matrix = map_allocation(map->matrix, map->line, map->height);
 			map->height++;
 			map->size = map->height * map->width;
-			map->line = ft_strtrim(ft_get_next_line(map->fd), toremove);
+			gnl_temp = ft_get_next_line(map->fd);
+			map->line = ft_strtrim(gnl_temp, toremove);
+			free (gnl_temp);
 		}
 		else
 		{

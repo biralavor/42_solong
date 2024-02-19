@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_functions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bira <bira@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 17:11:16 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/16 19:20:58 by bira             ###   ########.fr       */
+/*   Updated: 2024/02/19 19:17:27 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,23 @@ void	free_map(t_map *map)
 	while (++index < map->height)
 		free(map->matrix[index]);
 	free(map->matrix);
+	free(map);
 }
 
-void	free_images(t_game *game)
+void	free_matrix(char ***matrix)
 {
-	// mlx_delete_image(game->mlx, XXXX);
+	int	index;
+
+	index = 0;
+	while ((index < matrix[index]) && (matrix[index] != NULL))
+	{
+		free(matrix[index]);
+		index++;
+	}
+	free(matrix);
 }
 
-void	free_textures(t_game *game)
+void	free_images(t_game *game, mlx_image_t* image)
 {
-	// mlx_delete_texture(game->mlx, XXXX);
+	mlx_delete_image(game->mlx, image);
 }

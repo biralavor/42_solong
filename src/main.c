@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:47:07 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/19 17:04:44 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/02/19 19:10:28 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,16 @@ bool	map_init(char **argv, t_game *game)
 void	game_init(t_game *game)
 {
 	game->mlx = mlx_init(WIDTH, HEIGHT, "42_Astronauts_So_Long_Game", true);
-	// displaying_sprites(game);
+	displaying_sprites(game->mlx, game->sprites);
 	mlx_loop(game->mlx);
 }
 
 void	game_end(t_game *game)
 {
+	// mlx_close_window(game->mlx);
+	// mlx_terminate(game->mlx);
 	free_map(game->map);
 	free (game);
-	mlx_close_window(game->mlx);
-	mlx_terminate(game->mlx);
 }
 
 int32_t	main(int32_t argc, char **argv)
@@ -51,7 +51,7 @@ int32_t	main(int32_t argc, char **argv)
 			ft_printf("\nmap approved!\n");
 			matrix_printer(game->map);
 		}
-		game_init(game);
+		// game_init(game);
 		game_end(game);
 		exit (EXIT_SUCCESS);
 	}
