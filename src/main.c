@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:47:07 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/19 16:34:28 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/02/19 17:04:44 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,21 @@ bool	map_init(char **argv, t_game *game)
 	return (false);
 }
 
+void	game_init(t_game *game)
+{
+	game->mlx = mlx_init(WIDTH, HEIGHT, "42_Astronauts_So_Long_Game", true);
+	// displaying_sprites(game);
+	mlx_loop(game->mlx);
+}
+
+void	game_end(t_game *game)
+{
+	free_map(game->map);
+	free (game);
+	mlx_close_window(game->mlx);
+	mlx_terminate(game->mlx);
+}
+
 int32_t	main(int32_t argc, char **argv)
 {
 	t_game	*game;
@@ -36,11 +51,8 @@ int32_t	main(int32_t argc, char **argv)
 			ft_printf("\nmap approved!\n");
 			matrix_printer(game->map);
 		}
-		// game->mlx = mlx_init(WIDTH, HEIGHT, "42_Astronauts_So_Long_Game", true);
-		// displaying_sprites(game);
-		// mlx_loop(game->mlx);
-		free_map(game->map);
-		free (game);
+		game_init(game);
+		game_end(game);
 		exit (EXIT_SUCCESS);
 	}
 	else if (argc > 2)
@@ -70,5 +82,3 @@ int32_t	main(int32_t argc, char **argv)
 // mlx_loop_hook(game->mlx, play_random_color, game->mlx);
 // mlx_key_hook(game->mlx, keyb_wasd_arrow, NULL);
 // mlx_key_hook(game->mlx, &movecounter, NULL);
-// mlx_close_window(game->mlx);
-// mlx_terminate(game->mlx);
