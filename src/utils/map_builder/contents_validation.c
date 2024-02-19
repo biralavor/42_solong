@@ -6,13 +6,13 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:38:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/19 13:34:11 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/02/19 14:20:30 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-bool	map_contens_checker(t_map *map)
+bool	map_contents_checker(t_map *map)
 {
 	ft_printf("\nEntering MAP_ITEMS_CHECKER:\n");
 	if ((has_walls(map) == true) &&						\

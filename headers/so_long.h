@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bira <bira@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:46:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/16 22:30:57 by bira             ###   ########.fr       */
+/*   Updated: 2024/02/19 14:20:41 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void	err_msg_free(int i, char *msg, int stage, t_map *map);
 int		wall_err_msg(void);
 /* error message functions */
 
-bool	map_contens_checker(t_map *map);
+bool	map_contents_checker(t_map *map);
 bool	has_specific_char(t_map *map, char tofind, int limiter);
 bool	has_walls(t_map *map);
 bool	matching_matrix_x_pos(int32_t x, int32_t y, t_map *map, char tofind);
