@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:38:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/19 14:20:30 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/02/19 16:02:35 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 bool	map_contents_checker(t_map *map)
 {
-	ft_printf("\nEntering MAP_ITEMS_CHECKER:\n");
 	if ((has_walls(map) == true) &&						\
 		(has_illegal_char(map) == false) &&				\
 		(has_specific_char(map, 'P', 1) == true) &&		\
@@ -98,7 +97,6 @@ bool	has_specific_char(t_map *map, char tofind, int limiter)
 		if ((y == map->height - 1) && (x == map->width))
 			break ;
 	}
-	ft_printf("%c = %d found! Limiter was = %d\n", tofind, found, limiter);
 	if ((found > limiter) || (tofind == 'C' && found == 0))
 	{
 		ft_putendl_fd("\nError\nItems on Map doesn't match requirements: \
