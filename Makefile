@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bira <bira@student.42.fr>                  +#+  +:+       +#+         #
+#    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/03 15:54:10 by umeneses          #+#    #+#              #
-#    Updated: 2024/02/16 22:19:37 by bira             ###   ########.fr        #
+#    Updated: 2024/02/20 16:48:09 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -139,5 +139,11 @@ fclean:			clean
 
 re:				fclean all
 rebonus:		fclean bonus
+
+leaks:			all
+				valgrind --leak-check=full --show-leak-kinds=all \
+				--track-origins=yes --log-file=valgrind-out.txt \
+				--suppressions=./valgrind_suppressions.sup ./so_long \
+				maps/test_map.ber
 
 .PHONY:			all clean fclean re bonus rebonus $(NAME)
