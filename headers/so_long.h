@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:46:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/19 14:20:41 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/02/21 16:37:25 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,9 @@
 # include <stdint.h>
 # include <stdbool.h>
 
-# define WIDTH 512
-# define HEIGHT 512
+# define WIDTH 1024
+# define HEIGHT 1280
+# define PIXEL_SIZE 32
 # define MAX_MAP_WIDTH 30
 # define MAX_MAP_HEIGHT 30
 # define MIN_MAP_HEIGHT 3
@@ -72,7 +73,7 @@ typedef struct s_sprite
 typedef struct s_game
 {
 	t_map			*map;
-	t_sprite		*sprite;
+	t_sprite		*sprites;
 	mlx_t			*mlx;
 	mlx_image_t		*play_img;
 	mlx_image_t		*cvs_img;
@@ -83,13 +84,22 @@ typedef struct s_game
 	int				img_h;
 }					t_game;
 
+bool	matching_matrix_x_pos(int32_t x, int32_t y, t_map *map, char tofind);
 void	matrix_printer(t_map *map);
 /* TO REMOVE functions */
 
+void	game_init(t_game *game);
+void	game_end(t_game *game);
+/* game init funcitons */
+
+bool	map_init(char **argv, t_game *game);
 bool	map_opener(char **argv, t_map *map);
 bool	map_reader(t_map *map);
 char	**map_allocation(char **matrix, char *line, size_t size);
-bool	map_init(char **argv, t_game *game);
+char	**start_alloc(char **matrix, char **matrix_temp, char *line, \
+						size_t	index, size_t size, int y);
+void	free_map(t_map *map);
+void	free_matrix(char ***matrix);
 /* map funtions */
 
 bool	map_extension_approved(char **argv);
@@ -97,7 +107,6 @@ bool	map_size_approved(t_map *map);
 bool	map_bad_format(t_map *map);
 bool	map_too_big(t_map *map);
 bool	map_too_tiny(t_map *map);
-void	free_map(t_map *map);
 /* validation funtions */
 
 void	err_msg_free(int i, char *msg, int stage, t_map *map);
@@ -107,7 +116,6 @@ int		wall_err_msg(void);
 bool	map_contents_checker(t_map *map);
 bool	has_specific_char(t_map *map, char tofind, int limiter);
 bool	has_walls(t_map *map);
-bool	matching_matrix_x_pos(int32_t x, int32_t y, t_map *map, char tofind);
 bool	is_char_locked(t_map *map);
 bool	has_illegal_char(t_map *map);
 /* validation map items */
@@ -115,9 +123,11 @@ bool	has_illegal_char(t_map *map);
 void	*ft_memset(void *str, int c, size_t size);
 /* mlx functions */
 
-bool	loading_png(char *imagepath, mlx_texture_t *texture);
-bool	preparing_image(t_game *game, mlx_t *mlx, mlx_texture_t *texture, mlx_image_t *image);
-void	displaying_sprites(t_game *game);
+bool	loading_png(const char *imagepath, mlx_texture_t *texture);
+bool	preparing_image(mlx_t *mlx, mlx_texture_t *texture, mlx_image_t *image);
+bool	are_sprites_ready(mlx_t *mlx, mlx_texture_t *texture, mlx_image_t *image);
+void	displaying_sprites(mlx_t *mlx, t_sprite *sprites, t_map *map);
+void	parse_imgtomap(t_map *map, char toparse, mlx_t *mlx, mlx_image_t *img);
 /* parsing map into graphic functions*/
 
 #endif

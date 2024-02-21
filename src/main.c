@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:47:07 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/19 19:10:28 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/02/21 16:48:01 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,21 @@ bool	map_init(char **argv, t_game *game)
 			map_size_approved(game->map) == true &&		\
 			map_contents_checker(game->map) == true)
 			return (true);
-	ft_putendl_fd("Your Map didn't initalize correctly.\n", STDOUT_FILENO);
+	ft_putendl_fd("It didn't initialize correctly.\n", STDOUT_FILENO);
 	return (false);
 }
 
 void	game_init(t_game *game)
 {
 	game->mlx = mlx_init(WIDTH, HEIGHT, "42_Astronauts_So_Long_Game", true);
-	displaying_sprites(game->mlx, game->sprites);
+	displaying_sprites(game->mlx, &game->sprites, game->map);
 	mlx_loop(game->mlx);
 }
 
 void	game_end(t_game *game)
 {
-	// mlx_close_window(game->mlx);
-	// mlx_terminate(game->mlx);
-	free_map(game->map);
-	free (game);
+	mlx_close_window(game->mlx);
+	mlx_terminate(game->mlx);
 }
 
 int32_t	main(int32_t argc, char **argv)
@@ -50,10 +48,12 @@ int32_t	main(int32_t argc, char **argv)
 		{
 			ft_printf("\nmap approved!\n");
 			matrix_printer(game->map);
+			game_init(game);
+			game_end(game);
+			exit (EXIT_SUCCESS);
 		}
-		// game_init(game);
-		game_end(game);
-		exit (EXIT_SUCCESS);
+		free_map(game->map);
+		free (game);
 	}
 	else if (argc > 2)
 		return (ft_putendl_fd("Error\nToo many arguments, buddy.", \
@@ -64,21 +64,10 @@ int32_t	main(int32_t argc, char **argv)
 	return (0);
 }
 
-
 // game = structures_init();
 // load_texture(game);
 // ui_stats_canvas(game);
-// game->ship_img = mlx_new_image(game->mlx, 48, 39);
-// if (!game->mlx || !game->ship_img)
-// {
-// 	mlx_close_window(game->mlx);
-// 	error();
-// }
-// if (mlx_image_to_window(game->mlx, game->ship_img, 50, 50) == -1)
-// {
-// 	mlx_close_window(game->mlx);
-// 	error();
-// }
+
 // mlx_loop_hook(game->mlx, play_random_color, game->mlx);
 // mlx_key_hook(game->mlx, keyb_wasd_arrow, NULL);
 // mlx_key_hook(game->mlx, &movecounter, NULL);
