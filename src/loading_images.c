@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 16:35:34 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/21 16:31:02 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/02/21 19:36:07 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,12 @@ bool	are_sprites_ready(mlx_t *mlx, mlx_texture_t *texture, mlx_image_t *image)
 
 void	displaying_sprites(mlx_t *mlx, t_sprite *sprites, t_map *map)
 {
+	t_sprite *sprites_temp;
+	
+	sprites_temp = (t_sprite *)ft_calloc(1, sizeof(t_sprite));
+	if (!sprites_temp)
+		free (sprites_temp);
+	sprites = sprites_temp;
 	// if (are_sprites_ready(mlx, sprites->back_tt, sprites->back) == true)
 	// {
 	// 	mlx_image_to_window(mlx, sprites->back, 100, 100);
@@ -63,15 +69,17 @@ void	displaying_sprites(mlx_t *mlx, t_sprite *sprites, t_map *map)
 	sprites->back = mlx_texture_to_image(mlx, sprites->back_tt);
 	parse_imgtomap(map, '0', mlx, sprites->back);
 
-	// sprites->player_tt = mlx_load_png(SPACESHIP);
-	// sprites->player = mlx_texture_to_image(mlx, sprites->player_tt);
-	// parse_imgtomap(map, 'P', mlx, sprites->player);
-
-	// sprites->coin_tt = mlx_load_png(ASTRONAUT);
-	// sprites->coin = mlx_texture_to_image(mlx, sprites->coin_tt);
-	// parse_imgtomap(map, 'C', mlx, sprites->coin);
+	sprites->player_tt = mlx_load_png(SPACESHIP);
+	sprites->player = mlx_texture_to_image(mlx, sprites->player_tt);
+	parse_imgtomap(map, 'P', mlx, sprites->player);
 	
-	// sprites->exit_tt = mlx_load_png(EARTH);
-	// sprites->exit = mlx_texture_to_image(mlx, sprites->exit_tt);
-	// parse_imgtomap(map, 'E', mlx, sprites->exit);
+	sprites->coin_tt = mlx_load_png(ASTRONAUT);
+	sprites->coin = mlx_texture_to_image(mlx, sprites->coin_tt);
+	parse_imgtomap(map, 'C', mlx, sprites->coin);
+	
+	sprites->exit_tt = mlx_load_png(EARTH);
+	sprites->exit = mlx_texture_to_image(mlx, sprites->exit_tt);
+	parse_imgtomap(map, 'E', mlx, sprites->exit);
+	
+	free (sprites_temp);
 }

@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:47:07 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/21 16:48:01 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/02/21 19:38:21 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,25 @@ bool	map_init(char **argv, t_game *game)
 void	game_init(t_game *game)
 {
 	game->mlx = mlx_init(WIDTH, HEIGHT, "42_Astronauts_So_Long_Game", true);
-	displaying_sprites(game->mlx, &game->sprites, game->map);
+	displaying_sprites(game->mlx, game->sprites, game->map);
 	mlx_loop(game->mlx);
 }
 
 void	game_end(t_game *game)
 {
+	mlx_delete_texture(game->sprites->back_tt);
+	mlx_delete_image(game->mlx, game->sprites->back);
+	mlx_delete_texture(game->sprites->enemy_tt);
+	mlx_delete_image(game->mlx, game->sprites->enemy);
+	mlx_delete_texture(game->sprites->border_tt);
+	mlx_delete_image(game->mlx, game->sprites->border);
+	mlx_delete_texture(game->sprites->player_tt);
+	mlx_delete_image(game->mlx, game->sprites->player);
+	mlx_delete_texture(game->sprites->coin_tt);
+	mlx_delete_image(game->mlx, game->sprites->coin);
+	mlx_delete_texture(game->sprites->exit_tt);
+	mlx_delete_image(game->mlx, game->sprites->exit);
+	free (game->sprites);
 	mlx_close_window(game->mlx);
 	mlx_terminate(game->mlx);
 }
@@ -50,10 +63,10 @@ int32_t	main(int32_t argc, char **argv)
 			matrix_printer(game->map);
 			game_init(game);
 			game_end(game);
-			exit (EXIT_SUCCESS);
 		}
 		free_map(game->map);
 		free (game);
+		exit (EXIT_SUCCESS);
 	}
 	else if (argc > 2)
 		return (ft_putendl_fd("Error\nToo many arguments, buddy.", \

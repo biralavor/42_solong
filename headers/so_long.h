@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:46:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/21 16:37:25 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/02/21 19:41:08 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,6 @@ typedef struct s_map
 
 typedef struct s_sprite
 {
-	mlx_texture_t	*spr_texture;
-	mlx_image_t		*spr_img;
 	mlx_texture_t	*back_tt;
 	mlx_image_t		*back;
 	mlx_texture_t	*enemy_tt;
