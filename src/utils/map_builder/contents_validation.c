@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:38:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/19 16:02:35 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/02/21 16:47:40 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ bool	has_walls(t_map *map)
 		else
 			break ;
 	}
-	ft_putendl_fd("\nError.\nYour MAP has a breach on the wall.\n", \
+	ft_putendl_fd("\nError.\nYour MAP has a breach on the wall.", \
 					STDOUT_FILENO);
 	return (false);
 }
@@ -68,7 +68,7 @@ bool	has_illegal_char(t_map *map)
 			found = map->matrix[y][x];
 			if (!(found == '1' || found == '0' || found == 'P' || found == 'E' || found == 'C'))
 			{
-				ft_putendl_fd("Error\n Your Map has an illegal char.", STDOUT_FILENO);
+				ft_putendl_fd("\nError.\nYour MAP has an illegal char.", STDOUT_FILENO);
 				return (true);
 				break ;
 			}
@@ -99,8 +99,8 @@ bool	has_specific_char(t_map *map, char tofind, int limiter)
 	}
 	if ((found > limiter) || (tofind == 'C' && found == 0))
 	{
-		ft_putendl_fd("\nError\nItems on Map doesn't match requirements: \
-						\nPlayer = 1\nExit = 1\nCollectables = 1 or more...\n", \
+		ft_putendl_fd("\nError.\nItems on MAP doesn't match requirements: \
+						\nPlayer = 1\nExit = 1\nCollectables = 1 or more...", \
 						STDOUT_FILENO);
 		return (false);
 	}
@@ -128,7 +128,7 @@ bool	is_char_locked(t_map *map)
 					if ((map->matrix[y][x - 1] == '1') && \
 						(map->matrix[y][x + 1] == '1'))
 					{
-						ft_putendl_fd("Error\nYour MAP is locking an item.\n", \
+						ft_putendl_fd("\nError.\nYour MAP is locking an item.", \
 									STDOUT_FILENO);
 						return (true);	
 					}

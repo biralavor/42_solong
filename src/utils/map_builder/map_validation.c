@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:38:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/19 19:15:42 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/02/21 16:49:22 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ bool	map_extension_approved(char **argv)
 				(extension_name[++index] == 'e') && \
 				(extension_name[++index] == 'r'))
 					return (true);
-		ft_putendl_fd("Error\nGame Map file extension too long.\n \
-						It needs to be '.ber'\n", STDOUT_FILENO);
+		ft_putendl_fd("\nError\nYour MAP file extension too long.\n \
+						It needs to be '.ber'", STDOUT_FILENO);
 		return (false);
 		break ;
 	}
@@ -82,7 +82,7 @@ bool	map_bad_format(t_map *map)
 	{
 		if (map->first_lenght != map->width)
 		{
-			ft_putendl_fd("\nError\nYour Map isn't rectangular.\n", \
+			ft_putendl_fd("\nError\nYour MAP isn't rectangular.", \
 							STDOUT_FILENO);
 			return (true);
 		}
@@ -96,7 +96,7 @@ bool	map_too_big(t_map *map)
 	{
 		if (map->width > MAX_MAP_WIDTH || map->height > MAX_MAP_HEIGHT)
 		{
-			ft_putendl_fd("\nError\nMap is too big.\n", STDOUT_FILENO);
+			ft_putendl_fd("\nError\nYour MAP is too big.", STDOUT_FILENO);
 			return (true);
 		}
 	}
@@ -109,7 +109,7 @@ bool	map_too_tiny(t_map *map)
 	{
 		if ((map->height < MIN_MAP_HEIGHT) || (map->width < MIN_MAP_WIDTH))
 		{
-			ft_putendl_fd("\nError\nMap is too tiny.\n", STDOUT_FILENO);
+			ft_putendl_fd("\nError\nYour Map is too tiny.", STDOUT_FILENO);
 			return (true);
 		}
 	}

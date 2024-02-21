@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 19:24:16 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/19 16:44:56 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/02/21 16:45:02 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	**start_alloc(char **matrix, char **matrix_temp, char *line, \
 	{
 		if (matrix)
 			free_matrix(matrix);
-		ft_putendl_fd("\nMemory Map allocation error.\n", STDOUT_FILENO);
+		ft_putendl_fd("\nMemory MAP allocation error.\n", STDOUT_FILENO);
 		return (NULL);
 	}
 	while (index < size)
