@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 17:11:16 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/19 19:17:27 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/02/23 16:20:24 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	free_matrix(char ***matrix)
 	int	index;
 
 	index = 0;
-	while ((index < matrix[index]) && (matrix[index] != NULL))
+	while (matrix[index] != NULL)
 	{
 		free(matrix[index]);
 		index++;
