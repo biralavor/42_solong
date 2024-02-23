@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 16:50:18 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/21 16:35:13 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/02/23 16:14:16 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	parse_imgtomap(t_map *map, char toparse, mlx_t *mlx, mlx_image_t *img)
 			if (toparse == map->matrix[y][x])
 			{
 				ft_printf("matrix[%d][%d] = %c\n", y, x, map->matrix[y][x]);
-				mlx_resize_image(img, PIXEL_SIZE, PIXEL_SIZE) == true;
-				mlx_image_to_window(mlx, img, y * PIXEL_SIZE, x * PIXEL_SIZE);
+				if (mlx_resize_image(img, PIXEL_SIZE, PIXEL_SIZE) == true)
+					mlx_image_to_window(mlx, img, y * PIXEL_SIZE, x * PIXEL_SIZE);
 			}
 		}
 	}
