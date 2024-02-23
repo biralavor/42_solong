@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:46:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/21 19:41:08 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/02/23 16:46:01 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ typedef struct s_sprite
 {
 	mlx_texture_t	*back_tt;
 	mlx_image_t		*back;
-	mlx_texture_t	*enemy_tt;
-	mlx_image_t		*enemy;
 	mlx_texture_t	*border_tt;
 	mlx_image_t		*border;
 	mlx_texture_t	*player_tt;
@@ -123,7 +121,7 @@ void	*ft_memset(void *str, int c, size_t size);
 
 bool	loading_png(const char *imagepath, mlx_texture_t *texture);
 bool	preparing_image(mlx_t *mlx, mlx_texture_t *texture, mlx_image_t *image);
-bool	are_sprites_ready(mlx_t *mlx, mlx_texture_t *texture, mlx_image_t *image);
+bool	are_sprites_ready(const char *imagepath, mlx_texture_t *texture, mlx_image_t *image, mlx_t *mlx);
 void	displaying_sprites(mlx_t *mlx, t_sprite *sprites, t_map *map);
 void	parse_imgtomap(t_map *map, char toparse, mlx_t *mlx, mlx_image_t *img);
 /* parsing map into graphic functions*/
