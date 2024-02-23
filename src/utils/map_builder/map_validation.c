@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:38:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/21 16:49:22 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/02/23 18:09:34 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,32 +45,32 @@ bool	map_size_approved(t_map *map)
 	char	*gnl_temp;
 
 	toremove = "\n";
-	map->height = 0;
 	gnl_temp = ft_get_next_line(map->fd);
 	map->line = ft_strtrim(gnl_temp, toremove);
 	free (gnl_temp);
-	if (map->line != NULL)
-		map->first_lenght = ft_strlen(map->line) - 1;
-	while (map->line != NULL)
-	{
-		map->width = ft_strlen(map->line) - 1;
-		if ((map_too_big(map) == false) && (map_too_tiny(map) == false) && \
-			(map_bad_format(map) == false))
-		{
-			map->matrix = map_allocation(map->matrix, map->line, map->height);
-			map->height++;
-			map->size = map->height * map->width;
-			gnl_temp = ft_get_next_line(map->fd);
-			map->line = ft_strtrim(gnl_temp, toremove);
-			free (gnl_temp);
-		}
-		else
-		{
-			free(map->line);
-			return (close(map->fd), false);
-			break ;
-		}
-	}
+	ft_printf("map->line = %s", map->line);
+	// if (map->line != NULL)
+	// 	map->first_lenght = ft_strlen(map->line) - 1;
+	// while (map->line != NULL)
+	// {
+	// 	map->width = ft_strlen(map->line) - 1;
+	// 	if ((map_too_big(map) == false) && (map_too_tiny(map) == false) && \
+	// 		(map_bad_format(map) == false))
+	// 	{
+	// 		map->matrix = map_allocation(map->matrix, map->line, map->height);
+	// 		map->height++;
+	// 		map->size = map->height * map->width;
+	// 		gnl_temp = ft_get_next_line(map->fd);
+	// 		map->line = ft_strtrim(gnl_temp, toremove);
+	// 		free (gnl_temp);
+	// 	}
+	// 	else
+	// 	{
+	// 		free(map->line);
+	// 		return (close(map->fd), false);
+	// 		break ;
+	// 	}
+	// }
 	free(map->line);
 	close(map->fd);
 	return (true);
