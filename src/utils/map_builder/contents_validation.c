@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:38:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/21 16:47:40 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/02/27 13:55:55 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,8 +132,8 @@ bool	is_char_locked(t_map *map)
 									STDOUT_FILENO);
 						return (true);	
 					}
-					else
-						break ;
+			else
+				break ;
 		}
 	}
 	return (false);
