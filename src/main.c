@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:47:07 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/23 18:06:48 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/02/27 14:06:01 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ bool	map_init(char **argv, t_game *game)
 			map_opener(argv, game->map) == true)
 			if ((map_read(argv, game->map) == true) && 		\
 				(map_too_tiny(game->map) == false) && 		\
-					(map_too_big(game->map) == false))
-					{
-						free (game->map->buffer);
-								return (true);
-					}
+				(map_too_big(game->map) == false))
+				{
+					free (game->map->buffer);
+					// if (map_size_approved(game->map) == true &&		\
+					// 	map_contents_checker(game->map) == true)
+							return (true);
+				}
 
-						// if (map_size_approved(game->map) == true &&		\
-						// 	map_contents_checker(game->map) == true)
 	ft_putendl_fd("It didn't initialize correctly.\n", STDOUT_FILENO);
 	return (false);
 }
