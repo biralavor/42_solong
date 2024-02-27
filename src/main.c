@@ -14,20 +14,27 @@
 
 bool	map_init(char **argv, t_game *game)
 {
-	if (map_extension_approved(argv) == true &&			\
+	if (map_extension_approved(argv) == true &&				\
 			map_opener(argv, game->map) == true)
-			if (map_size_approved(game->map) == true &&		\
-			map_contents_checker(game->map) == true)
-				return (true);
+			if ((map_read(argv, game->map) == true) && 		\
+				(map_too_tiny(game->map) == false) && 		\
+					(map_too_big(game->map) == false))
+					{
+						free (game->map->buffer);
+								return (true);
+					}
+
+						// if (map_size_approved(game->map) == true &&		\
+						// 	map_contents_checker(game->map) == true)
 	ft_putendl_fd("It didn't initialize correctly.\n", STDOUT_FILENO);
 	return (false);
 }
 
 void	game_init(t_game *game)
 {
-	game->mlx = mlx_init(WIDTH, HEIGHT, "42_Astronauts_So_Long_Game", true);
+	// game->mlx = mlx_init(WIDTH, HEIGHT, "42_Astronauts_So_Long_Game", true);
 	// displaying_sprites(game->mlx, game->sprites, game->map);
-	mlx_loop(game->mlx);
+	// mlx_loop(game->mlx);
 }
 
 void	game_end(t_game *game)
@@ -43,8 +50,8 @@ void	game_end(t_game *game)
 	// mlx_delete_texture(game->sprites->exit_tt);
 	// mlx_delete_image(game->mlx, game->sprites->exit);
 	// free(game->sprites);
-	mlx_close_window(game->mlx);
-	mlx_terminate(game->mlx);
+	// mlx_close_window(game->mlx);
+	// mlx_terminate(game->mlx);
 }
 
 int32_t	main(int32_t argc, char **argv)
@@ -57,13 +64,15 @@ int32_t	main(int32_t argc, char **argv)
 		game->map = (t_map *)ft_calloc(1, sizeof(t_map));
 		if (map_init(argv, game) == true)
 		{
-			matrix_printer(game->map);
+			// matrix_printer(game->map);
 			// game_init(game);
 			// game_end(game);
+			ft_printf("\nmap init = ok\n");
 		}
-		free_map(game->map);
+		// free_map(game->map);
+		free (game->map);
 		free (game);
-		exit (EXIT_SUCCESS);
+		// exit (EXIT_SUCCESS);
 	}
 	else if (argc > 2)
 		return (ft_putendl_fd("Error\nToo many arguments, buddy.", \

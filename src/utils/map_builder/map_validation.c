@@ -39,41 +39,32 @@ bool	map_extension_approved(char **argv)
 	return (false);
 }
 
-bool	map_size_approved(t_map *map)
+bool	map_too_tiny(t_map *map)
 {
-	char	*toremove;
-	char	*gnl_temp;
+	int32_t	index;
 
-	toremove = "\n";
-	gnl_temp = ft_get_next_line(map->fd);
-	map->line = ft_strtrim(gnl_temp, toremove);
-	free (gnl_temp);
-	ft_printf("map->line = %s", map->line);
-	// if (map->line != NULL)
-	// 	map->first_lenght = ft_strlen(map->line) - 1;
-	// while (map->line != NULL)
-	// {
-	// 	map->width = ft_strlen(map->line) - 1;
-	// 	if ((map_too_big(map) == false) && (map_too_tiny(map) == false) && \
-	// 		(map_bad_format(map) == false))
-	// 	{
-	// 		map->matrix = map_allocation(map->matrix, map->line, map->height);
-	// 		map->height++;
-	// 		map->size = map->height * map->width;
-	// 		gnl_temp = ft_get_next_line(map->fd);
-	// 		map->line = ft_strtrim(gnl_temp, toremove);
-	// 		free (gnl_temp);
-	// 	}
-	// 	else
-	// 	{
-	// 		free(map->line);
-	// 		return (close(map->fd), false);
-	// 		break ;
-	// 	}
-	// }
-	free(map->line);
-	close(map->fd);
-	return (true);
+	index = -1;
+	while (++index < (map->bytes_read))
+	{
+		if (map->buffer[index] == '\n')
+			map->linebreak_index++;
+	}
+	if ((map->linebreak_index < MIN_MAP_HEIGHT) || (map->linebreak_index < MIN_MAP_WIDTH))
+	{
+		ft_putendl_fd("\nError\nYour Map is too tiny.", STDOUT_FILENO);
+		return (true);
+	}
+	return (false);
+}
+
+bool	map_too_big(t_map *map)
+{
+	if (map->linebreak_index > MAX_MAP_WIDTH || map->linebreak_index > MAX_MAP_HEIGHT)
+	{
+		ft_putendl_fd("\nError\nYour MAP is too big.", STDOUT_FILENO);
+		return (true);
+	}
+	return (false);
 }
 
 bool	map_bad_format(t_map *map)
@@ -90,28 +81,37 @@ bool	map_bad_format(t_map *map)
 	return (false);
 }
 
-bool	map_too_big(t_map *map)
+bool	map_size_approved(t_map *map)
 {
-	if (map->line == NULL)
-	{
-		if (map->width > MAX_MAP_WIDTH || map->height > MAX_MAP_HEIGHT)
-		{
-			ft_putendl_fd("\nError\nYour MAP is too big.", STDOUT_FILENO);
-			return (true);
-		}
-	}
-	return (false);
-}
+	char	*toremove;
+	char	*gnl_temp;
 
-bool	map_too_tiny(t_map *map)
-{
-	if (map->line == NULL)
+	toremove = "\n";
+	gnl_temp = ft_get_next_line(map->fd);
+	map->line = ft_strtrim(gnl_temp, toremove);
+	free (gnl_temp);
+	if (map->line != NULL)
+		map->first_lenght = ft_strlen(map->line) - 1;
+	while (map->line != NULL)
 	{
-		if ((map->height < MIN_MAP_HEIGHT) || (map->width < MIN_MAP_WIDTH))
+		map->width = ft_strlen(map->line) - 1;
+		if (map_bad_format(map) == false)
 		{
-			ft_putendl_fd("\nError\nYour Map is too tiny.", STDOUT_FILENO);
-			return (true);
+			map->matrix = map_allocation(map->matrix, map->line, map->height);
+			map->height++;
+			map->size = map->height * map->width;
+			gnl_temp = ft_get_next_line(map->fd);
+			map->line = ft_strtrim(gnl_temp, toremove);
+			free (gnl_temp);
+		}
+		else
+		{
+			free(map->line);
+			return (close(map->fd), false);
+			break ;
 		}
 	}
-	return (false);
+	free(map->line);
+	close(map->fd);
+	return (true);
 }

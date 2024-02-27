@@ -48,11 +48,11 @@ NAME			= so_long
 NAME_BONUS		= so_long_bonus
 
 FILES			= main.c
-FILES			+= loading_images.c
+#FILES			+= loading_images.c
 FILES_UTILS		= map_builder/map_validation.c
 FILES_UTILS		+= errors_check.c
 FILES_UTILS		+= free_functions.c
-FILES_UTILS		+= map_builder/map_builder.c
+#FILES_UTILS		+= map_builder/map_builder.c
 FILES_UTILS		+= map_builder/map_reader.c
 FILES_UTILS		+= map_builder/map_allocation.c
 FILES_UTILS		+= map_builder/matrix_printer.c

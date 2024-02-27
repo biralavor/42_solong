@@ -29,7 +29,6 @@
 # define MIN_MAP_WIDTH 3
 /* Map definitions */
 # define BPP sizeof(int32_t)
-# define BUFFERSIZE 30
 /* MLX definitions */
 # define SPACESHIP "./textures/ref-space-shuttle-redux.png"
 # define SPACEFIELD "./textures/ref-background-hsl-70.png"
@@ -43,6 +42,9 @@ typedef struct s_map
 {
 	char			**matrix;
 	int32_t			fd;
+	char			*buffer;
+	int32_t			bytes_read;
+	int32_t			linebreak_index;
 	int32_t			index;
 	int32_t			width;
 	int32_t			height;
@@ -90,7 +92,7 @@ void	game_end(t_game *game);
 
 bool	map_init(char **argv, t_game *game);
 bool	map_opener(char **argv, t_map *map);
-bool	map_reader(t_map *map);
+bool	map_read(char **argv, t_map *map);
 char	**map_allocation(char **matrix, char *line, size_t size);
 char	**start_alloc(char **matrix, char **matrix_temp, char *line, \
 						size_t	index, size_t size, int y);
