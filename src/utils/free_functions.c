@@ -35,8 +35,3 @@ void	free_matrix(char ***matrix)
 	}
 	free(matrix);
 }
-
-void	free_images(t_game *game, mlx_image_t* image)
-{
-	mlx_delete_image(game->mlx, image);
-}
