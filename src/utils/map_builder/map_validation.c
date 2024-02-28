@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:38:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/23 18:09:34 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/02/28 14:40:21 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,17 @@ bool	map_too_tiny(t_map *map)
 	while (++index < (map->bytes_read))
 	{
 		if (map->buffer[index] == '\n')
+		{
 			map->linebreak_index++;
+			if (index < MIN_MAP_WIDTH)
+			{
+				ft_putendl_fd("\nError\nYour Map is too tiny.", STDOUT_FILENO);
+				return (true);
+				break ;
+			}
+		}
 	}
-	if ((map->linebreak_index < MIN_MAP_HEIGHT) || (map->linebreak_index < MIN_MAP_WIDTH))
+	if (map->linebreak_index + 1 < MIN_MAP_HEIGHT)
 	{
 		ft_putendl_fd("\nError\nYour Map is too tiny.", STDOUT_FILENO);
 		return (true);
@@ -59,10 +67,27 @@ bool	map_too_tiny(t_map *map)
 
 bool	map_too_big(t_map *map)
 {
-	if (map->linebreak_index > MAX_MAP_WIDTH || map->linebreak_index > MAX_MAP_HEIGHT)
+	int32_t	index;
+
+	if (map->linebreak_index + 1 > MAX_MAP_HEIGHT)
 	{
 		ft_putendl_fd("\nError\nYour MAP is too big.", STDOUT_FILENO);
 		return (true);
+	}
+	index = 0;
+	while (map->buffer[index] != '\n')
+	{
+		ft_printf("\ntoobig index = %d\n", index);
+		ft_printf("\nmap->buffer[%d] = %c\n", index, map->buffer[index]);
+		index++;
+		if (map->buffer[index] == '\0')
+		{
+			if ((index + 1) > MAX_MAP_WIDTH - 1)
+			{
+				ft_putendl_fd("\nError\n1---Your Map is too big.", STDOUT_FILENO);
+				return (true);
+			}
+		}
 	}
 	return (false);
 }
