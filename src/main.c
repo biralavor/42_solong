@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:47:07 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/27 14:06:01 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/02/28 13:12:26 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 bool	map_init(char **argv, t_game *game)
 {
-	if (map_extension_approved(argv) == true &&				\
-			map_opener(argv, game->map) == true)
-			if ((map_read(argv, game->map) == true) && 		\
-				(map_too_tiny(game->map) == false) && 		\
-				(map_too_big(game->map) == false))
-				{
-					free (game->map->buffer);
-					// if (map_size_approved(game->map) == true &&		\
-					// 	map_contents_checker(game->map) == true)
-							return (true);
-				}
+	if (map_extension_approved(argv) == true &&			\
+		map_opener(argv, game->map) == true)
+		if ((map_read(argv, game->map) == true) && 		\
+			(map_too_tiny(game->map) == false) && 		\
+			(map_too_big(game->map) == false))
+			{
+				free (game->map->buffer);
+				// if (map_size_approved(game->map) == true &&		\
+				// 	map_contents_checker(game->map) == true)
+						return (true);
+			}
 
 	ft_putendl_fd("It didn't initialize correctly.\n", STDOUT_FILENO);
 	return (false);
@@ -64,10 +64,10 @@ int32_t	main(int32_t argc, char **argv)
 		game->map = (t_map *)ft_calloc(1, sizeof(t_map));
 		if (map_init(argv, game) == true)
 		{
+			ft_printf("\nmap init = ok\n");
 			// matrix_printer(game->map);
 			// game_init(game);
 			// game_end(game);
-			ft_printf("\nmap init = ok\n");
 		}
 		// free_map(game->map);
 		free (game->map);
