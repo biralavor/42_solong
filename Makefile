@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/03 15:54:10 by umeneses          #+#    #+#              #
-#    Updated: 2024/02/28 12:23:47 by umeneses         ###   ########.fr        #
+#    Updated: 2024/02/28 14:52:51 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -144,10 +144,10 @@ define			run_test
 				echo $(1)
 				valgrind --leak-check=full --show-leak-kinds=all \
 				--track-origins=yes --log-file=valgrind-out.txt  \
-				--suppressions=./valgrind_suppressions.sup ./so_long 
+				--suppressions=./valgrind_suppressions.sup ./so_long maps/$(1)
 endef
 
-leaks_%:		
+leaks_%:		all
 				$(call run_test,$*)
 
-.PHONY:			all clean fclean re leaks_% bonus rebonus
+.PHONY:			all clean fclean re leaks_ bonus rebonus
