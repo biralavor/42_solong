@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:38:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/28 14:40:21 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/02/29 11:35:24 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,6 @@ bool	map_too_big(t_map *map)
 	index = 0;
 	while (map->buffer[index] != '\n')
 	{
-		ft_printf("\ntoobig index = %d\n", index);
-		ft_printf("\nmap->buffer[%d] = %c\n", index, map->buffer[index]);
 		index++;
 		if (map->buffer[index] == '\0')
 		{

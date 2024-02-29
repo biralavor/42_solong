@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 14:29:17 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/05 13:23:09 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/02/29 11:22:26 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 bool	map_opener(char **argv, t_map *map)
 {
 	map->fd = open(argv[1], O_RDONLY);
-	ft_printf("\nmap_open!\n");
 	ft_printf("map->fd = %d\n", map->fd);
 	if (map->fd == -1)
 	{
@@ -28,7 +27,6 @@ bool	map_opener(char **argv, t_map *map)
 
 bool	map_read(char **argv, t_map *map)
 {
-	ft_printf("\nmap_read!\n");
 	int32_t		fd_temp;
 	char		buffer[(MAX_MAP_WIDTH * MAX_MAP_HEIGHT)];
 
@@ -45,7 +43,6 @@ bool	map_read(char **argv, t_map *map)
 		map->buffer = ft_calloc(map->bytes_read + 1, sizeof(char));
 		ft_memcpy(map->buffer, buffer, map->bytes_read);
 		map->buffer[map->bytes_read] = '\0';
-		ft_printf("map->buffer = %s", map->buffer);
 		close (fd_temp);
 		return (true);
 	}
