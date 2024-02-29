@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 14:29:17 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/29 11:22:26 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/02/29 11:36:34 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ bool	map_opener(char **argv, t_map *map)
 	return (true);
 }
 
-bool	map_read(char **argv, t_map *map)
+bool	map_reader(char **argv, t_map *map)
 {
 	int32_t		fd_temp;
 	char		buffer[(MAX_MAP_WIDTH * MAX_MAP_HEIGHT)];

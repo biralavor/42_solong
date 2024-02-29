@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:46:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/23 16:46:01 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/02/29 11:36:52 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	game_end(t_game *game);
 
 bool	map_init(char **argv, t_game *game);
 bool	map_opener(char **argv, t_map *map);
-bool	map_read(char **argv, t_map *map);
+bool	map_reader(char **argv, t_map *map);
 char	**map_allocation(char **matrix, char *line, size_t size);
 char	**start_alloc(char **matrix, char **matrix_temp, char *line, \
 						size_t	index, size_t size, int y);
