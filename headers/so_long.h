@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:46:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/29 11:36:52 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/02/29 16:58:45 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ typedef struct s_game
 	int				img_h;
 }					t_game;
 
-bool	matching_matrix_x_pos(int32_t x, int32_t y, t_map *map, char tofind);
 void	matrix_printer(t_map *map);
 /* TO REMOVE functions */
 
@@ -118,14 +117,13 @@ bool	is_char_locked(t_map *map);
 bool	has_illegal_char(t_map *map);
 /* validation map items */
 
-void	*ft_memset(void *str, int c, size_t size);
+// void	*ft_memset(void *str, int c, size_t size);
 /* mlx functions */
 
-bool	loading_png(const char *imagepath, mlx_texture_t *texture);
-bool	preparing_image(mlx_t *mlx, mlx_texture_t *texture, mlx_image_t *image);
-bool	are_sprites_ready(const char *imagepath, mlx_texture_t *texture, mlx_image_t *image, mlx_t *mlx);
+bool	loading_png(const char *imagepath, mlx_texture_t **texture);
+bool	preparing_image(mlx_t *mlx, mlx_texture_t **texture, mlx_image_t **image);
 void	displaying_sprites(mlx_t *mlx, t_sprite *sprites, t_map *map);
-void	parse_imgtomap(t_map *map, char toparse, mlx_t *mlx, mlx_image_t *img);
+void	parse_imgtomap(t_map *map, char toparse, mlx_t *mlx, mlx_image_t **img);
 /* parsing map into graphic functions*/
 
 #endif
