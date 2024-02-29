@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 19:24:16 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/27 13:55:01 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/02/29 11:54:13 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	**map_allocation(char **matrix, char *line, size_t size)
 		matrix_temp[index] = NULL;
 	else
 		matrix_temp = start_alloc(matrix, matrix_temp, line, index, size, y);
-	free_matrix(&matrix);
+	free_matrix(matrix);
 	return (matrix_temp);
 }
 
@@ -37,7 +37,7 @@ char	**start_alloc(char **matrix, char **matrix_temp, char *line, \
 	if (!matrix_temp)
 	{
 		if (matrix)
-			free_matrix(&matrix);
+			free_matrix(matrix);
 		ft_putendl_fd("\nMemory MAP allocation error.\n", STDOUT_FILENO);
 		return (NULL);
 	}
@@ -46,7 +46,7 @@ char	**start_alloc(char **matrix, char **matrix_temp, char *line, \
 		matrix_temp[index] = ft_strdup(matrix[index]);
 		if (!matrix_temp[index] || (matrix_temp[index] == NULL))
 		{
-			free_matrix(&matrix_temp);
+			free_matrix(matrix_temp);
 			return (NULL);
 		}
 		index++;
