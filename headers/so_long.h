@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:46:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/29 16:58:45 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/01 11:10:34 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <stdbool.h>
 
 # define WIDTH 1024
-# define HEIGHT 1280
+# define HEIGHT 720
 # define PIXEL_SIZE 32
 # define MAX_MAP_WIDTH 30
 # define MAX_MAP_HEIGHT 30
@@ -37,6 +37,27 @@
 # define ASTRONAUT "./textures/astronaut-38px.png"
 # define EARTH "./textures/earth-40px.png"
 /* Sprite definitions */
+
+typedef struct s_userdata
+{
+	int32_t			totalmoves;
+	int32_t			x;
+	int32_t			y;
+}					t_userdata;
+
+typedef struct s_sprite
+{
+	mlx_texture_t	*back_tt;
+	mlx_image_t		*back;
+	mlx_texture_t	*border_tt;
+	mlx_image_t		*border;
+	mlx_texture_t	*player_tt;
+	mlx_image_t		*player;
+	mlx_texture_t	*coin_tt;
+	mlx_image_t		*coin;
+	mlx_texture_t	*exit_tt;
+	mlx_image_t		*exit;
+}					t_sprite;
 
 typedef struct s_map
 {
@@ -54,32 +75,18 @@ typedef struct s_map
 	int32_t			coin_index;
 }					t_map;
 
-typedef struct s_sprite
-{
-	mlx_texture_t	*back_tt;
-	mlx_image_t		*back;
-	mlx_texture_t	*border_tt;
-	mlx_image_t		*border;
-	mlx_texture_t	*player_tt;
-	mlx_image_t		*player;
-	mlx_texture_t	*coin_tt;
-	mlx_image_t		*coin;
-	mlx_texture_t	*exit_tt;
-	mlx_image_t		*exit;
-}					t_sprite;
-
 typedef struct s_game
 {
 	t_map			*map;
 	t_sprite		*sprites;
+	t_userdata		*userdata;
 	mlx_t			*mlx;
-	mlx_image_t		*play_img;
-	mlx_image_t		*cvs_img;
 	mlx_key_data_t	*keydata;
-	int				totalmoves;
-	void			*window;
-	int				img_w;
-	int				img_h;
+	// mlx_image_t		*play_img;
+	// mlx_image_t		*cvs_img;
+	// void			*window;
+	// int				img_w;
+	// int				img_h;
 }					t_game;
 
 void	matrix_printer(t_map *map);
@@ -118,6 +125,8 @@ bool	has_illegal_char(t_map *map);
 /* validation map items */
 
 // void	*ft_memset(void *str, int c, size_t size);
+void	keyb_wasd_arrow(t_game *game, void* param);
+void	movecounter(t_game *game, mlx_key_data_t keydata, void* param);
 /* mlx functions */
 
 bool	loading_png(const char *imagepath, mlx_texture_t **texture);
