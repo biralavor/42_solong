@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 17:11:16 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/01 15:55:49 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/01 16:01:51 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	free_map(t_map *map)
 	free(map);
 }
 
-void	*free_matrix(char **matrix)
+void	free_matrix(char **matrix)
 {
 	int	index;
 
