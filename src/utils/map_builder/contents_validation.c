@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:38:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/27 13:55:55 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/01 16:49:39 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,15 +123,17 @@ bool	is_char_locked(t_map *map)
 		{
 			item = map->matrix[y][x];
 			if (item == 'P' || item == 'E' || item == 'C')
-				if ((map->matrix[y - 1][x] == '1') && \
+				{
+					if ((map->matrix[y - 1][x] == '1') && \
 					(map->matrix[y + 1][x] == '1'))
-					if ((map->matrix[y][x - 1] == '1') && \
-						(map->matrix[y][x + 1] == '1'))
-					{
-						ft_putendl_fd("\nError.\nYour MAP is locking an item.", \
-									STDOUT_FILENO);
-						return (true);	
-					}
+						if ((map->matrix[y][x - 1] == '1') && \
+							(map->matrix[y][x + 1] == '1'))
+						{
+							ft_putendl_fd("\nError.\nYour MAP is locking an item.", \
+										STDOUT_FILENO);
+							return (true);	
+						}
+				}
 			else
 				break ;
 		}
