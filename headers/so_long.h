@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:46:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/01 11:10:34 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/01 16:02:02 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ char	**map_allocation(char **matrix, char *line, size_t size);
 char	**start_alloc(char **matrix, char **matrix_temp, char *line, \
 						size_t	index, size_t size, int y);
 void	free_map(t_map *map);
-void	free_matrix(char ***matrix);
+void	free_matrix(char **matrix);
 /* map funtions */
 
 bool	map_extension_approved(char **argv);
