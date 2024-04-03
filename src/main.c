@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:47:07 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/01 10:55:10 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/03 12:52:47 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,46 +33,46 @@ void	game_init(t_game *game)
 {
 	game->mlx = mlx_init(WIDTH, HEIGHT, "42_Astronauts_So_Long_Game", true);
 	displaying_sprites(game->mlx, game->sprites, game->map);
-	// keyb_wasd_arrow(game, NULL);
-	// mlx_key_hook(game->mlx, &keyb_wasd_arrow, NULL);
-	mlx_key_hook(game->mlx, &movecounter, &game->userdata);
-	// ft_printf("ntotal.moves = %d\n", game->userdata->totalmoves);
+	mlx_key_hook(game->mlx, &keyb_wasd_arrow, game);
+	// mlx_key_hook(game->mlx, &movecounter, game);
+	// ft_printf("total.moves = %d\n", game->userdata->totalmoves);
 	mlx_loop(game->mlx);
 }
 
 void	game_end(t_game *game)
 {
-	// mlx_delete_image(game->mlx, game->sprites->back);
 	mlx_delete_texture(game->sprites->back_tt);
-	// mlx_delete_image(game->mlx, game->sprites->border);
 	mlx_delete_texture(game->sprites->border_tt);
-	// mlx_delete_image(game->mlx, game->sprites->player);
 	mlx_delete_texture(game->sprites->player_tt);
-	// mlx_delete_image(game->mlx, game->sprites->coin);
 	mlx_delete_texture(game->sprites->coin_tt);
-	// mlx_delete_image(game->mlx, game->sprites->exit);
 	mlx_delete_texture(game->sprites->exit_tt);
-	free(game->sprites);
-
+	mlx_delete_image(game->mlx, game->sprites->back);
+	mlx_delete_image(game->mlx, game->sprites->border);
+	mlx_delete_image(game->mlx, game->sprites->player);
+	mlx_delete_image(game->mlx, game->sprites->coin);
+	mlx_delete_image(game->mlx, game->sprites->exit);
+	mlx_terminate(game->mlx);
+	// free(game->map->buffer);
 }
 
 int32_t	main(int32_t argc, char **argv)
 {
-	t_game	*game;
+	static t_game	*game;
 
 	if (argc == 2)
 	{
-		game = (t_game *)ft_calloc(1, sizeof(t_game));
-		game->map = (t_map *)ft_calloc(1, sizeof(t_map));
+		game = ft_calloc(1, sizeof(t_game));
+		game->map = ft_calloc(1, sizeof(t_map));
+		game->sprites = ft_calloc(1, sizeof(t_sprite));
 		if (map_init(argv, game) == true)
 		{
 			ft_printf("\nmap init = ok\n");
 			matrix_printer(game->map);
 			game_init(game);
-			mlx_terminate(game->mlx);
 			game_end(game);
 		}
 		free_map(game->map);
+		free(game->sprites);
 		free (game);
 	}
 	else if (argc > 2)

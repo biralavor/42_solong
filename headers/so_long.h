@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:46:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/01 16:02:02 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/03 12:56:22 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,14 +125,14 @@ bool	has_illegal_char(t_map *map);
 /* validation map items */
 
 // void	*ft_memset(void *str, int c, size_t size);
-void	keyb_wasd_arrow(t_game *game, void* param);
-void	movecounter(t_game *game, mlx_key_data_t keydata, void* param);
+void	keyb_wasd_arrow(mlx_key_data_t key, t_game *game);
+void	movecounter(mlx_key_data_t keydata, t_game *game);
 /* mlx functions */
 
-bool	loading_png(const char *imagepath, mlx_texture_t **texture);
-bool	preparing_image(mlx_t *mlx, mlx_texture_t **texture, mlx_image_t **image);
+bool	loading_png(char *imagepath, mlx_texture_t **texture);
+bool	preparing_image(mlx_t *mlx, mlx_texture_t *texture, mlx_image_t **img);
+void	parse_imgtomap(t_map *map, char toparse, mlx_t *mlx, mlx_image_t *img);
 void	displaying_sprites(mlx_t *mlx, t_sprite *sprites, t_map *map);
-void	parse_imgtomap(t_map *map, char toparse, mlx_t *mlx, mlx_image_t **img);
 /* parsing map into graphic functions*/
 
 #endif
