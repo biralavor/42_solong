@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/03 15:54:10 by umeneses          #+#    #+#              #
-#    Updated: 2024/02/20 16:48:09 by umeneses         ###   ########.fr        #
+#    Updated: 2024/04/03 13:04:00 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,7 @@ FILES			+= loading_images.c
 FILES_UTILS		= map_builder/map_validation.c
 FILES_UTILS		+= errors_check.c
 FILES_UTILS		+= free_functions.c
+FILES_UTILS		+= hooks.c
 FILES_UTILS		+= map_builder/map_builder.c
 FILES_UTILS		+= map_builder/map_reader.c
 FILES_UTILS		+= map_builder/map_allocation.c
@@ -86,7 +87,7 @@ MV_OBJS			= find . -type f \( -name '.o' -o -name '.a'\) -exec mv {} \
 AUTHOR			= umeneses
 CC				= cc
 #CFLAGS			= -Wall -Wextra -Werror
-CFLAGS			= -g -Ofast
+CFLAGS			= -g3 -Ofast
 CPPFLAGS		= $(addprefix -I , $(HEADERS)) -MMD -MP
 DFLAGS			= -g3
 #LDLIBS			= $(addprefix -L , $(dir $(LIBS)))
@@ -138,12 +139,16 @@ fclean:			clean
 				$(RM) $(NAME)
 
 re:				fclean all
-rebonus:		fclean bonus
+rebonus:		fclean bonusDFLAGS
 
-leaks:			all
+define			run_test
+				echo $(1)
 				valgrind --leak-check=full --show-leak-kinds=all \
-				--track-origins=yes --log-file=valgrind-out.txt \
-				--suppressions=./valgrind_suppressions.sup ./so_long \
-				maps/test_map.ber
+				--track-origins=yes --log-file=valgrind-out.txt  \
+				--suppressions=./valgrind_suppressions.sup ./so_long maps/$(1)
+endef
 
-.PHONY:			all clean fclean re bonus rebonus $(NAME)
+leaks_%:		re
+				$(call run_test,$*)
+
+.PHONY:			all clean fclean re leaks_ bonus rebonus
