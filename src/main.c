@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:47:07 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/03 12:52:47 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/03 13:28:12 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 bool	map_init(char **argv, t_game *game)
 {
-	if (map_extension_approved(argv) == true &&			\
-		map_opener(argv, game->map) == true)
-		if ((map_reader(argv, game->map) == true) && 	\
-			(map_too_tiny(game->map) == false) && 		\
-			(map_too_big(game->map) == false))
+	if (map_extension_approved(argv)
+		&& map_opener(argv, game->map)
+		&& map_reader(argv, game->map)
+		&& !map_too_tiny(game->map)
+		&& !map_too_big(game->map))
 		{
 			free (game->map->buffer);
-			if (map_size_approved(game->map) == true &&	\
-				map_contents_checker(game->map) == true)
+			if (map_size_approved(game->map)
+				&& map_contents_checker(game->map))
 					return (true);
 		}
 	ft_putendl_fd("It didn't initialize correctly.\n", STDOUT_FILENO);
@@ -52,7 +52,6 @@ void	game_end(t_game *game)
 	mlx_delete_image(game->mlx, game->sprites->coin);
 	mlx_delete_image(game->mlx, game->sprites->exit);
 	mlx_terminate(game->mlx);
-	// free(game->map->buffer);
 }
 
 int32_t	main(int32_t argc, char **argv)
