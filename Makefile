@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/03 15:54:10 by umeneses          #+#    #+#              #
-#    Updated: 2024/04/01 10:43:50 by umeneses         ###   ########.fr        #
+#    Updated: 2024/04/03 13:04:00 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -148,7 +148,7 @@ define			run_test
 				--suppressions=./valgrind_suppressions.sup ./so_long maps/$(1)
 endef
 
-leaks_%:		all
+leaks_%:		re
 				$(call run_test,$*)
 
 .PHONY:			all clean fclean re leaks_ bonus rebonus
