@@ -6,13 +6,13 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 16:52:24 by umeneses          #+#    #+#             */
-/*   Updated: 2024/03/01 14:49:40 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/03 12:56:16 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	keyb_wasd_arrow(t_game *game, void* param)
+void	keyb_wasd_arrow(mlx_key_data_t key, t_game *game)
 {
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 	{
@@ -20,16 +20,16 @@ void	keyb_wasd_arrow(t_game *game, void* param)
 		return ;
 	}
 	if (mlx_is_key_down(game->mlx, (MLX_KEY_UP || MLX_KEY_W)))
-			game->sprites->player->instances[0].y -= 5;
+		game->sprites->player->instances[0].y -= 5;
 	if (mlx_is_key_down(game->mlx, (MLX_KEY_DOWN || MLX_KEY_S)))
-			game->sprites->player->instances[0].y += 5;
+		game->sprites->player->instances[0].y += 5;
 	if (mlx_is_key_down(game->mlx, (MLX_KEY_LEFT || MLX_KEY_A)))
 		game->sprites->player->instances[0].x -= 5;
 	if (mlx_is_key_down(game->mlx, (MLX_KEY_RIGHT || MLX_KEY_D)))
 		game->sprites->player->instances[0].x += 5;
 }
 
-void	movecounter(t_game *game, mlx_key_data_t keydata, void* param)
+void	movecounter(mlx_key_data_t keydata, t_game *game)
 {
 	if ((keydata.key == MLX_KEY_W | keydata.key == MLX_KEY_UP) \
 		&& keydata.action == MLX_PRESS)
