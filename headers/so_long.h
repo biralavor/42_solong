@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:46:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/03 12:56:22 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/03 18:58:10 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,6 @@ typedef struct s_game
 	t_userdata		*userdata;
 	mlx_t			*mlx;
 	mlx_key_data_t	*keydata;
-	// mlx_image_t		*play_img;
-	// mlx_image_t		*cvs_img;
-	// void			*window;
-	// int				img_w;
-	// int				img_h;
 }					t_game;
 
 void	matrix_printer(t_map *map);
@@ -126,13 +121,14 @@ bool	has_illegal_char(t_map *map);
 
 // void	*ft_memset(void *str, int c, size_t size);
 void	keyb_wasd_arrow(mlx_key_data_t key, t_game *game);
-void	movecounter(mlx_key_data_t keydata, t_game *game);
+void	movecounter(char *key, t_game *game);
 /* mlx functions */
 
 bool	loading_png(char *imagepath, mlx_texture_t **texture);
 bool	preparing_image(mlx_t *mlx, mlx_texture_t *texture, mlx_image_t **img);
 void	parse_imgtomap(t_map *map, char toparse, mlx_t *mlx, mlx_image_t *img);
-void	displaying_sprites(mlx_t *mlx, t_sprite *sprites, t_map *map);
+void	render_fixedsprites(mlx_t *mlx, t_sprite *sprites, t_map *map);
+void	render_movingsprites(mlx_t *mlx, t_sprite *sprites, t_map *map);
 /* parsing map into graphic functions*/
 
 #endif
