@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:38:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/29 11:35:24 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/03 17:04:19 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ bool	map_extension_approved(char **argv)
 				(extension_name[++index] == 'e') && \
 				(extension_name[++index] == 'r'))
 					return (true);
-		ft_putendl_fd("\nError\nYour MAP file extension too long.\n \
+		ft_putendl_fd("\nError\nYour MAP file extension is invalid.\n \
 						It needs to be '.ber'", STDOUT_FILENO);
 		return (false);
 		break ;
