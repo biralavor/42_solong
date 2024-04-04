@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 16:50:18 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/02 16:40:09 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/04 11:25:40 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,8 @@ void	parse_imgtomap(t_map *map, char toparse, mlx_t *mlx, mlx_image_t *img)
 			while (++x < WIDTH)
 			{
 				if (mlx_resize_image(img, PIXEL_SIZE, PIXEL_SIZE))
-					mlx_image_to_window(mlx, img, y * PIXEL_SIZE, \
-										x * PIXEL_SIZE);
-				// mlx_image_to_window(mlx, *img, y * PIXEL_SIZE, x * PIXEL_SIZE);
+					mlx_image_to_window(mlx, img, (y * PIXEL_SIZE), \
+										(x * PIXEL_SIZE));
 			}
 		}
 	else
@@ -39,8 +38,8 @@ void	parse_imgtomap(t_map *map, char toparse, mlx_t *mlx, mlx_image_t *img)
 			{
 				if (toparse == map->matrix[y][x])
 					if (mlx_resize_image(img, PIXEL_SIZE, PIXEL_SIZE))
-						mlx_image_to_window(mlx, img, y * PIXEL_SIZE, \
-											x * PIXEL_SIZE);
+						mlx_image_to_window(mlx, img, (y * PIXEL_SIZE), \
+										(x * PIXEL_SIZE));
 			}
 		}
 	}
