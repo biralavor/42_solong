@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:47:07 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/03 19:17:31 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/04 15:21:23 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void	game_init(t_game *game)
 	game->mlx = mlx_init(WIDTH, HEIGHT, "42_Astronauts_So_Long_Game", true);
 	render_fixedsprites(game->mlx, game->sprites, game->map);
 	render_movingsprites(game->mlx, game->sprites, game->map);
-	mlx_key_hook(game->mlx, &keyb_wasd_arrow, game);
-	// mlx_key_hook(game->mlx, &movecounter, game);
+	// mlx_key_hook(game->mlx, &keyb_wasd_arrow, game);
+	mlx_key_hook(game->mlx, &frame_update, game);
 	mlx_loop(game->mlx);
 }
 
@@ -65,6 +65,7 @@ int32_t	main(int32_t argc, char **argv)
 		game->sprites = ft_calloc(1, sizeof(t_sprite));
 		game->userdata = ft_calloc(1, sizeof(t_userdata));
 		game->userdata->totalmoves = 0;
+		game->userdata->totalcoins = 0;
 		if (map_init(argv, game) == true)
 		{
 			ft_printf("\nmap init = ok\n");

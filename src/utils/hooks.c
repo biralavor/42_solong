@@ -6,60 +6,62 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 16:52:24 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/03 19:16:56 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/04 15:32:46 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	keyb_wasd_arrow(mlx_key_data_t key, t_game *game)
+void	keyb_wasd_arrow(t_game *game)
 {
-	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
-	{
-		mlx_close_window(game->mlx);
-		return ;
-	}
 	if (mlx_is_key_down(game->mlx, (MLX_KEY_UP))
 		|| mlx_is_key_down(game->mlx, (MLX_KEY_W)))
 		{
-			game->sprites->player->instances[0].y -= 5;
-			movecounter("UP", game);
+			game->sprites->player->instances[0].y -= PIXEL_SIZE;
+			movescounter("UP", game);
+			ft_printf("  && Coins = %i",	\
+			game->userdata->totalcoins);
 		}
 	if (mlx_is_key_down(game->mlx, (MLX_KEY_DOWN))
 		|| mlx_is_key_down(game->mlx, (MLX_KEY_S)))
 		{
-			game->sprites->player->instances[0].y += 5;
-			movecounter("DOWN", game);
+			game->sprites->player->instances[0].y += PIXEL_SIZE;
+			movescounter("DOWN", game);
+			ft_printf("  && Coins = %i",	\
+			game->userdata->totalcoins);
 		}
 	if (mlx_is_key_down(game->mlx, (MLX_KEY_LEFT))
 		|| mlx_is_key_down(game->mlx, (MLX_KEY_A)))
 		{
-			game->sprites->player->instances[0].x -= 5;
-			movecounter("LEFT", game);
+			game->sprites->player->instances[0].x -= PIXEL_SIZE;
+			movescounter("LEFT", game);
+			ft_printf("  && Coins = %i",	\
+			game->userdata->totalcoins);
 		}
 	if (mlx_is_key_down(game->mlx, (MLX_KEY_RIGHT))
 		|| mlx_is_key_down(game->mlx, (MLX_KEY_D)))
 		{
-			game->sprites->player->instances[0].x += 5;
-			movecounter("RIGHT", game);
+			game->sprites->player->instances[0].x += PIXEL_SIZE;
+			movescounter("RIGHT", game);
+			ft_printf("  && Coins = %i",	\
+			game->userdata->totalcoins);
 		}
 }
 
-void	movecounter(char *key, t_game *game)
+void	movescounter(char *key, t_game *game)
 {
-	if ("UP" == key)
-			ft_printf("\nLet's Go!!!\nTotal Moves = %i",	\
+	if (key == "UP")
+			ft_printf("\nLet's Go!!!\nYour Moves = %i",	\
 			++game->userdata->totalmoves);
-	if ("DOWN" == key)
-			ft_printf("\nOh, Gosh! Pulling back now!\nTotal Moves = %i",	\
+	if (key == "DOWN")
+			ft_printf("\nOh, Gosh! Pulling back now!\nYour Moves = %i",	\
 			++game->userdata->totalmoves);
-	if ("LEFT" == key)
-			ft_printf("\nDodging left!\nTotal Moves = %i",	\
+	if (key == "LEFT")
+			ft_printf("\nDodging left!\nYour Moves = %i",	\
 			++game->userdata->totalmoves);
-	if ("RIGHT" == key)
-			ft_printf("\nSliding right!\nTotal Moves = %i",	\
+	if (key == "RIGHT")
+			ft_printf("\nSliding right!\nYour Moves = %i",	\
 			++game->userdata->totalmoves);
-	// mlx_put_string(game->mlx, "totalmoves = ", 10, 10);
 }
 
 // void ui_stats_canvas(t_game *game)

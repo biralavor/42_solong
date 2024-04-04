@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:46:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/03 18:58:10 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/04 15:14:44 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@
 /* Map definitions */
 # define BPP sizeof(int32_t)
 /* MLX definitions */
-# define SPACESHIP "./textures/ref-space-shuttle-redux.png"
-# define SPACEFIELD "./textures/ref-background-hsl-70.png"
-# define DEATH "./textures/ref-death-icon-50.png"
-# define BOUNDARY "./textures/asteroid-35px-hsl.png"
-# define ASTRONAUT "./textures/astronaut-38px.png"
-# define EARTH "./textures/earth-40px.png"
+# define SPACESHIP "./textures/32px_ref-space-shuttle.png"
+# define SPACEFIELD "./textures/32px_ref-background.png"
+# define DEATH "./textures/32px_blackhole-portal.png"
+# define BOUNDARY "./textures/32px_asteroid.png"
+# define ASTRONAUT "./textures/32px_astronaut.png"
+# define EARTH "./textures/32px_earth.png"
 /* Sprite definitions */
 
 typedef struct s_userdata
@@ -43,6 +43,7 @@ typedef struct s_userdata
 	int32_t			totalmoves;
 	int32_t			x;
 	int32_t			y;
+	int32_t			totalcoins;
 }					t_userdata;
 
 typedef struct s_sprite
@@ -120,8 +121,8 @@ bool	has_illegal_char(t_map *map);
 /* validation map items */
 
 // void	*ft_memset(void *str, int c, size_t size);
-void	keyb_wasd_arrow(mlx_key_data_t key, t_game *game);
-void	movecounter(char *key, t_game *game);
+void	keyb_wasd_arrow(t_game *game);
+void	movescounter(char *key, t_game *game);
 /* mlx functions */
 
 bool	loading_png(char *imagepath, mlx_texture_t **texture);
@@ -130,5 +131,9 @@ void	parse_imgtomap(t_map *map, char toparse, mlx_t *mlx, mlx_image_t *img);
 void	render_fixedsprites(mlx_t *mlx, t_sprite *sprites, t_map *map);
 void	render_movingsprites(mlx_t *mlx, t_sprite *sprites, t_map *map);
 /* parsing map into graphic functions*/
+
+void	frame_update(mlx_key_data_t key, t_game *game);
+void	ft_collectable(t_game *game);
+/* gameplay functions */
 
 #endif
