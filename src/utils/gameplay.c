@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 10:08:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/04 16:59:52 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/04 18:19:54 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,28 +31,27 @@ void	frame_update(mlx_key_data_t key, t_game *game)
 void	ft_collectable(t_game *game)
 {
 	int32_t	index;
+	int32_t	player_y;
+	int32_t	player_x;
+	int32_t	coin_y;
+	int32_t	coin_x;
 
 	index = 0;
-	ft_printf("\nPlayer_y[%i]x?[%i]", 
-	(game->sprites->player->instances->y / PIXEL_SIZE),
-	(game->sprites->player->instances->x / PIXEL_SIZE));
+	player_y = game->sprites->player->instances->y / PIXEL_SIZE;
+	player_x = game->sprites->player->instances->x / PIXEL_SIZE;
+	ft_printf("\nPlayer_y[%i]x[%i]", player_y, player_x);
 	while (index < game->map->coin_index)
 	{
-		ft_printf("\nCoin[%i]_pos_y[%i]x[%i]", index, 
-		(game->sprites->coin->instances[index].y / PIXEL_SIZE), 
-		(game->sprites->coin->instances[index].x / PIXEL_SIZE));
-		// ft_printf("\nCoin[%i]_count[%i]", index,
-		// game->map->matrix[game->sprites->coin->count]);
+		coin_x = game->sprites->coin->instances[index].x / PIXEL_SIZE;
+		coin_y = game->sprites->coin->instances[index].y / PIXEL_SIZE;
+		ft_printf("\nCoin[%i]_pos_y[%i]x[%i]", index, coin_y, coin_x);
+		if (player_y == coin_y && player_x == coin_x)
+		{
+			++game->userdata->totalcoins;
+			ft_printf("\nYou've collected a Coin = %i/%i!\n",
+			game->userdata->totalcoins, game->map->coin_index);
+			game->sprites->coin->instances[index].enabled = false;
+		}
 		index++;
 	}
-	
-	// ft_printf("y = %i\n", game->sprites->player->instances->x / PIXEL_SIZE);
-	// if (game->map->matrix[game->sprites->player->instances->y]	\
-		[game->sprites->player->instances->x] == 'C')
-		// {
-		// 	game->map->matrix[game->sprites->player->instances->y]	\
-		// 	[game->sprites->player->instances->x] = '0';
-		// 	ft_printf("\nYou've collected a coin!\nTotal Coins = %i",	\
-		// 	++game->userdata->totalcoins);
-		// }
 }
