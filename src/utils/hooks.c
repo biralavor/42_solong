@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 16:52:24 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/04 15:32:46 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/04 16:44:01 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,32 +19,32 @@ void	keyb_wasd_arrow(t_game *game)
 		{
 			game->sprites->player->instances[0].y -= PIXEL_SIZE;
 			movescounter("UP", game);
-			ft_printf("  && Coins = %i",	\
-			game->userdata->totalcoins);
+			ft_printf("  && Coins = %i/%i",	\
+			game->userdata->totalcoins, game->map->coin_index);
 		}
 	if (mlx_is_key_down(game->mlx, (MLX_KEY_DOWN))
 		|| mlx_is_key_down(game->mlx, (MLX_KEY_S)))
 		{
 			game->sprites->player->instances[0].y += PIXEL_SIZE;
 			movescounter("DOWN", game);
-			ft_printf("  && Coins = %i",	\
-			game->userdata->totalcoins);
+			ft_printf("  && Coins = %i/%i",	\
+			game->userdata->totalcoins, game->map->coin_index);
 		}
 	if (mlx_is_key_down(game->mlx, (MLX_KEY_LEFT))
 		|| mlx_is_key_down(game->mlx, (MLX_KEY_A)))
 		{
 			game->sprites->player->instances[0].x -= PIXEL_SIZE;
 			movescounter("LEFT", game);
-			ft_printf("  && Coins = %i",	\
-			game->userdata->totalcoins);
+			ft_printf("  && Coins = %i/%i",	\
+			game->userdata->totalcoins, game->map->coin_index);
 		}
 	if (mlx_is_key_down(game->mlx, (MLX_KEY_RIGHT))
 		|| mlx_is_key_down(game->mlx, (MLX_KEY_D)))
 		{
 			game->sprites->player->instances[0].x += PIXEL_SIZE;
 			movescounter("RIGHT", game);
-			ft_printf("  && Coins = %i",	\
-			game->userdata->totalcoins);
+			ft_printf("  && Coins = %i/%i",	\
+			game->userdata->totalcoins, game->map->coin_index);
 		}
 }
 
