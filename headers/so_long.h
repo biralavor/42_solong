@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:46:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/04 15:14:44 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/05 10:56:57 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@
 typedef struct s_userdata
 {
 	int32_t			totalmoves;
-	int32_t			x;
-	int32_t			y;
+	int32_t			y_pos;
+	int32_t			x_pos;
 	int32_t			totalcoins;
 }					t_userdata;
 
@@ -133,6 +133,8 @@ void	render_movingsprites(mlx_t *mlx, t_sprite *sprites, t_map *map);
 /* parsing map into graphic functions*/
 
 void	frame_update(mlx_key_data_t key, t_game *game);
+void	show_exit(t_game *game);
+void	end_game(t_game *game);
 void	ft_collectable(t_game *game);
 /* gameplay functions */
 
