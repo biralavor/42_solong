@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 10:08:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/05 11:03:29 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/05 11:15:48 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	frame_update(mlx_key_data_t key, t_game *game)
 {
 	show_exit(game);
-	end_game(game);
 	ft_collectable(game);
 	if (key.action == MLX_PRESS)
 	{
@@ -28,6 +27,7 @@ void	frame_update(mlx_key_data_t key, t_game *game)
 		}
 		keyb_wasd_arrow(game);
 	}
+	end_game(game);
 }
 
 void	ft_collectable(t_game *game)
@@ -65,7 +65,7 @@ void	show_exit(t_game *game)
 		ft_printf("\nLet's go back home!\n");
 		game->sprites->exit->instances->enabled = true;
 
-		ft_printf("\nExit_pos_y[%i]x[%i]\n", 
+		ft_printf("\nExit_pos_y[%i]x[%i]", 
 					game->sprites->exit->instances->y / PIXEL_SIZE,
 					game->sprites->exit->instances->x / PIXEL_SIZE);
 	}
@@ -78,5 +78,6 @@ void	end_game(t_game *game)
 		&& game->sprites->exit->instances->enabled == true)
 	{
 		ft_printf("\n\nCONGRATULATIONS! You WON!\n");
+		mlx_close_window(game->mlx);
 	}
 }

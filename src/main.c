@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:47:07 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/05 11:02:34 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/05 11:15:30 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	game_init(t_game *game)
 	game->mlx = mlx_init(WIDTH, HEIGHT, "42_Astronauts_So_Long_Game", true);
 	render_fixedsprites(game->mlx, game->sprites, game->map);
 	render_movingsprites(game->mlx, game->sprites, game->map);
-	// mlx_key_hook(game->mlx, &keyb_wasd_arrow, game);
 	mlx_key_hook(game->mlx, &frame_update, game);
 	mlx_loop(game->mlx);
 }
