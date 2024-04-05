@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:47:07 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/05 10:56:53 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/05 11:02:34 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	game_init(t_game *game)
 	mlx_loop(game->mlx);
 }
 
-void	game_end(t_game *game)
+void	free_all_sprites(t_game *game)
 {
 	mlx_delete_texture(game->sprites->back_tt);
 	mlx_delete_texture(game->sprites->border_tt);
@@ -73,7 +73,7 @@ int32_t	main(int32_t argc, char **argv)
 			ft_printf("\nmap init = ok\n");
 			matrix_printer(game->map);
 			game_init(game);
-			game_end(game);
+			free_all_sprites(game);
 		}
 		free_map(game->map);
 		free(game->sprites);

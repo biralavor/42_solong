@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:46:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/05 10:56:57 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/05 11:02:45 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	matrix_printer(t_map *map);
 /* TO REMOVE functions */
 
 void	game_init(t_game *game);
-void	game_end(t_game *game);
+void	free_all_sprites(t_game *game);
 /* game init funcitons */
 
 bool	map_init(char **argv, t_game *game);
