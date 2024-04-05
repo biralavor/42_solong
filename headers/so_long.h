@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:46:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/05 12:37:38 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/05 18:08:16 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ typedef struct s_userdata
 	int32_t			totalmoves;
 	int32_t			y_pos;
 	int32_t			x_pos;
+	int32_t			future_y_pos;
+	int32_t			future_x_pos;
 	int32_t			totalcoins;
 }					t_userdata;
 
@@ -119,10 +121,11 @@ bool	has_specific_char(t_map *map, char tofind, int limiter);
 bool	has_walls(t_map *map);
 bool	is_char_locked(t_map *map);
 bool	has_illegal_char(t_map *map);
+void	how_many_walls(t_map *map);
 /* validation map items */
 
 // void	*ft_memset(void *str, int c, size_t size);
-void	keyb_wasd_arrow(t_game *game);
+void	keyb_wasd_arrow(mlx_key_data_t key, t_game *game);
 void	movescounter(char *key, t_game *game);
 /* mlx functions */
 
@@ -136,8 +139,9 @@ void	render_movingsprites(mlx_t *mlx, t_sprite *sprites, t_map *map);
 void	frame_update(mlx_key_data_t key, t_game *game);
 void	show_exit(t_game *game);
 void	end_game(t_game *game);
-void	ft_collectable(t_game *game);
-bool	is_wall(t_game *game);
+void	ft_collectables(t_game *game);
+void	future_player_pos(mlx_key_data_t key, t_game *game);
+bool	is_wall(mlx_key_data_t key, t_game *game);
 /* gameplay functions */
 
 #endif
