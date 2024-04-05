@@ -6,46 +6,47 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 16:52:24 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/05 10:31:05 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/05 18:29:46 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	keyb_wasd_arrow(t_game *game)
+void	keyb_wasd_arrow(mlx_key_data_t key, t_game *game)
 {
-	if (mlx_is_key_down(game->mlx, (MLX_KEY_UP))
-		|| mlx_is_key_down(game->mlx, (MLX_KEY_W)))
+	game->userdata->future_y_pos = game->userdata->y_pos;
+	game->userdata->future_x_pos = game->userdata->x_pos;
+	if (!is_wall(key, game))
+	{
+		if ((key.key == MLX_KEY_UP) || (key.key == MLX_KEY_W))
 		{
-			game->sprites->player->instances[0].y -= PIXEL_SIZE;
+			game->sprites->player->instances->y -= PIXEL_SIZE;
 			movescounter("UP", game);
 			ft_printf("  && Lost Astronauts = %i/%i",	\
 			game->userdata->totalcoins, game->map->coin_index);
 		}
-	if (mlx_is_key_down(game->mlx, (MLX_KEY_DOWN))
-		|| mlx_is_key_down(game->mlx, (MLX_KEY_S)))
+		if ((key.key == MLX_KEY_DOWN) || (key.key == MLX_KEY_S))
 		{
-			game->sprites->player->instances[0].y += PIXEL_SIZE;
+			game->sprites->player->instances->y += PIXEL_SIZE;
 			movescounter("DOWN", game);
 			ft_printf("  && Lost Astronauts = %i/%i",	\
 			game->userdata->totalcoins, game->map->coin_index);
 		}
-	if (mlx_is_key_down(game->mlx, (MLX_KEY_LEFT))
-		|| mlx_is_key_down(game->mlx, (MLX_KEY_A)))
+		if ((key.key == MLX_KEY_LEFT) || (key.key == MLX_KEY_A))
 		{
-			game->sprites->player->instances[0].x -= PIXEL_SIZE;
+			game->sprites->player->instances->x -= PIXEL_SIZE;
 			movescounter("LEFT", game);
 			ft_printf("  && Lost Astronauts = %i/%i",	\
 			game->userdata->totalcoins, game->map->coin_index);
 		}
-	if (mlx_is_key_down(game->mlx, (MLX_KEY_RIGHT))
-		|| mlx_is_key_down(game->mlx, (MLX_KEY_D)))
+		if ((key.key == MLX_KEY_RIGHT) || (key.key == MLX_KEY_D))
 		{
-			game->sprites->player->instances[0].x += PIXEL_SIZE;
+			game->sprites->player->instances->x += PIXEL_SIZE;
 			movescounter("RIGHT", game);
 			ft_printf("  && Lost Astronauts = %i/%i",	\
 			game->userdata->totalcoins, game->map->coin_index);
 		}
+	}
 }
 
 void	movescounter(char *key, t_game *game)
