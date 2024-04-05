@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 10:08:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/05 13:35:04 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/05 18:18:37 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,17 @@
 
 void	frame_update(mlx_key_data_t key, t_game *game)
 {
-	show_exit(game);
-	ft_collectable(game);
-	if (!is_wall(game))
+	ft_collectables(game);
+	if (key.action == MLX_PRESS)
 	{
-		if (key.action == MLX_PRESS)
+		if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 		{
-			if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
-			{
-				write(1, "\n\nN00OOOOOOO00!\n\n", 18);
-				write(1, "\\¯\\_(ツ)_/¯/\n\n", 18);
-				mlx_close_window(game->mlx);
-				return ;
-			}
-			keyb_wasd_arrow(game);
+			write(1, "\n\nN00OOOOOOO00!\n\n", 18);
+			write(1, "\\¯\\_(ツ)_/¯/\n\n", 18);
+			mlx_close_window(game->mlx);
+			return ;
 		}
+		keyb_wasd_arrow(key, game);
 	}
 	end_game(game);
 }
