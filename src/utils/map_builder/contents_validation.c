@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:38:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/05 13:01:12 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/05 15:54:21 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ bool	map_contents_checker(t_map *map)
 		(has_specific_char(map, 'E', 1) == true) &&		\
 		(has_specific_char(map, 'C', 999) == true) && 	\
 		(is_char_locked(map) == false))
+		how_many_walls(map);
 		return (true);
 	return (false);
 }
@@ -138,4 +139,24 @@ bool	is_char_locked(t_map *map)
 		}
 	}
 	return (false);
+}
+
+void	how_many_walls(t_map *map)
+{
+	char	wall;
+	int32_t	y;
+	int32_t	x;
+
+	wall = '1';
+	y = -1;
+	map->border_index = 0;
+	while ((++y <= map->height -1) && map->matrix)
+	{
+		x = -1;
+		while (++x <= map->width - 1)
+		{
+			if (wall == map->matrix[y][x])
+				map->border_index++;
+		}
+	}
 }
