@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 12:19:44 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/05 13:35:55 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/05 15:56:28 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,26 +39,16 @@ void	ft_collectable(t_game *game)
 	}
 }
 
-bool	is_wall(t_game *game)
+
+
+bool	is_wall(mlx_key_data_t key, t_game *game)
 {
 	int32_t	index;
-	char	wall;
 	int32_t	y;
 	int32_t	x;
 
 	index = 0;
-	wall = '1';
 	y = -1;
-	game->map->border_index = 0;
-	while ((++y <= game->map->height -1) && game->map->matrix)
-	{
-		x = -1;
-		while (++x <= game->map->width - 1)
-		{
-			if (wall == game->map->matrix[y][x])
-				game->map->border_index++;
-		}
-	}
 	while (index < game->map->border_index)
 	{
 		
