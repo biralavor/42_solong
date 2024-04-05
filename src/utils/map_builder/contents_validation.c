@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:38:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/01 16:49:39 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/05 13:01:12 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,8 @@ bool	has_walls(t_map *map)
 			(map->matrix[y][map->width] == tofind))
 			{
 				y++;
-				if ((y == map-> height - 1) && \
-					(map->matrix[y][0] == tofind) && \
-					(map->matrix[map->height - 1][map->width] == tofind))
+				if ((y == map-> height - 1) && (map->matrix[y][0] == tofind)
+					&& (map->matrix[map->height - 1][map->width] == tofind))
 						return (true);
 			}
 		else
