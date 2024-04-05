@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 10:08:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/05 11:15:48 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/05 12:20:01 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,33 +30,6 @@ void	frame_update(mlx_key_data_t key, t_game *game)
 	end_game(game);
 }
 
-void	ft_collectable(t_game *game)
-{
-	int32_t	index;
-	int32_t	coin_y;
-	int32_t	coin_x;
-
-	index = 0;
-	game->userdata->y_pos = game->sprites->player->instances->y / PIXEL_SIZE;
-	game->userdata->x_pos = game->sprites->player->instances->x / PIXEL_SIZE;
-	ft_printf("\nPlayer_y[%i]x[%i]", game->userdata->y_pos, game->userdata->x_pos);
-	while (index < game->map->coin_index)
-	{
-		coin_x = game->sprites->coin->instances[index].x / PIXEL_SIZE;
-		coin_y = game->sprites->coin->instances[index].y / PIXEL_SIZE;
-		ft_printf("\nCoin[%i]_pos_y[%i]x[%i]", index, coin_y, coin_x);
-		if ((game->userdata->y_pos == coin_y && game->userdata->x_pos == coin_x) 
-			&& game->sprites->coin->instances[index].enabled == true)
-		{
-			++game->userdata->totalcoins;
-			ft_printf("\nYou've saved an Astronaut! (%i/%i)\n",
-			game->userdata->totalcoins, game->map->coin_index);
-			game->sprites->coin->instances[index].enabled = false;
-		}
-		index++;
-	}
-}
-
 void	show_exit(t_game *game)
 {
 	if (game->userdata->totalcoins == game->map->coin_index)
@@ -77,7 +50,7 @@ void	end_game(t_game *game)
 		&& game->userdata->x_pos == game->sprites->exit->instances->x / PIXEL_SIZE
 		&& game->sprites->exit->instances->enabled == true)
 	{
-		ft_printf("\n\nCONGRATULATIONS! You WON!\n");
+		ft_printf("\n\nCONGRATULATIONS! You WON!\n\n");
 		mlx_close_window(game->mlx);
 	}
 }

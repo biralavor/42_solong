@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/03 15:54:10 by umeneses          #+#    #+#              #
-#    Updated: 2024/04/04 11:26:35 by umeneses         ###   ########.fr        #
+#    Updated: 2024/04/05 12:20:26 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,7 @@ FILES_UTILS		+= errors_check.c
 FILES_UTILS		+= free_functions.c
 FILES_UTILS		+= hooks.c
 FILES_UTILS		+= gameplay.c
+FILES_UTILS		+= game_rules.c
 FILES_UTILS		+= map_builder/map_builder.c
 FILES_UTILS		+= map_builder/map_reader.c
 FILES_UTILS		+= map_builder/map_allocation.c
