@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:46:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/05 11:02:45 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/05 12:37:38 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef struct s_map
 	int				size;
 	char			*line;
 	int32_t			coin_index;
+	int32_t			border_index;
 }					t_map;
 
 typedef struct s_game
@@ -136,6 +137,7 @@ void	frame_update(mlx_key_data_t key, t_game *game);
 void	show_exit(t_game *game);
 void	end_game(t_game *game);
 void	ft_collectable(t_game *game);
+bool	is_wall(t_game *game);
 /* gameplay functions */
 
 #endif
