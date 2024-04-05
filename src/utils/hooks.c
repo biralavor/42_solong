@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 16:52:24 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/04 16:44:01 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/05 10:31:05 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	keyb_wasd_arrow(t_game *game)
 		{
 			game->sprites->player->instances[0].y -= PIXEL_SIZE;
 			movescounter("UP", game);
-			ft_printf("  && Coins = %i/%i",	\
+			ft_printf("  && Lost Astronauts = %i/%i",	\
 			game->userdata->totalcoins, game->map->coin_index);
 		}
 	if (mlx_is_key_down(game->mlx, (MLX_KEY_DOWN))
@@ -27,7 +27,7 @@ void	keyb_wasd_arrow(t_game *game)
 		{
 			game->sprites->player->instances[0].y += PIXEL_SIZE;
 			movescounter("DOWN", game);
-			ft_printf("  && Coins = %i/%i",	\
+			ft_printf("  && Lost Astronauts = %i/%i",	\
 			game->userdata->totalcoins, game->map->coin_index);
 		}
 	if (mlx_is_key_down(game->mlx, (MLX_KEY_LEFT))
@@ -35,7 +35,7 @@ void	keyb_wasd_arrow(t_game *game)
 		{
 			game->sprites->player->instances[0].x -= PIXEL_SIZE;
 			movescounter("LEFT", game);
-			ft_printf("  && Coins = %i/%i",	\
+			ft_printf("  && Lost Astronauts = %i/%i",	\
 			game->userdata->totalcoins, game->map->coin_index);
 		}
 	if (mlx_is_key_down(game->mlx, (MLX_KEY_RIGHT))
@@ -43,7 +43,7 @@ void	keyb_wasd_arrow(t_game *game)
 		{
 			game->sprites->player->instances[0].x += PIXEL_SIZE;
 			movescounter("RIGHT", game);
-			ft_printf("  && Coins = %i/%i",	\
+			ft_printf("  && Lost Astronauts = %i/%i",	\
 			game->userdata->totalcoins, game->map->coin_index);
 		}
 }
