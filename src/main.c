@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:47:07 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/04 15:21:23 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/05 10:56:53 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ int32_t	main(int32_t argc, char **argv)
 		game->userdata = ft_calloc(1, sizeof(t_userdata));
 		game->userdata->totalmoves = 0;
 		game->userdata->totalcoins = 0;
+		game->userdata->y_pos = 0;
+		game->userdata->x_pos = 0;
 		if (map_init(argv, game) == true)
 		{
 			ft_printf("\nmap init = ok\n");
