@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:38:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/05 15:54:21 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/06 14:24:53 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,11 +149,11 @@ void	how_many_walls(t_map *map)
 
 	wall = '1';
 	y = -1;
-	map->border_index = 0;
-	while ((++y <= map->height -1) && map->matrix)
+	map->border_index = -1;
+	while ((++y <= map->height - 1) && map->matrix)
 	{
 		x = -1;
-		while (++x <= map->width - 1)
+		while (++x <= map->width)
 		{
 			if (wall == map->matrix[y][x])
 				map->border_index++;
