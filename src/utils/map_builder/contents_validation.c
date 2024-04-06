@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:38:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/06 14:24:53 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/06 19:09:20 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 bool	map_contents_checker(t_map *map)
 {
 	if ((has_walls(map) == true) &&						\
-		(has_illegal_char(map) == false) &&				\
 		(has_specific_char(map, 'P', 1) == true) &&		\
 		(has_specific_char(map, 'E', 1) == true) &&		\
 		(has_specific_char(map, 'C', 999) == true) && 	\
-		(is_char_locked(map) == false))
+		(is_char_locked(map) == false)
+		&& (has_illegal_char(map) == false))
 		how_many_walls(map);
 		return (true);
 	return (false);
@@ -27,27 +27,81 @@ bool	map_contents_checker(t_map *map)
 
 bool	has_walls(t_map *map)
 {
+	while (map->matrix)
+	{
+		if (top_wall_reading(map))
+		{
+			if (middle_wall_reading(map))
+				if (bottom_wall_reading(map))
+					return (true);
+		}
+		else
+		{
+			ft_putendl_fd("\nError.\nBreach on the wall.", STDOUT_FILENO);
+			return (false);
+		}
+	}
+}
+
+bool	top_wall_reading(t_map *map)
+{
 	char	tofind;
 	int32_t	x;
-	int32_t	y;
 
 	tofind = '1';
-	y = 0;
-	x = 0;
-	while ((y <= map->height - 1) && (map->matrix))
+	x = -1;
+	if (map->matrix[0][0] == tofind)
 	{
-		if  ((map->matrix[y][0] == tofind) && \
-			(map->matrix[y][map->width] == tofind))
-			{
-				y++;
-				if ((y == map-> height - 1) && (map->matrix[y][0] == tofind)
-					&& (map->matrix[map->height - 1][map->width] == tofind))
-						return (true);
-			}
-		else
-			break ;
+		while (++x <= map->width - 1)
+		{
+			if (map->matrix[0][x] == tofind)
+				if (map->matrix[0][map->width - 1] == tofind)
+					return (true);
+		}
 	}
-	ft_putendl_fd("\nError.\nYour MAP has a breach on the wall.", \
+	ft_putendl_fd("\nError.\nYour MAP has a breach on the top_wall.", \
+					STDOUT_FILENO);
+	return (false);
+}
+
+bool	bottom_wall_reading(t_map *map)
+{
+	char	tofind;
+	int32_t	x;
+
+	tofind = '1';
+	x = -1;
+	if (map->matrix[map->height - 1][0] == tofind)
+	{
+		while (++x <= map->width - 1)
+		{
+			if (map->matrix[map->height - 1][x] == tofind)
+				if (map->matrix[map->height - 1][map->width - 1] == tofind)
+					return (true);
+		}
+	}
+	ft_putendl_fd("\nError.\nYour MAP has a breach on the bottom_wall.", \
+					STDOUT_FILENO);
+	return (false);
+}
+
+bool	middle_wall_reading(t_map *map)
+{
+	char	tofind;
+	int32_t	y;
+	int32_t	x;
+
+	tofind = '1';
+	y = 1;
+	x = -1;
+	while ((map->matrix[y][0] == tofind) 
+			&& (map->matrix[y][map->width - 1] == tofind))
+	{
+		if (y == map->height - 1)
+			return (true);
+		y++;
+	}
+	ft_putendl_fd("\nError.\nYour MAP has a breach on the middle_wall.", \
 					STDOUT_FILENO);
 	return (false);
 }
@@ -97,6 +151,7 @@ bool	has_specific_char(t_map *map, char tofind, int limiter)
 		if ((y == map->height - 1) && (x == map->width))
 			break ;
 	}
+	map->coin_index = found;
 	if ((found > limiter) || (tofind == 'C' && found == 0))
 	{
 		ft_putendl_fd("\nError.\nItems on MAP doesn't match requirements: \
@@ -104,7 +159,6 @@ bool	has_specific_char(t_map *map, char tofind, int limiter)
 						STDOUT_FILENO);
 		return (false);
 	}
-	map->coin_index = found;
 	return (true);
 }
 
@@ -123,19 +177,19 @@ bool	is_char_locked(t_map *map)
 		{
 			item = map->matrix[y][x];
 			if (item == 'P' || item == 'E' || item == 'C')
+			{
+				if ((map->matrix[y - 1][x] == '1') 
+					&& (map->matrix[y + 1][x] == '1'))
 				{
-					if ((map->matrix[y - 1][x] == '1') && \
-					(map->matrix[y + 1][x] == '1'))
-						if ((map->matrix[y][x - 1] == '1') && \
-							(map->matrix[y][x + 1] == '1'))
-						{
-							ft_putendl_fd("\nError.\nYour MAP is locking an item.", \
+					if ((map->matrix[y][x - 1] == '1') 
+						&& (map->matrix[y][x + 1] == '1'))
+					{
+						ft_putendl_fd("\nError.\nYour MAP is locking an item.", 
 										STDOUT_FILENO);
-							return (true);	
-						}
+						return (true);
+					}	
 				}
-			else
-				break ;
+			}
 		}
 	}
 	return (false);

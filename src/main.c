@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:47:07 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/05 15:04:03 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/06 16:15:23 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,18 @@
 
 bool	map_init(char **argv, t_game *game)
 {
-	if (map_extension_approved(argv)
-		&& map_opener(argv, game->map)
-		&& map_reader(argv, game->map)
-		&& !map_too_tiny(game->map)
-		&& !map_too_big(game->map))
+	if (map_opener(argv, game->map)
+		&& map_reader(argv, game->map))
+	{
+		if (!map_too_tiny(game->map)
+			&& !map_too_big(game->map))
 		{
 			free (game->map->buffer);
 			if (map_size_approved(game->map)
 				&& map_contents_checker(game->map))
 					return (true);
 		}
+	}
 	ft_putendl_fd("It didn't initialize correctly.\n", STDOUT_FILENO);
 	return (false);
 }
@@ -59,25 +60,28 @@ int32_t	main(int32_t argc, char **argv)
 
 	if (argc == 2)
 	{
-		game = ft_calloc(1, sizeof(t_game));
-		game->map = ft_calloc(1, sizeof(t_map));
-		game->sprites = ft_calloc(1, sizeof(t_sprite));
-		game->userdata = ft_calloc(1, sizeof(t_userdata));
-		game->userdata->totalmoves = 0;
-		game->userdata->totalcoins = 0;
-		game->userdata->y_pos = 0;
-		game->userdata->x_pos = 0;
-		if (map_init(argv, game) == true)
+		if (map_extension_approved(argv))
 		{
-			ft_printf("\nmap init = ok\n");
-			matrix_printer(game->map);
-			game_init(game);
-			free_all_sprites(game);
+			game = ft_calloc(1, sizeof(t_game));
+			game->map = ft_calloc(1, sizeof(t_map));
+			game->sprites = ft_calloc(1, sizeof(t_sprite));
+			game->userdata = ft_calloc(1, sizeof(t_userdata));
+			game->userdata->totalmoves = 0;
+			game->userdata->totalcoins = 0;
+			game->userdata->y_pos = 0;
+			game->userdata->x_pos = 0;
+			if (map_init(argv, game))
+			{
+				ft_printf("\nmap init = ok\n");
+				matrix_printer(game->map);
+				game_init(game);
+				free_all_sprites(game);
+			}
+			free(game->userdata);
+			free(game->sprites);
+			free_map(game->map);
+			free (game);
 		}
-		free_map(game->map);
-		free(game->sprites);
-		free(game->userdata);
-		free (game);
 	}
 	else if (argc > 2)
 		return (ft_putendl_fd("Error\nToo many arguments, buddy.", \
