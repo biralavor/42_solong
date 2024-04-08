@@ -42,7 +42,7 @@ bool	middle_wall_reading(t_map *map)
 	tofind = '1';
 	y = 1;
 	x = -1;
-	while ((map->matrix[y][0] == tofind) 
+	while ((map->matrix[y][0] == tofind)
 			&& (map->matrix[y][map->width - 1] == tofind))
 	{
 		if (y == map->height - 1)

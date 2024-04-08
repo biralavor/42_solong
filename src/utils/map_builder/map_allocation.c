@@ -14,27 +14,25 @@
 
 char	**map_allocation(char **matrix, char *line, size_t size)
 {
-	size_t	index;
-	char	**matrix_temp;
-	int		y;
-	
-	index = 0;
-	y = 0;
+	char	**matrix_tmp;
+
 	if (!matrix)
 		matrix = ft_calloc(2, sizeof(char *));
 	if (!line || line[0] == '\0')
-		matrix_temp[index] = NULL;
+		matrix_tmp[0] = NULL;
 	else
-		matrix_temp = start_alloc(matrix, matrix_temp, line, index, size, y);
+		matrix_tmp = alloc_init(matrix, matrix_tmp, line, size);
 	free_matrix(matrix);
-	return (matrix_temp);
+	return (matrix_tmp);
 }
 
-char	**start_alloc(char **matrix, char **matrix_temp, char *line, \
-						size_t	index, size_t size, int y)
+char	**alloc_init(char **matrix, char **matrix_tmp, char *line, size_t size)
 {
-	matrix_temp = ft_calloc(size + 2, sizeof(char *));
-	if (!matrix_temp)
+	size_t	index;
+
+	index = 0;
+	matrix_tmp = ft_calloc(size + 2, sizeof(char *));
+	if (!matrix_tmp)
 	{
 		if (matrix)
 			free_matrix(matrix);
@@ -43,14 +41,14 @@ char	**start_alloc(char **matrix, char **matrix_temp, char *line, \
 	}
 	while (index < size)
 	{
-		matrix_temp[index] = ft_strdup(matrix[index]);
-		if (!matrix_temp[index] || (matrix_temp[index] == NULL))
+		matrix_tmp[index] = ft_strdup(matrix[index]);
+		if (!matrix_tmp[index] || (matrix_tmp[index] == NULL))
 		{
-			free_matrix(matrix_temp);
+			free_matrix(matrix_tmp);
 			return (NULL);
 		}
 		index++;
 	}
-	matrix_temp[index] = line;
-	return (matrix_temp);
+	matrix_tmp[index] = line;
+	return (matrix_tmp);
 }

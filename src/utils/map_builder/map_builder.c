@@ -14,35 +14,35 @@
 
 void	parse_imgtomap(t_map *map, char toparse, mlx_t *mlx, mlx_image_t *img)
 {
-	int32_t	x;
-	int32_t	y;
-
-	y = -1;
-	if (toparse == 'b')
-		while (++y < HEIGHT)
+	map->read_y = -1;
+	while ((++map->read_y <= map->height - 1) && map->matrix)
+	{
+		map->read_x = -1;
+		while (++map->read_x <= map->width)
 		{
-			x = -1;
-			while (++x < WIDTH)
+			if (toparse == map->matrix[map->read_y][map->read_x])
 			{
 				if (mlx_resize_image(img, PIXEL_SIZE, PIXEL_SIZE))
-					mlx_image_to_window(mlx, img, (x * PIXEL_SIZE), \
-										(y * PIXEL_SIZE));
+					mlx_image_to_window(mlx, img, (map->read_x * PIXEL_SIZE), \
+									(map->read_y * PIXEL_SIZE));
 			}
 		}
-	else
+	}
+}
+
+void	parse_backomap(t_map *map, char toparse, mlx_t *mlx, mlx_image_t *img)
+{
+	map->read_y = -1;
+	if (toparse == 'b')
 	{
-		y = -1;
-		while ((++y <= map->height - 1) && map->matrix)
+		while (++map->read_y < HEIGHT)
 		{
-			x = -1;
-			while (++x <= map->width)
+			map->read_x = -1;
+			while (++map->read_x < WIDTH)
 			{
-				if (toparse == map->matrix[y][x])
-				{
-					if (mlx_resize_image(img, PIXEL_SIZE, PIXEL_SIZE))
-						mlx_image_to_window(mlx, img, (x * PIXEL_SIZE), \
-										(y * PIXEL_SIZE));
-				}
+				if (mlx_resize_image(img, PIXEL_SIZE, PIXEL_SIZE))
+					mlx_image_to_window(mlx, img, (map->read_x * PIXEL_SIZE), \
+										(map->read_y * PIXEL_SIZE));
 			}
 		}
 	}
