@@ -36,16 +36,16 @@ void	render_fixedsprites(mlx_t *mlx, t_sprite *sprites, t_map *map)
 		&& preparing_image(mlx, sprites->border_tt, &sprites->border)
 		&& loading_png(EARTH, &sprites->exit_tt)
 		&& preparing_image(mlx, sprites->exit_tt, &sprites->exit))
-		{
-			parse_imgtomap(map, 'b', mlx, sprites->back);
-			parse_imgtomap(map, '1', mlx, sprites->border);
-			parse_imgtomap(map, 'E', mlx, sprites->exit);
-		}
+	{
+		parse_backtomap(map, 'b', mlx, sprites->back);
+		parse_imgtomap(map, '1', mlx, sprites->border);
+		parse_imgtomap(map, 'E', mlx, sprites->exit);
+	}
 	else
-		{
-			ft_putendl_fd("Fixed Sprites didn't load correctly.\n", STDOUT_FILENO);
-			return;
-		}
+	{
+		ft_putendl_fd("Fixed Sprites didn't load correctly.\n", STDOUT_FILENO);
+		return ;
+	}
 	sprites->exit->instances[0].enabled = false;
 }
 
@@ -55,13 +55,13 @@ void	render_movingsprites(mlx_t *mlx, t_sprite *sprites, t_map *map)
 		&& preparing_image(mlx, sprites->player_tt, &sprites->player)
 		&& loading_png(ASTRONAUT, &sprites->coin_tt)
 		&& preparing_image(mlx, sprites->coin_tt, &sprites->coin))
-		{
-			parse_imgtomap(map, 'P', mlx, sprites->player);
-			parse_imgtomap(map, 'C', mlx, sprites->coin);
-		}
+	{
+		parse_imgtomap(map, 'P', mlx, sprites->player);
+		parse_imgtomap(map, 'C', mlx, sprites->coin);
+	}
 	else
-		{
-			ft_putendl_fd("Moving Sprites didn't load correctly.\n", STDOUT_FILENO);
-			return;
-		}
+	{
+		ft_putendl_fd("Moving Sprites didn't load correctly.\n", STDOUT_FILENO);
+		return ;
+	}
 }
