@@ -77,6 +77,8 @@ typedef struct s_map
 	char			*line;
 	int32_t			coin_index;
 	int32_t			border_index;
+	int32_t			read_y;
+	int32_t			read_x;
 }					t_map;
 
 typedef struct s_game
@@ -89,18 +91,19 @@ typedef struct s_game
 }					t_game;
 
 void	matrix_printer(t_map *map);
+int		wall_err_msg(void);
 /* TO REMOVE functions */
 
 void	game_init(t_game *game);
-void	free_all_sprites(t_game *game);
+void	structures_init(t_game *game);
+void	free_all_mlx_usage(t_game *game);
 /* game init funcitons */
 
 bool	map_init(char **argv, t_game *game);
 bool	map_opener(char **argv, t_map *map);
 bool	map_reader(char **argv, t_map *map);
 char	**map_allocation(char **matrix, char *line, size_t size);
-char	**start_alloc(char **matrix, char **matrix_temp, char *line, \
-						size_t	index, size_t size, int y);
+char	**alloc_init(char **matrix, char **matrix_tmp, char *line, size_t size);
 void	free_map(t_map *map);
 void	free_matrix(char **matrix);
 /* map funtions */
@@ -112,10 +115,6 @@ bool	map_too_big(t_map *map);
 bool	map_too_tiny(t_map *map);
 /* validation funtions */
 
-void	err_msg_free(int i, char *msg, int stage, t_map *map);
-int		wall_err_msg(void);
-/* error message functions */
-
 bool	map_contents_checker(t_map *map);
 bool	has_specific_char(t_map *map, char tofind, int limiter);
 bool	has_walls(t_map *map);
@@ -126,12 +125,14 @@ void	how_many_walls(t_map *map);
 
 // void	*ft_memset(void *str, int c, size_t size);
 void	keyb_wasd_arrow(mlx_key_data_t key, t_game *game);
-void	movescounter(char *key, t_game *game);
+void	user_counter(char *key, t_game *game);
+void	coins_counter(t_game *game);
 /* mlx functions */
 
 bool	loading_png(char *imagepath, mlx_texture_t **texture);
 bool	preparing_image(mlx_t *mlx, mlx_texture_t *texture, mlx_image_t **img);
 void	parse_imgtomap(t_map *map, char toparse, mlx_t *mlx, mlx_image_t *img);
+void	parse_backomap(t_map *map, char toparse, mlx_t *mlx, mlx_image_t *img);
 void	render_fixedsprites(mlx_t *mlx, t_sprite *sprites, t_map *map);
 void	render_movingsprites(mlx_t *mlx, t_sprite *sprites, t_map *map);
 /* parsing map into graphic functions*/

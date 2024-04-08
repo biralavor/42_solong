@@ -115,4 +115,7 @@ void play_random_color(void *param)
 		}
 	}
 }
+// na MAIN:
+// ui_stats_canvas(game);
+// mlx_loop_hook(game->mlx, play_random_color, game->mlx);
 */
