@@ -25,13 +25,12 @@ void	ft_collectables(t_game *game)
 	{
 		coin_x = game->sprites->coin->instances[index].x / PIXEL_SIZE;
 		coin_y = game->sprites->coin->instances[index].y / PIXEL_SIZE;
-		// ft_printf("\nCoin[%i]_pos_y[%i]x[%i]", index, coin_y, coin_x);
-		if ((game->userdata->y_pos == coin_y && game->userdata->x_pos == coin_x) 
+		if ((game->userdata->y_pos == coin_y && game->userdata->x_pos == coin_x)
 			&& game->sprites->coin->instances[index].enabled == true)
 		{
 			++game->userdata->totalcoins;
 			ft_printf("\nYou've saved an Astronaut! (%i/%i)\n",
-			game->userdata->totalcoins, game->map->coin_index);
+				game->userdata->totalcoins, game->map->coin_index);
 			game->sprites->coin->instances[index].enabled = false;
 			show_exit(game);
 		}
@@ -57,10 +56,7 @@ bool	is_wall(mlx_key_data_t key, t_game *game)
 	int32_t	wall_y;
 	int32_t	wall_x;
 
-	ft_printf("\nPlayer_y[%i]x[%i]", game->userdata->y_pos, game->userdata->x_pos);
 	future_player_pos(key, game);
-	ft_printf("\n\nFuturePlayer_y[%i]x[%i]", game->userdata->future_y_pos, 
-											game->userdata->future_x_pos);
 	index = 0;
 	wall_y = 0;
 	wall_x = 0;
@@ -68,9 +64,8 @@ bool	is_wall(mlx_key_data_t key, t_game *game)
 	{
 		wall_y = game->sprites->border->instances[index].y / PIXEL_SIZE;
 		wall_x = game->sprites->border->instances[index].x / PIXEL_SIZE;
-		// ft_printf("\nWall[%i]_pos_y[%i]x[%i]", index, wall_y, wall_x);
-		if (game->userdata->future_y_pos == wall_y 
-			&& game->userdata->future_x_pos == wall_x) 
+		if (game->userdata->future_y_pos == wall_y
+			&& game->userdata->future_x_pos == wall_x)
 		{
 			ft_printf("\n\nYou've hit a Meteor!\nWATCH OUT!\n\n");
 			return (true);

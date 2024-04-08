@@ -36,17 +36,18 @@ void	show_exit(t_game *game)
 		ft_printf("\n\nGREAT! You've saved all Astronauts!\n");
 		ft_printf("\nLet's go back home!\n");
 		game->sprites->exit->instances->enabled = true;
-
-		ft_printf("\nExit_pos_y[%i]x[%i]", 
-					game->sprites->exit->instances->y / PIXEL_SIZE,
-					game->sprites->exit->instances->x / PIXEL_SIZE);
+		ft_printf("\nExit_pos_y[%i]x[%i]",
+			game->sprites->exit->instances->y / PIXEL_SIZE,
+			game->sprites->exit->instances->x / PIXEL_SIZE);
 	}
 }
 
 void	end_game(t_game *game)
 {
-	if (game->userdata->y_pos == game->sprites->exit->instances->y / PIXEL_SIZE
-		&& game->userdata->x_pos == game->sprites->exit->instances->x / PIXEL_SIZE
+	if ((game->userdata->y_pos
+			== game->sprites->exit->instances->y / PIXEL_SIZE)
+		&& (game->userdata->x_pos
+			== game->sprites->exit->instances->x / PIXEL_SIZE)
 		&& game->sprites->exit->instances->enabled == true)
 	{
 		ft_printf("\n\nCONGRATULATIONS! You WON!\n\n");
