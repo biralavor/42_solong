@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 19:13:01 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/09 16:15:41 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/09 18:34:10 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ bool	top_wall_reading(t_map *map)
 	map->read_x = -1;
 	if (map->matrix[0][0] == tofind)
 	{
-		while (++map->read_x <= map->width - 1)
+		while ((++map->read_x <= map->width - 1)
+			&& (map->matrix[0][map->read_x] == tofind))
 		{
-			if (map->matrix[0][map->read_x] == tofind)
-				if (map->matrix[0][map->width - 1] == tofind)
-				{
-					return (true);
-					break ;
-				}
+			if (map->read_x == map->width)
+			{
+				return (true);
+				break ;
+			}
 		}
 	}
 	ft_putendl_fd("\nError.\nYour MAP has a breach on the top_wall.",
@@ -86,18 +86,12 @@ bool	bottom_wall_reading(t_map *map)
 
 bool	has_walls(t_map *map)
 {
-	while (map->matrix)
+	if (top_wall_reading(map))
 	{
-		if (top_wall_reading(map))
-		{
-			if (middle_wall_reading(map))
-				if (bottom_wall_reading(map))
-				{
-					return (true);
-					break ;
-				}
-		}		
-	}
+		if (middle_wall_reading(map))
+			if (bottom_wall_reading(map))
+				return (true);
+	}		
 	ft_putendl_fd("\nError.\nBreach on the wall.", STDOUT_FILENO);
 	return (false);
 }
