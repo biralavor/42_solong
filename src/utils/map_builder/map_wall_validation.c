@@ -43,13 +43,8 @@ bool	middle_wall_reading(t_map *map)
 	int32_t	y;
 
 	tofind = '1';
-<<<<<<< HEAD
 	y = 1;
 	if ((map->matrix[y][0] == tofind)
-=======
-	y = 0;
-	if ((map->matrix[y][0] == tofind) 
->>>>>>> dad2e5dada0fe18a405dcce6cae523743cec0cc7
 			&& (map->matrix[y][map->width - 1] == tofind))
 	{
 		while (y == map->height - 1)
