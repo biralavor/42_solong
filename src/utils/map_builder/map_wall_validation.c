@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 19:13:01 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/09 18:34:10 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/09 18:36:06 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ bool	top_wall_reading(t_map *map)
 		while ((++map->read_x <= map->width - 1)
 			&& (map->matrix[0][map->read_x] == tofind))
 		{
-			if (map->read_x == map->width)
+			if (map->read_x == map->width - 1)
 			{
 				return (true);
 				break ;
