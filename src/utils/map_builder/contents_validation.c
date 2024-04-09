@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:38:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/09 15:16:09 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/09 15:31:44 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,14 @@ bool	has_specific_char(t_map *map, char tofind, int limiter)
 			break ;
 	}
 	map->coin_index = found;
-	if ((found > limiter) || (tofind == 'C' && found == 0))
+	if (tofind == 'C' && found == 0)
+	{
+		ft_putendl_fd("\n1-Error.\nItems on MAP doesn't match requirements: \
+						\nPlayer = 1\nExit = 1\nCollectables = 1 or more...", \
+						STDOUT_FILENO);
+		return (false);
+	}
+	else if (found > limiter)
 	{
 		ft_putendl_fd("\nError.\nItems on MAP doesn't match requirements: \
 			\nPlayer = 1\nExit = 1\nCollectables = 1 or more...", \

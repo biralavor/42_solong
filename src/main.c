@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:47:07 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/09 15:19:43 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/09 15:33:35 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int32_t	main(int32_t argc, char **argv)
 			}
 			free(game->userdata);
 			free(game->sprites);
-			free_map(game->map);
+			// free_map(game->map);
 			free (game);
 		}
 	}

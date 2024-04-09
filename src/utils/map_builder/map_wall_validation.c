@@ -6,7 +6,11 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 19:13:01 by umeneses          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/04/09 15:13:20 by umeneses         ###   ########.fr       */
+=======
+/*   Updated: 2024/04/08 20:38:01 by umeneses         ###   ########.fr       */
+>>>>>>> dad2e5dada0fe18a405dcce6cae523743cec0cc7
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +43,16 @@ bool	middle_wall_reading(t_map *map)
 	int32_t	y;
 
 	tofind = '1';
+<<<<<<< HEAD
 	y = 1;
 	if ((map->matrix[y][0] == tofind)
+=======
+	y = 0;
+	if ((map->matrix[y][0] == tofind) 
+>>>>>>> dad2e5dada0fe18a405dcce6cae523743cec0cc7
 			&& (map->matrix[y][map->width - 1] == tofind))
 	{
-		if (y == map->height - 1)
+		while (y == map->height - 1)
 			return (true);
 		y++;
 	}
