@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:38:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/06 19:14:15 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/08 22:13:57 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,19 @@
 
 bool	map_contents_checker(t_map *map)
 {
-	if ((has_walls(map) == true) &&						\
-		(has_specific_char(map, 'P', 1) == true) &&		\
-		(has_specific_char(map, 'E', 1) == true) &&		\
-		(has_specific_char(map, 'C', 999) == true) && 	\
-		(is_char_locked(map) == false)
-		&& (has_illegal_char(map) == false))
-		how_many_walls(map);
-		return (true);
+	if (has_walls(map))
+	{
+		if (has_specific_char(map, 'P', 1)
+			&& has_specific_char(map, 'E', 1)
+			&& has_specific_char(map, 'C', 999))
+		{
+			if (!is_char_locked(map) && !has_illegal_char(map))
+			{
+				how_many_walls(map);
+				return (true);
+			}
+		}
+	}
 	return (false);
 }
 
@@ -71,9 +76,16 @@ bool	has_specific_char(t_map *map, char tofind, int limiter)
 			break ;
 	}
 	map->coin_index = found;
-	if ((found > limiter) || (tofind == 'C' && found == 0))
+	if (tofind == 'C' && found == 0)
 	{
-		ft_putendl_fd("\nError.\nItems on MAP doesn't match requirements: \
+		ft_putendl_fd("\n1-Error.\nItems on MAP doesn't match requirements: \
+						\nPlayer = 1\nExit = 1\nCollectables = 1 or more...", \
+						STDOUT_FILENO);
+		return (false);
+	}
+	else if (found > limiter)
+	{
+		ft_putendl_fd("\n2-Error.\nItems on MAP doesn't match requirements: \
 						\nPlayer = 1\nExit = 1\nCollectables = 1 or more...", \
 						STDOUT_FILENO);
 		return (false);
