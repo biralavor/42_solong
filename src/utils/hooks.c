@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 16:52:24 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/05 18:29:46 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/09 16:23:38 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,25 +43,25 @@ void	keyb_wasd_arrow(mlx_key_data_t key, t_game *game)
 
 void	user_counter(char *key, t_game *game)
 {
-	if (key == "UP")
+	if (ft_strncmp(key, "UP", 3) == 0)
 	{
 		ft_printf("\nLet's Go!\nUsed Gas = %i",
 			++game->userdata->totalmoves);
 		coins_counter(game);
 	}
-	if (key == "DOWN")
+	if (ft_strncmp(key, "DOWN", 5) == 0)
 	{
 		ft_printf("\nOh, Gosh! Pulling back now!\nUsed Gas = %i",
 			++game->userdata->totalmoves);
 		coins_counter(game);
 	}
-	if (key == "LEFT")
+	if (ft_strncmp(key, "LEFT", 5) == 0)
 	{
 		ft_printf("\nDodging left!\nUsed Gas = %i",
 			++game->userdata->totalmoves);
 		coins_counter(game);
 	}
-	if (key == "RIGHT")
+	if (ft_strncmp(key, "RIGHT", 6) == 0)
 	{
 		ft_printf("\nSliding right!\nUsed Gas = %i",
 			++game->userdata->totalmoves);
