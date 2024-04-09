@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:47:07 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/06 16:15:23 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/08 19:14:57 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,29 +30,29 @@ bool	map_init(char **argv, t_game *game)
 	return (false);
 }
 
-void	game_init(t_game *game)
-{
-	game->mlx = mlx_init(WIDTH, HEIGHT, "42_Astronauts_So_Long_Game", true);
-	render_fixedsprites(game->mlx, game->sprites, game->map);
-	render_movingsprites(game->mlx, game->sprites, game->map);
-	mlx_key_hook(game->mlx, &frame_update, game);
-	mlx_loop(game->mlx);
-}
+// void	game_init(t_game *game)
+// {
+// 	game->mlx = mlx_init(WIDTH, HEIGHT, "42_Astronauts_So_Long_Game", true);
+// 	render_fixedsprites(game->mlx, game->sprites, game->map);
+// 	render_movingsprites(game->mlx, game->sprites, game->map);
+// 	mlx_key_hook(game->mlx, &frame_update, game);
+// 	mlx_loop(game->mlx);
+// }
 
-void	free_all_sprites(t_game *game)
-{
-	mlx_delete_texture(game->sprites->back_tt);
-	mlx_delete_texture(game->sprites->border_tt);
-	mlx_delete_texture(game->sprites->player_tt);
-	mlx_delete_texture(game->sprites->coin_tt);
-	mlx_delete_texture(game->sprites->exit_tt);
-	mlx_delete_image(game->mlx, game->sprites->back);
-	mlx_delete_image(game->mlx, game->sprites->border);
-	mlx_delete_image(game->mlx, game->sprites->player);
-	mlx_delete_image(game->mlx, game->sprites->coin);
-	mlx_delete_image(game->mlx, game->sprites->exit);
-	mlx_terminate(game->mlx);
-}
+// void	free_all_sprites(t_game *game)
+// {
+// 	mlx_delete_texture(game->sprites->back_tt);
+// 	mlx_delete_texture(game->sprites->border_tt);
+// 	mlx_delete_texture(game->sprites->player_tt);
+// 	mlx_delete_texture(game->sprites->coin_tt);
+// 	mlx_delete_texture(game->sprites->exit_tt);
+// 	mlx_delete_image(game->mlx, game->sprites->back);
+// 	mlx_delete_image(game->mlx, game->sprites->border);
+// 	mlx_delete_image(game->mlx, game->sprites->player);
+// 	mlx_delete_image(game->mlx, game->sprites->coin);
+// 	mlx_delete_image(game->mlx, game->sprites->exit);
+// 	mlx_terminate(game->mlx);
+// }
 
 int32_t	main(int32_t argc, char **argv)
 {
@@ -74,12 +74,12 @@ int32_t	main(int32_t argc, char **argv)
 			{
 				ft_printf("\nmap init = ok\n");
 				matrix_printer(game->map);
-				game_init(game);
-				free_all_sprites(game);
+				// game_init(game);
+				// free_all_sprites(game);
 			}
 			free(game->userdata);
 			free(game->sprites);
-			free_map(game->map);
+			// free_map(game->map);
 			free (game);
 		}
 	}
