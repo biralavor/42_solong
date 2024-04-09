@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 16:50:18 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/06 16:05:01 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/09 15:08:46 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	parse_imgtomap(t_map *map, char toparse, mlx_t *mlx, mlx_image_t *img)
 	}
 }
 
-void	parse_backomap(t_map *map, char toparse, mlx_t *mlx, mlx_image_t *img)
+void	parse_backtomap(t_map *map, char toparse, mlx_t *mlx, mlx_image_t *img)
 {
 	map->read_y = -1;
 	if (toparse == 'b')
