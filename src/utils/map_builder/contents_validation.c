@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:38:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/09 17:43:31 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/09 18:20:22 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,10 @@ bool	map_contents_checker(t_map *map)
 			if (!is_char_locked(map) && !has_illegal_char(map))
 			{
 				how_many_walls(map);
-				ft_printf("\nspecific char APPROVED\n");
 				return (true);
 			}
 		}
 	}
-	ft_printf("\n\nspecific char NOT passed\n");
 	return (false);
 }
 
@@ -47,8 +45,8 @@ bool	has_illegal_char(t_map *map)
 			if (!(found == '1' || found == '0'
 					|| found == 'P' || found == 'E' || found == 'C'))
 			{
-				ft_putendl_fd("\nError.\n"
-					"Your MAP has an illegal char.", STDOUT_FILENO);
+				ft_putendl_fd("\nError."
+					"\nYour MAP has an illegal char.", STDOUT_FILENO);
 				return (true);
 				break ;
 			}
