@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:46:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/05 18:08:16 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/09 15:08:32 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ void	coins_counter(t_game *game);
 bool	loading_png(char *imagepath, mlx_texture_t **texture);
 bool	preparing_image(mlx_t *mlx, mlx_texture_t *texture, mlx_image_t **img);
 void	parse_imgtomap(t_map *map, char toparse, mlx_t *mlx, mlx_image_t *img);
-void	parse_backomap(t_map *map, char toparse, mlx_t *mlx, mlx_image_t *img);
+void	parse_backtomap(t_map *map, char toparse, mlx_t *mlx, mlx_image_t *img);
 void	render_fixedsprites(mlx_t *mlx, t_sprite *sprites, t_map *map);
 void	render_movingsprites(mlx_t *mlx, t_sprite *sprites, t_map *map);
 /* parsing map into graphic functions*/
