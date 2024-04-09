@@ -6,11 +6,32 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:47:07 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/06 16:15:23 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/09 15:19:43 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+bool	map_init(char **argv, t_game *game)
+{
+	if (map_opener(argv, game->map)
+		&& map_reader(argv, game->map))
+	{
+		if (!map_too_tiny(game->map)
+			&& !map_too_big(game->map))
+		{
+			free (game->map->buffer);
+			if (map_size_approved(game->map)
+				&& map_contents_checker(game->map))
+				return (true);
+		}
+	}
+	else
+	{
+		ft_putendl_fd("It didn't initialize correctly.\n", STDOUT_FILENO);
+		return (false);	
+	}
+}
 
 void	structures_init(t_game *game)
 {

@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:38:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/06 19:14:15 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/09 15:16:09 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ bool	has_specific_char(t_map *map, char tofind, int limiter)
 	if ((found > limiter) || (tofind == 'C' && found == 0))
 	{
 		ft_putendl_fd("\nError.\nItems on MAP doesn't match requirements: \
-			\nPlaread_yr = 1\nExit = 1\nCollectables = 1 or more...", \
+			\nPlayer = 1\nExit = 1\nCollectables = 1 or more...", \
 			STDOUT_FILENO);
 		return (false);
 	}

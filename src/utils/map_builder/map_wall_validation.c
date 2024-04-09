@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 19:13:01 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/06 19:16:41 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/09 15:13:20 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,21 +37,22 @@ bool	middle_wall_reading(t_map *map)
 {
 	char	tofind;
 	int32_t	y;
-	int32_t	x;
 
 	tofind = '1';
 	y = 1;
-	x = -1;
-	while ((map->matrix[y][0] == tofind)
+	if ((map->matrix[y][0] == tofind)
 			&& (map->matrix[y][map->width - 1] == tofind))
 	{
 		if (y == map->height - 1)
 			return (true);
 		y++;
 	}
-	ft_putendl_fd("\nError.\nYour MAP has a breach on the middle_wall.", \
-					STDOUT_FILENO);
-	return (false);
+	else
+	{
+		ft_putendl_fd("\nError.\nYour MAP has a breach on the middle_wall.", \
+						STDOUT_FILENO);
+		return (false);
+	}
 }
 
 bool	bottom_wall_reading(t_map *map)
