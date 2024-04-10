@@ -6,11 +6,11 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:46:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/10 13:08:10 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/10 13:40:16 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	SO_LONG_H
+#ifndef SO_LONG_H
 # define SO_LONG_H
 
 # include "../libs/libft/libft.h"
@@ -28,8 +28,6 @@
 # define MIN_MAP_HEIGHT 3
 # define MIN_MAP_WIDTH 3
 /* Map definitions */
-# define BPP sizeof(int32_t)
-/* MLX definitions */
 # define SPACESHIP "./textures/32px_ref-space-shuttle.png"
 # define SPACEFIELD "./textures/32px_ref-background.png"
 # define DEATH "./textures/32px_blackhole-portal.png"
