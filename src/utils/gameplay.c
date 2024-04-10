@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 10:08:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/10 12:25:39 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/10 13:24:34 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	show_exit(t_game *game)
 	if (game->userdata->totalcoins == game->map->coin_index)
 	{
 		ft_printf("\n\nGREAT! You've saved all Astronauts!\n");
-		ft_printf("\nLet's go back home!\n");
+		ft_printf("\nYour last mission >>> Let's go back home!\n");
 		game->sprites->exit->instances->enabled = true;
 	}
 }
