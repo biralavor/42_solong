@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:38:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/10 15:21:57 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/10 15:55:48 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,23 +71,21 @@ bool	map_too_big(t_map *map)
 {
 	int32_t	index;
 
-	if (map->linebreak_index + 1 > MAX_MAP_HEIGHT)
+	index = -1;
+	while (map->buffer[++index] != '\n')
 	{
-		ft_putendl_fd("\n1- Error\nYour MAP is too big.", STDOUT_FILENO);
-		return (true);
-	}
-	index = 0;
-	while (map->buffer[index] != '\n')
-	{
-		index++;
-		if (map->buffer[index] == '\0')
+		if (index > MAX_MAP_WIDTH)
 		{
-			if ((index + 1) > MAX_MAP_WIDTH - 1)
-			{
-				ft_putendl_fd("\n2- Error\nYour Map is too big.",
-					STDOUT_FILENO);
-				return (true);
-			}
+			ft_putendl_fd("\nError\nYour Map is too big.",
+				STDOUT_FILENO);
+			ft_printf("MAX_MAP_WIDTH = %i\n\n", MAX_MAP_WIDTH);
+			return (true);
+		}
+		if (map->linebreak_index > MAX_MAP_HEIGHT)
+		{
+			ft_putendl_fd("\nError\nYour MAP is too big.", STDOUT_FILENO);
+			ft_printf("MAX_MAP_HEIGHT = %i\n\n", MAX_MAP_HEIGHT);
+			return (true);
 		}
 	}
 	return (false);
