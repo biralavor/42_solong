@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 10:08:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/10 19:26:30 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/10 20:01:14 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	end_game(t_game *game)
 			== game->sprites->exit->instances->x / PIXEL_SIZE)
 		&& game->sprites->exit->instances->enabled == true)
 	{
-		ft_printf("\nAll Astronauts have arrived safely >>> 🌎\n");
+		ft_printf("\n\nAll Astronauts have arrived safely >>> 🌎\n");
 		ft_printf("\nCONGRATULATIONS! You WON!\n\n");
 		mlx_close_window(game->mlx);
 	}
