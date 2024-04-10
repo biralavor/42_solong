@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 12:19:44 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/10 11:55:33 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/10 18:06:44 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@ void	ft_collectables(t_game *game)
 			&& game->sprites->coin->instances[index].enabled == true)
 		{
 			++game->userdata->totalcoins;
-			ft_printf("\n\nYou've saved an Astronaut! (%i/%i)\n",
-				game->userdata->totalcoins, game->map->coin_index);
+			ft_printf("\n\nYou've saved an Astronaut!\n");
 			game->sprites->coin->instances[index].enabled = false;
 			show_exit(game);
 		}
