@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:38:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/06 16:18:15 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/10 15:21:57 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,19 @@ bool	map_extension_approved(char **argv)
 	index = 0;
 	filename_len = ft_strlen(argv[1]);
 	extension_name = ft_strnstr(argv[1], ".", filename_len);
-	extension_len = ft_strlen(extension_name);
-	while (extension_name != (void *)0)
+	if (extension_name != (void *)0)
 	{
-		if (extension_len == 4)
-			if ((extension_name[index] == '.')
-				&& (extension_name[++index] == 'b')
-				&& (extension_name[++index] == 'e')
-				&& (extension_name[++index] == 'r'))
-				return (true);
-		break ;
+		extension_len = ft_strlen(extension_name);
+		while (extension_name != (void *)0)
+		{
+			if (extension_len == 4)
+				if ((extension_name[index] == '.')
+					&& (extension_name[++index] == 'b')
+					&& (extension_name[++index] == 'e')
+					&& (extension_name[++index] == 'r'))
+					return (true);
+			break ;
+		}
 	}
 	ft_putendl_fd("\nError.\nYour MAP file extension is invalid."
 		"\nIt needs to be '.ber'\n", STDOUT_FILENO);
@@ -70,7 +73,7 @@ bool	map_too_big(t_map *map)
 
 	if (map->linebreak_index + 1 > MAX_MAP_HEIGHT)
 	{
-		ft_putendl_fd("\nError\nYour MAP is too big.", STDOUT_FILENO);
+		ft_putendl_fd("\n1- Error\nYour MAP is too big.", STDOUT_FILENO);
 		return (true);
 	}
 	index = 0;
@@ -81,7 +84,7 @@ bool	map_too_big(t_map *map)
 		{
 			if ((index + 1) > MAX_MAP_WIDTH - 1)
 			{
-				ft_putendl_fd("\nError\nYour Map is too big.",
+				ft_putendl_fd("\n2- Error\nYour Map is too big.",
 					STDOUT_FILENO);
 				return (true);
 			}
