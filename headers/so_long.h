@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:46:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/09 15:08:32 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/10 13:08:10 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int		wall_err_msg(void);
 /* TO REMOVE functions */
 
 void	game_init(t_game *game);
-void	structures_init(t_game *game);
+t_game	*structures_init(t_game *game);
 void	free_all_mlx_usage(t_game *game);
 /* game init funcitons */
 

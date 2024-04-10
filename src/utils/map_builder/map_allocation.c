@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 19:24:16 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/29 11:54:13 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/10 12:57:07 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ char	**map_allocation(char **matrix, char *line, size_t size)
 {
 	char	**matrix_tmp;
 
+	matrix_tmp = NULL;
 	if (!matrix)
 		matrix = ft_calloc(2, sizeof(char *));
 	if (!line || line[0] == '\0')
