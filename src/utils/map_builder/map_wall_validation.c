@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 19:13:01 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/09 18:36:06 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/10 11:40:36 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ bool	top_wall_reading(t_map *map)
 	map->read_x = -1;
 	if (map->matrix[0][0] == tofind)
 	{
-		while ((++map->read_x <= map->width - 1)
+		while ((++map->read_x <= map->width)
 			&& (map->matrix[0][map->read_x] == tofind))
 		{
-			if (map->read_x == map->width - 1)
+			if (map->read_x == map->width)
 			{
 				return (true);
 				break ;
@@ -40,19 +40,17 @@ bool	middle_wall_reading(t_map *map)
 	char	tofind;
 
 	tofind = '1';
-	map->read_y = 1;
-
+	map->read_y = 0;
 	if (map->matrix[map->read_y][0] == tofind)
 	{
-		while (++map->read_y <= map->height - 1)
+		while ((++map->read_y <= map->height - 2)
+				&& (map->matrix[map->read_y][0] == tofind)
+				&& (map->matrix[map->read_y][map->width] == tofind))
 		{
-			if (map->matrix[map->read_y][map->width - 1] == tofind)
+			if (map->read_y == map->height - 2)
 			{
-				if (map->read_y == map->height - 1)
-				{
-					return (true);
-					break ;
-				}
+				return (true);
+				break ;
 			}
 		}
 	}
@@ -69,30 +67,27 @@ bool	bottom_wall_reading(t_map *map)
 	map->read_x = -1;
 	if (map->matrix[map->height - 1][0] == tofind)
 	{
-		while (++map->read_x <= map->width - 1)
+		while ((++map->read_x <= map->width)
+			&& (map->matrix[map->height - 1][map->read_x] == tofind))
 		{
-			if (map->matrix[map->height - 1][map->read_x] == tofind)
-				if (map->matrix[map->height - 1][map->width - 1] == tofind)
-				{
-					return (true);
-					break ;
-				}
+			if (map->read_x == map->width)
+			{
+				return (true);
+				break ;
+			}
 		}
 	}
 	ft_putendl_fd("\nError.\nYour MAP has a breach on the bottom_wall.",
 		STDOUT_FILENO);
-	return (false);	
+	return (false);
 }
 
 bool	has_walls(t_map *map)
 {
-	if (top_wall_reading(map))
-	{
-		if (middle_wall_reading(map))
-			if (bottom_wall_reading(map))
-				return (true);
-	}		
-	ft_putendl_fd("\nError.\nBreach on the wall.", STDOUT_FILENO);
+	if (top_wall_reading(map)
+		&& (middle_wall_reading(map))
+		&& bottom_wall_reading(map))
+		return (true);
 	return (false);
 }
 
