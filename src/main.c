@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:47:07 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/10 16:05:32 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/10 19:30:41 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ int32_t	main(int32_t argc, char **argv)
 		game = structures_init(game);
 		if (map_init(argv, game))
 		{
-			ft_printf("\nmap init = ok\n");
 			matrix_printer(game->map);
 			game_init(game);
 			free_all_mlx_usage(game);
