@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:47:07 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/10 13:08:37 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/10 16:05:32 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ int32_t	main(int32_t argc, char **argv)
 			matrix_printer(game->map);
 			game_init(game);
 			free_all_mlx_usage(game);
+			free_map(game->map);
 		}
 		free(game->userdata);
 		free(game->sprites);
-		free_map(game->map);
 		free (game);
 	}
 	else if (argc > 2)
