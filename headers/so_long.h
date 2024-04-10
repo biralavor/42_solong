@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:46:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/10 13:40:16 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/10 17:24:31 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 # define PIXEL_SIZE 32
 # define MAX_MAP_WIDTH 30
 # define MAX_MAP_HEIGHT 30
-# define MIN_MAP_HEIGHT 3
-# define MIN_MAP_WIDTH 3
+# define MIN_MAP_WIDTH 5
+# define MIN_MAP_HEIGHT 5
 /* Map definitions */
 # define SPACESHIP "./textures/32px_ref-space-shuttle.png"
 # define SPACEFIELD "./textures/32px_ref-background.png"
