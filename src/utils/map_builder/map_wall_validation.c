@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 19:13:01 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/10 11:40:36 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/10 11:57:12 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ bool	middle_wall_reading(t_map *map)
 	if (map->matrix[map->read_y][0] == tofind)
 	{
 		while ((++map->read_y <= map->height - 2)
-				&& (map->matrix[map->read_y][0] == tofind)
-				&& (map->matrix[map->read_y][map->width] == tofind))
+			&& (map->matrix[map->read_y][0] == tofind)
+			&& (map->matrix[map->read_y][map->width] == tofind))
 		{
 			if (map->read_y == map->height - 2)
 			{
