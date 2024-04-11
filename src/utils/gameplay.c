@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 10:08:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/10 20:01:14 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/11 12:43:40 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	frame_update(mlx_key_data_t key, t_game *game)
 {
-	ft_collectables(game);
+	game->userdata->y_pos = game->sprites->player->instances->y / PIXEL_SIZE;
+	game->userdata->x_pos = game->sprites->player->instances->x / PIXEL_SIZE;
 	if (key.action == MLX_PRESS)
 	{
 		if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
@@ -26,7 +27,31 @@ void	frame_update(mlx_key_data_t key, t_game *game)
 		}
 		keyb_wasd_arrow(key, game);
 	}
+	coins_update(game);
 	end_game(game);
+}
+
+void	coins_update(t_game *game)
+{
+	int32_t	index;
+	int32_t	coin_y;
+	int32_t	coin_x;
+
+	index = 0;
+	while (index < game->map->coin_index)
+	{
+		coin_x = game->sprites->coin->instances[index].x / PIXEL_SIZE;
+		coin_y = game->sprites->coin->instances[index].y / PIXEL_SIZE;
+		if ((game->userdata->y_pos == coin_y && game->userdata->x_pos == coin_x)
+			&& game->sprites->coin->instances[index].enabled == true)
+		{
+			++game->userdata->totalcoins;
+			ft_printf("\n\nYou've saved an Astronaut!\n");
+			game->sprites->coin->instances[index].enabled = false;
+			show_exit(game);
+		}
+		index++;
+	}
 }
 
 void	show_exit(t_game *game)

@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:46:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/10 17:24:31 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/11 12:47:18 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ typedef struct s_userdata
 	int32_t			future_y_pos;
 	int32_t			future_x_pos;
 	int32_t			totalcoins;
+	mlx_image_t		*user_hud;
+	char			*hud_coins;
+	char			*hud_moves;
 }					t_userdata;
 
 typedef struct s_sprite
@@ -138,7 +141,7 @@ void	render_movingsprites(mlx_t *mlx, t_sprite *sprites, t_map *map);
 void	frame_update(mlx_key_data_t key, t_game *game);
 void	show_exit(t_game *game);
 void	end_game(t_game *game);
-void	ft_collectables(t_game *game);
+void	coins_update(t_game *game);
 void	future_player_pos(mlx_key_data_t key, t_game *game);
 bool	is_wall(mlx_key_data_t key, t_game *game);
 /* gameplay functions */

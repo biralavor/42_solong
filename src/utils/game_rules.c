@@ -6,36 +6,11 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 12:19:44 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/10 18:06:44 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/11 12:43:38 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	ft_collectables(t_game *game)
-{
-	int32_t	index;
-	int32_t	coin_y;
-	int32_t	coin_x;
-
-	index = 0;
-	game->userdata->y_pos = game->sprites->player->instances->y / PIXEL_SIZE;
-	game->userdata->x_pos = game->sprites->player->instances->x / PIXEL_SIZE;
-	while (index < game->map->coin_index)
-	{
-		coin_x = game->sprites->coin->instances[index].x / PIXEL_SIZE;
-		coin_y = game->sprites->coin->instances[index].y / PIXEL_SIZE;
-		if ((game->userdata->y_pos == coin_y && game->userdata->x_pos == coin_x)
-			&& game->sprites->coin->instances[index].enabled == true)
-		{
-			++game->userdata->totalcoins;
-			ft_printf("\n\nYou've saved an Astronaut!\n");
-			game->sprites->coin->instances[index].enabled = false;
-			show_exit(game);
-		}
-		index++;
-	}
-}
 
 void	future_player_pos(mlx_key_data_t key, t_game *game)
 {

@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 18:51:01 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/10 19:59:40 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/11 12:46:23 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	game_init(t_game *game)
 	}
 	render_fixedsprites(game->mlx, game->sprites, game->map);
 	render_movingsprites(game->mlx, game->sprites, game->map);
-	feedback_on_hud(game);
 	mlx_key_hook(game->mlx, (mlx_keyfunc)frame_update, game);
 	mlx_loop(game->mlx);
 }
