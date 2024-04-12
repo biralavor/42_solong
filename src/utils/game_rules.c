@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 12:19:44 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/11 12:43:38 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/12 18:53:10 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,21 @@ bool	is_wall(mlx_key_data_t key, t_game *game)
 		if (game->userdata->future_y_pos == wall_y
 			&& game->userdata->future_x_pos == wall_x)
 		{
-			ft_printf("\n\nYou've hit a Meteor!\nWATCH OUT!\n\n");
+			game->userdata->shield--;
+			ft_printf("\n\nYou've hit a Meteor! 💥\nWATCH OUT!\n\n");
 			return (true);
 		}
 		index++;
 	}
 	return (false);
+}
+
+void	shield_counter(t_game *game)
+{
+	ft_printf("\nSpacecraft Shield = (%i/%i)\n",
+		game->userdata->shield, game->userdata->totalshield);
+	if (game->userdata->shield == 2)
+		ft_printf("\n\nWARNING!\n\nYou have a breach in the hull!\n\n");
+	if (game->userdata->shield == 1)
+		ft_printf("\nGOSH!\n\nYou only have one engine!\n\n");
 }

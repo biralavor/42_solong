@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:47:07 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/12 14:44:06 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/12 18:30:32 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ t_game	*structures_init(t_game *game)
 	game->map = ft_calloc(1, sizeof(t_map));
 	game->sprites = ft_calloc(1, sizeof(t_sprite));
 	game->userdata = ft_calloc(1, sizeof(t_userdata));
+	game->userdata->totalshield = 3;
+	game->userdata->shield = 3;
 	game->userdata->totalmoves = 0;
 	game->userdata->totalcoins = 0;
 	game->userdata->y_pos = 0;

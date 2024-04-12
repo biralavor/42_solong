@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:46:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/12 16:27:10 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/12 18:27:52 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ typedef struct s_userdata
 	int32_t			future_y_pos;
 	int32_t			future_x_pos;
 	int32_t			totalcoins;
+	int32_t			shield;
+	int32_t			totalshield;
 }					t_userdata;
 
 typedef struct s_sprite
@@ -143,6 +145,7 @@ void	end_game(t_game *game);
 void	keyb_wasd_arrow(mlx_key_data_t key, t_game *game);
 void	user_counter(char *key, t_game *game);
 void	coins_counter(t_game *game);
+void	shield_counter(t_game *game);
 /* game hooks functions */
 
 void	future_player_pos(mlx_key_data_t key, t_game *game);

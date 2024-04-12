@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 10:08:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/11 12:43:40 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/12 19:01:55 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,12 @@ void	show_exit(t_game *game)
 
 void	end_game(t_game *game)
 {
+	if (game->userdata->shield == 0)
+	{
+		ft_printf("\n\n(ง ◉ _ ◉)ง  You've lost all your shield!\n");
+		ft_printf("\nGAME OVER! (╥﹏╥)\n\n");
+		mlx_close_window(game->mlx);
+	}
 	if ((game->userdata->y_pos
 			== game->sprites->exit->instances->y / PIXEL_SIZE)
 		&& (game->userdata->x_pos
@@ -73,7 +79,7 @@ void	end_game(t_game *game)
 		&& game->sprites->exit->instances->enabled == true)
 	{
 		ft_printf("\n\nAll Astronauts have arrived safely >>> 🌎\n");
-		ft_printf("\nCONGRATULATIONS! You WON!\n\n");
+		ft_printf("\nCONGRATULATIONS! You WON!\n\n\\( ﾟヮﾟ)/🏆\n\n");
 		mlx_close_window(game->mlx);
 	}
 }
