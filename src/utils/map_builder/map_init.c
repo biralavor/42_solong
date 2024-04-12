@@ -1,16 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_reader.c                                       :+:      :+:    :+:   */
+/*   map_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/10 14:29:17 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/29 11:36:34 by umeneses         ###   ########.fr       */
+/*   Created: 2024/04/12 14:39:18 by umeneses          #+#    #+#             */
+/*   Updated: 2024/04/12 14:47:23 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+bool	map_init(char **argv, t_game *game)
+{
+	if (map_opener(argv, game->map) && map_reader(argv, game->map))
+	{
+		if (!map_too_tiny(game->map) && !map_too_big(game->map))
+		{
+			free (game->map->buffer);
+			if (map_size_approved(game->map))
+				if (map_contents_checker(game->map))
+					return (true);
+		}
+	}
+	ft_putendl_fd("It didn't initialize correctly.\n", STDOUT_FILENO);
+	return (false);
+}
 
 bool	map_opener(char **argv, t_map *map)
 {

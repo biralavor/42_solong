@@ -6,25 +6,38 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:47:07 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/10 19:30:41 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/12 14:44:06 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-bool	map_init(char **argv, t_game *game)
+bool	map_extension_approved(char **argv)
 {
-	if (map_opener(argv, game->map) && map_reader(argv, game->map))
+	size_t	index;
+	size_t	filename_len;
+	size_t	extension_len;
+	char	*extension_name;
+
+	index = 0;
+	filename_len = ft_strlen(argv[1]);
+	extension_name = ft_strnstr(argv[1], ".", filename_len);
+	if (extension_name != (void *)0)
 	{
-		if (!map_too_tiny(game->map) && !map_too_big(game->map))
+		extension_len = ft_strlen(extension_name);
+		while (extension_name != (void *)0)
 		{
-			free (game->map->buffer);
-			if (map_size_approved(game->map))
-				if (map_contents_checker(game->map))
+			if (extension_len == 4)
+				if ((extension_name[index] == '.')
+					&& (extension_name[++index] == 'b')
+					&& (extension_name[++index] == 'e')
+					&& (extension_name[++index] == 'r'))
 					return (true);
+			break ;
 		}
 	}
-	ft_putendl_fd("It didn't initialize correctly.\n", STDOUT_FILENO);
+	ft_putendl_fd("\nError.\nYour MAP file extension is invalid."
+		"\nIt needs to be '.ber'\n", STDOUT_FILENO);
 	return (false);
 }
 

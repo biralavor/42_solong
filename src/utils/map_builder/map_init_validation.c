@@ -1,45 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_validation.c                                   :+:      :+:    :+:   */
+/*   map_init_validation.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:38:49 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/10 17:44:28 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/12 16:15:10 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-bool	map_extension_approved(char **argv)
-{
-	size_t	index;
-	size_t	filename_len;
-	size_t	extension_len;
-	char	*extension_name;
-
-	index = 0;
-	filename_len = ft_strlen(argv[1]);
-	extension_name = ft_strnstr(argv[1], ".", filename_len);
-	if (extension_name != (void *)0)
-	{
-		extension_len = ft_strlen(extension_name);
-		while (extension_name != (void *)0)
-		{
-			if (extension_len == 4)
-				if ((extension_name[index] == '.')
-					&& (extension_name[++index] == 'b')
-					&& (extension_name[++index] == 'e')
-					&& (extension_name[++index] == 'r'))
-					return (true);
-			break ;
-		}
-	}
-	ft_putendl_fd("\nError.\nYour MAP file extension is invalid."
-		"\nIt needs to be '.ber'\n", STDOUT_FILENO);
-	return (false);
-}
 
 bool	map_too_tiny(t_map *map)
 {
@@ -88,20 +59,6 @@ bool	map_too_big(t_map *map)
 		{
 			ft_putendl_fd("\nError\nYour MAP is too big.", STDOUT_FILENO);
 			ft_printf("MAX_MAP_HEIGHT = %i\n\n", MAX_MAP_HEIGHT);
-			return (true);
-		}
-	}
-	return (false);
-}
-
-bool	map_bad_format(t_map *map)
-{
-	if (map->height >= 1)
-	{
-		if (map->first_lenght != map->width)
-		{
-			ft_putendl_fd("\nError\nYour MAP isn't rectangular.", \
-				STDOUT_FILENO);
 			return (true);
 		}
 	}

@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/03 15:54:10 by umeneses          #+#    #+#              #
-#    Updated: 2024/04/12 13:05:23 by umeneses         ###   ########.fr        #
+#    Updated: 2024/04/12 16:31:00 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,19 +50,18 @@ NAME_BONUS		= so_long_bonus
 FILES			= main.c
 FILES			+= loading_images.c
 FILES			+= game_init.c
-FILES_UTILS		= map_builder/map_validation.c
-FILES_UTILS		+= map_builder/map_builder.c
-FILES_UTILS		+= map_builder/map_gnl_init.c
-FILES_UTILS		+= map_builder/map_reader.c
-FILES_UTILS		+= map_builder/map_allocation.c
-FILES_UTILS		+= map_builder/map_wall_validation.c
-FILES_UTILS		+= map_builder/matrix_printer.c
-FILES_UTILS		+= map_builder/contents_validation.c
-FILES_UTILS		+= free_functions.c
+FILES_UTILS		= free_functions.c
+FILES_UTILS		+= game_builder.c
+FILES_UTILS		+= game_hooks.c
 FILES_UTILS		+= game_rules.c
 FILES_UTILS		+= gameplay.c
-FILES_UTILS		+= hooks.c
-					
+FILES_UTILS		+= map_builder/map_init_allocation.c
+FILES_UTILS		+= map_builder/map_init_val_contents.c
+FILES_UTILS		+= map_builder/map_init_validation.c
+FILES_UTILS		+= map_builder/map_init_val_size_gnl.c
+FILES_UTILS		+= map_builder/map_init.c
+FILES_UTILS		+= map_builder/map_wall_validation.c
+FILES_UTILS		+= map_builder/matrix_printer.c
 
 SRCS			= $(addprefix $(SRC_D), $(FILES))
 SRCS_UTILS		= $(addprefix $(SRC_UTILS_D), $(FILES_UTILS))

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_gnl_init.c                                     :+:      :+:    :+:   */
+/*   map_init_val_size_gnl.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 18:50:56 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/08 18:50:59 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/12 16:15:21 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,20 @@ char	*gnl_init(t_map *map)
 	if (map->line != NULL)
 		map->first_lenght = ft_strlen(map->line) - 1;
 	return (gnl_temp);
+}
+
+bool	map_bad_format(t_map *map)
+{
+	if (map->height >= 1)
+	{
+		if (map->first_lenght != map->width)
+		{
+			ft_putendl_fd("\nError\nYour MAP isn't rectangular.", \
+				STDOUT_FILENO);
+			return (true);
+		}
+	}
+	return (false);
 }
 
 bool	map_size_approved(t_map *map)
