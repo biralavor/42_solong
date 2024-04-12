@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/03 15:54:10 by umeneses          #+#    #+#              #
-#    Updated: 2024/04/09 15:08:15 by umeneses         ###   ########.fr        #
+#    Updated: 2024/04/12 13:05:23 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,6 @@ FILES_UTILS		+= map_builder/map_allocation.c
 FILES_UTILS		+= map_builder/map_wall_validation.c
 FILES_UTILS		+= map_builder/matrix_printer.c
 FILES_UTILS		+= map_builder/contents_validation.c
-FILES_UTILS		+= errors_check.c
 FILES_UTILS		+= free_functions.c
 FILES_UTILS		+= game_rules.c
 FILES_UTILS		+= gameplay.c
