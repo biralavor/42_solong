@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 10:08:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/12 19:01:55 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/12 20:07:40 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	end_game(t_game *game)
 {
 	if (game->userdata->shield == 0)
 	{
-		ft_printf("\n\n(ง ◉ _ ◉)ง  You've lost all your shield!\n");
+		ft_printf("\n\nYou've lost all your shield!\n");
 		ft_printf("\nGAME OVER! (╥﹏╥)\n\n");
 		mlx_close_window(game->mlx);
 	}
