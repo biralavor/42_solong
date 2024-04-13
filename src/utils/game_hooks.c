@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 16:52:24 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/12 18:45:08 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/12 22:41:04 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	user_counter(char *key, t_game *game)
 	}
 	if (ft_strncmp(key, "DOWN", 5) == 0)
 	{
-		ft_printf("\n\nOh, Gosh! Pulling back now!\n\nFuel = %i",
+		ft_printf("\n\nVish! Pulling back now!\n\nFuel = %i",
 			++game->userdata->totalmoves);
 		coins_counter(game);
 	}
@@ -67,7 +67,6 @@ void	user_counter(char *key, t_game *game)
 			++game->userdata->totalmoves);
 		coins_counter(game);
 	}
-	shield_counter(game);
 }
 
 void	coins_counter(t_game *game)
