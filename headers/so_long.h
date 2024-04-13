@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:46:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/12 18:27:52 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/12 22:14:03 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ typedef struct s_game
 	mlx_t			*mlx;
 	mlx_key_data_t	*keydata;
 }					t_game;
-
 
 t_game	*structures_init(t_game *game);
 bool	map_extension_approved(char **argv);
