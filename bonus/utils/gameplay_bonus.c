@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gameplay.c                                         :+:      :+:    :+:   */
+/*   gameplay_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 10:08:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/12 20:07:40 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/12 21:10:14 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	frame_update(mlx_key_data_t key, t_game *game)
 {

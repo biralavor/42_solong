@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:12:19 by umeneses          #+#    #+#             */
-/*   Updated: 2024/01/19 11:41:16 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/12 22:16:54 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ char	*ft_gnl_get_line(t_file_container *file)
 	file->len = 0;
 	while (file->read > 0)
 	{
-		ft_gnl_join_let(&file->str, ft_gnl_get_let(*(file->buffer + file->index)));
+		ft_gnl_join_let(&file->str,
+			ft_gnl_get_let(*(file->buffer + file->index)));
 		if (*(file->buffer + file->index) == '\n'
 			|| *(file->buffer + file->index) == '\0')
 			break ;

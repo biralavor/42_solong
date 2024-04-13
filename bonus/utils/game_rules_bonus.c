@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_rules.c                                       :+:      :+:    :+:   */
+/*   game_rules_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 12:19:44 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/12 20:25:17 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/12 21:10:17 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	future_player_pos(mlx_key_data_t key, t_game *game)
 {

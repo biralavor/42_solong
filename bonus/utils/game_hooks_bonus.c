@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_hooks.c                                       :+:      :+:    :+:   */
+/*   game_hooks_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 16:52:24 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/12 18:45:08 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/12 21:10:19 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	keyb_wasd_arrow(mlx_key_data_t key, t_game *game)
 {

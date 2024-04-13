@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bira <bira@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 18:09:44 by umeneses          #+#    #+#             */
-/*   Updated: 2024/02/16 21:46:44 by bira             ###   ########.fr       */
+/*   Updated: 2024/04/12 22:15:21 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	*ft_calloc(size_t n_items, size_t size)
 // {
 // 	char	*array;
 // 	size_t	index;
-	
+
 // 	array = (char *)malloc(safety_arg);
 // 	if (array == NULL)
 // 	{
