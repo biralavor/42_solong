@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/03 15:54:10 by umeneses          #+#    #+#              #
-#    Updated: 2024/04/12 16:31:00 by umeneses         ###   ########.fr        #
+#    Updated: 2024/04/12 22:10:23 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,54 +26,75 @@ RESET			:= \033[0m
 # **************************************************************************** #
 
 SRC_D			= src/
+BONUS_D			= bonus/
 SRC_UTILS_D		= $(SRC_D)utils/
+BONUS_UTILS_D	= $(BONUS_D)utils/
 LIBS_D			= ./libs/
 LIBFT_D			= $(LIBS_D)libft/
 MLX42_D			= $(LIBS_D)codam/
 MLX42_BUILD		= $(MLX42_D)build/
 BUILD_D			= ./build/
-HEADERS			= ./headers/ $(HEADERS_ADDED)
 HEADERS_ADDED	= $(LIBFT_D)
 HEADERS_ADDED	+= $(MLX42_D)include/MLX42/
+HEADERS_ADDED	+= $(BONUS_D)/
+HEADERS			= ./headers/ $(HEADERS_ADDED)
 
 # **************************************************************************** #
 #								FILES										   #
 # **************************************************************************** #
 
-LIBTF			= $(addprefix $(LIBFT_D), libft.a)
-MLX42			= $(addprefix $(MLX42_BUILD), libmlx42.a)
-LIBS			= $(LIBTF) $(MLX42)
+LIBTF				= $(addprefix $(LIBFT_D), libft.a)
+MLX42				= $(addprefix $(MLX42_BUILD), libmlx42.a)
+LIBS				= $(LIBTF) $(MLX42)
 
-NAME			= so_long
-NAME_BONUS		= so_long_bonus
+NAME				= so_long
+NAME_BONUS			= so_long_bonus
 
-FILES			= main.c
-FILES			+= loading_images.c
-FILES			+= game_init.c
-FILES_UTILS		= free_functions.c
-FILES_UTILS		+= game_builder.c
-FILES_UTILS		+= game_hooks.c
-FILES_UTILS		+= game_rules.c
-FILES_UTILS		+= gameplay.c
-FILES_UTILS		+= map_builder/map_init_allocation.c
-FILES_UTILS		+= map_builder/map_init_val_contents.c
-FILES_UTILS		+= map_builder/map_init_validation.c
-FILES_UTILS		+= map_builder/map_init_val_size_gnl.c
-FILES_UTILS		+= map_builder/map_init.c
-FILES_UTILS		+= map_builder/map_wall_validation.c
-FILES_UTILS		+= map_builder/matrix_printer.c
+FILES				= main.c
+FILES				+= loading_images.c
+FILES				+= game_init.c
+FILES_UTILS			= free_functions.c
+FILES_UTILS			+= game_builder.c
+FILES_UTILS			+= game_hooks.c
+FILES_UTILS			+= game_rules.c
+FILES_UTILS			+= gameplay.c
+FILES_UTILS			+= map_builder/map_init_allocation.c
+FILES_UTILS			+= map_builder/map_init_val_contents.c
+FILES_UTILS			+= map_builder/map_init_validation.c
+FILES_UTILS			+= map_builder/map_init_val_size_gnl.c
+FILES_UTILS			+= map_builder/map_init.c
+FILES_UTILS			+= map_builder/map_wall_validation.c
+FILES_UTILS			+= map_builder/matrix_printer.c
 
-SRCS			= $(addprefix $(SRC_D), $(FILES))
-SRCS_UTILS		= $(addprefix $(SRC_UTILS_D), $(FILES_UTILS))
+SRCS				= $(addprefix $(SRC_D), $(FILES))
+SRCS_UTILS			= $(addprefix $(SRC_UTILS_D), $(FILES_UTILS))
 
-#SCRS_BONUS		= 
+BONUS_FILES			= main.c
+BONUS_FILES			+= loading_images_bonus.c
+BONUS_FILES			+= game_init_bonus.c
+BONUS_FILES_UTILS	= free_functions_bonus.c
+BONUS_FILES_UTILS	+= game_builder_bonus.c
+BONUS_FILES_UTILS	+= game_hooks_bonus.c
+BONUS_FILES_UTILS	+= game_rules_bonus.c
+BONUS_FILES_UTILS	+= gameplay_bonus.c
+BONUS_FILES_UTILS	+= map_builder/map_init_allocation_bonus.c
+BONUS_FILES_UTILS	+= map_builder/map_init_val_contents_bonus.c
+BONUS_FILES_UTILS	+= map_builder/map_init_validation_bonus.c
+BONUS_FILES_UTILS	+= map_builder/map_init_val_size_gnl_bonus.c
+BONUS_FILES_UTILS	+= map_builder/map_init_bonus.c
+BONUS_FILES_UTILS	+= map_builder/map_wall_validation_bonus.c
+BONUS_FILES_UTILS	+= map_builder/matrix_printer_bonus.c
 
-OBJS			= $(addprefix $(BUILD_D), $(SRCS:%.c=%.o))
-OBJS_UTILS		= $(addprefix $(BUILD_D), $(SRCS_UTILS:%.c=%.o))
-OBJS_ALL		= $(OBJS) $(OBJS_UTILS)
+SRCS_BONUS			= $(addprefix $(BONUS_D), $(BONUS_FILES))
+SRCS_BONUS_UTILS	= $(addprefix $(BONUS_UTILS_D), $(BONUS_FILES_UTILS))
 
-#BONUS_FILES	= $(SCRS_BONUS:%.=%.o)
-#BONUS_OBJS		= $(BONUS_FILES:%.c=$(BUILD_D)%.o)
+OBJS				= $(addprefix $(BUILD_D), $(SRCS:%.c=%.o))
+OBJS_UTILS			= $(addprefix $(BUILD_D), $(SRCS_UTILS:%.c=%.o))
+OBJS_ALL			= $(OBJS) $(OBJS_UTILS)
+
+OBJS_BONUS			= $(addprefix $(BUILD_D), $(SRCS_BONUS:%.c=%.o))
+OBJS_BONUS_UTILS	= $(addprefix $(BUILD_D), $(SRCS_BONUS_UTILS:%.c=%.o))
+OBJS_BONUS_ALL		= $(OBJS_BONUS) $(OBJS_BONUS_UTILS)
 
 # **************************************************************************** #
 #								COMMANDS									   #
@@ -84,16 +105,33 @@ MKDIR			= mkdir -p
 MV_OBJS			= find . -type f \( -name '.o' -o -name '.a'\) -exec mv {} \
 
 # **************************************************************************** #
+#								DEFINE										   #
+# **************************************************************************** #
+ifdef WITH_BONUS
+	NAME		= $(NAME_BONUS)
+	OBJS_ALL	= $(OBJS_BONUS_ALL)
+endif
+
+define bonus
+	$(MAKE) WITH_BONUS=TRUE
+endef
+
+define			run_test
+				echo $(1)
+				valgrind --leak-check=full --show-leak-kinds=all \
+				--track-origins=yes --log-file=valgrind-out.txt  \
+				--suppressions=./valgrind_suppressions.sup ./so_long maps/$(1)
+endef
+
+# **************************************************************************** #
 #								COMPILATION									   #
 # **************************************************************************** #
 
 AUTHOR			= umeneses
 CC				= cc
-#CFLAGS			= -Wall -Wextra -Werror
-CFLAGS			= -g3 -Ofast
+CFLAGS			= -Wall -Wextra -Werror -g3
 CPPFLAGS		= $(addprefix -I , $(HEADERS)) -MMD -MP
 DFLAGS			= -g3
-#LDLIBS			= $(addprefix -L , $(dir $(LIBS)))
 LDFLAGS			= -ldl -lglfw -pthread -lm
 COMPILE_OBJS	= $(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 COMPILE_EXE		= $(CC) $(OBJS_ALL) $(LDFLAGS) $(LIBS) -o $(NAME)
@@ -119,18 +157,14 @@ $(NAME):		$(OBJS_ALL)
 libft_lib:
 				@printf "$(CYAN)"
 				$(MAKE) -C $(LIBFT_D)
-#				@echo "Checking File..."
-#				nm $(LIBTF)
 				@printf "$(RESET)"
 
 mlx_lib:
 				@cmake $(MLX42_D) -B $(MLX42_D)build
 				$(MAKE) -C $(MLX42_D)build -j4
 
-
-bonus:			libft_lib mlx_lib $(NAME_BONUS)
-
-#$(NAME_BONUS):	$(BONUS_OBJS)
+bonus:
+				$(call bonus)
 
 clean:
 				$(RM) $(OBJS_ALL)
@@ -139,19 +173,11 @@ clean:
 				$(MAKE) -C $(LIBFT_D) fclean
 
 fclean:			clean
-				$(RM) $(NAME)
+				$(RM) $(NAME) $(NAME_BONUS)
 
 re:				fclean all
-rebonus:		fclean bonusDFLAGS
-
-define			run_test
-				echo $(1)
-				valgrind --leak-check=full --show-leak-kinds=all \
-				--track-origins=yes --log-file=valgrind-out.txt  \
-				--suppressions=./valgrind_suppressions.sup ./so_long maps/$(1)
-endef
 
 leaks_%:		re
 				$(call run_test,$*)
 
-.PHONY:			all clean fclean re leaks_ bonus rebonus
+.PHONY:			all clean fclean re leaks_ bonus
