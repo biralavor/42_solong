@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 12:19:44 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/12 22:35:33 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/13 14:43:01 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ bool	is_wall(mlx_key_data_t key, t_game *game)
 		if (game->userdata->future_y_pos == wall_y
 			&& game->userdata->future_x_pos == wall_x)
 		{
-			ft_printf("\nWATCH OUT\nYou've hit a Meteor!\n\n");
+			ft_printf("\nWATCH OUT\nYou've hit an Asteroid!\n\n");
 			return (true);
 		}
 		index++;
