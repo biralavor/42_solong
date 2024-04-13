@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/03 15:54:10 by umeneses          #+#    #+#              #
-#    Updated: 2024/04/12 22:10:23 by umeneses         ###   ########.fr        #
+#    Updated: 2024/04/12 23:10:46 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,7 @@ MLX42				= $(addprefix $(MLX42_BUILD), libmlx42.a)
 LIBS				= $(LIBTF) $(MLX42)
 
 NAME				= so_long
-NAME_BONUS			= so_long_bonus
+NAME_BONUS			= so_long
 
 FILES				= main.c
 FILES				+= loading_images.c
@@ -177,7 +177,7 @@ fclean:			clean
 
 re:				fclean all
 
-leaks_%:		re
+leaks_%:		
 				$(call run_test,$*)
 
 .PHONY:			all clean fclean re leaks_ bonus

@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:47:07 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/12 21:09:50 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/12 23:13:01 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ t_game	*structures_init(t_game *game)
 {
 	game = ft_calloc(1, sizeof(t_game));
 	game->map = ft_calloc(1, sizeof(t_map));
+	game->hud = ft_calloc(1, sizeof(t_hud));
 	game->sprites = ft_calloc(1, sizeof(t_sprite));
 	game->userdata = ft_calloc(1, sizeof(t_userdata));
 	game->userdata->totalshield = 3;
@@ -75,6 +76,7 @@ int32_t	main(int32_t argc, char **argv)
 		}
 		free(game->userdata);
 		free(game->sprites);
+		free(game->hud);
 		free (game);
 	}
 	else if (argc > 2)

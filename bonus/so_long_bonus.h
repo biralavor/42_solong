@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:46:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/12 21:03:52 by umeneses         ###   ########.fr       */
+/*   Updated: 2024/04/12 23:01:26 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@
 # define ASTRONAUT "./textures/32px_astronaut.png"
 # define EARTH "./textures/32px_earth.png"
 /* Sprite definitions */
+
+typedef struct s_hud
+{
+	mlx_image_t		*mission_txt;
+}					t_hud;
 
 typedef struct s_userdata
 {
@@ -84,6 +89,7 @@ typedef struct s_map
 typedef struct s_game
 {
 	t_map			*map;
+	t_hud			*hud;
 	t_sprite		*sprites;
 	t_userdata		*userdata;
 	mlx_t			*mlx;
@@ -122,6 +128,7 @@ void	how_many_walls(t_map *map);
 
 void	matrix_printer(t_map *map);
 void	game_init(t_game *game);
+void	canvas_hud(t_game *game);
 void	free_all_mlx_usage(t_game *game);
 void	free_map(t_map *map);
 void	free_matrix(char **matrix);
