@@ -20,3 +20,11 @@ This is a common core project from https://42.fr
 - Move the player with keyboard arrows and WASD keys
 - Collect coins
 - Exit the game gracefully!
+- A LOT of feedback messages on the Linux terminal
+- Prebuilt game maps for playing and system validation tests
+
+### Bonus Features
+- Text on screen
+- New terminal messages
+- Enemy patrol (you have to figure it out who is your enemy!)
+- New Game rules 🤔
