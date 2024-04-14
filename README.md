@@ -21,7 +21,15 @@ This is a common core project from https://42.fr
 - Collect coins
 - Exit the game gracefully!
 - A LOT of feedback messages on the Linux terminal
-- Prebuilt game maps for playing and system validation tests
+- Prebuilt game maps for playing and system validation tests:
+  - map file extension - needs to be '.ber'
+  - bad format - is your map rectangular?
+  - illegal char in map
+  - locked item in map
+  - tiny map
+  - big map
+  - wall - do you have a breach on the wall?
+  - items_to_check - I've build this map to help users understand about map validation. Try it!
 
 ### Bonus Features
 - Text on screen
