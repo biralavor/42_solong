@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/03 15:54:10 by umeneses          #+#    #+#              #
-#    Updated: 2024/04/13 14:41:43 by umeneses         ###   ########.fr        #
+#    Updated: 2024/04/14 09:40:14 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -152,7 +152,7 @@ $(NAME):		$(OBJS_ALL)
 				@printf "$(GREEN)"
 				@echo "Game Ready!"
 				@printf "$(YELLOW)"
-				@echo "Now, hit on terminal: './so_long maps/CHOSE-YOUR-MAP'"
+				@echo "Now, hit on terminal: './so_long maps/CHOOSE-YOUR-MAP'"
 
 libft_lib:
 				@printf "$(CYAN)"
