@@ -4,7 +4,7 @@ This is a common core project from https://42.fr
 
 My grade at 42 School: 105% \o/
 
-![Screenshot from 2024-04-15 09-59-22](https://github.com/biralavor/42_solong/assets/80487147/7d94b14f-1c64-466d-8804-c636d59d6518)
+![so_longe](https://github.com/biralavor/42_solong/assets/80487147/1788976e-cce3-440b-8413-75f062e9f9ae)   ![105sucess](https://github.com/biralavor/42_solong/assets/80487147/7d94b14f-1c64-466d-8804-c636d59d6518)
 
 - Main goal:
   - Build a game in C language
