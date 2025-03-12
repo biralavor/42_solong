@@ -40,6 +40,9 @@ My grade at 42 School: 105% \o/
 - Enemy patrol (you have to figure it out who is your enemy!)
 - New Game rules 🤔
 
+![image](https://github.com/user-attachments/assets/914d452d-2a91-4e0b-9578-4379d62793d6)
+
+
 ### About the code
 - 100% boolean functions for map validation
   ![Screenshot from 2024-04-15 10-06-51](https://github.com/biralavor/42_solong/assets/80487147/c560c576-bcda-46da-a710-cb824b560a40)
