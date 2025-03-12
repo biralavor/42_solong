@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:46:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/12 23:01:26 by umeneses         ###   ########.fr       */
+/*   Updated: 2025/03/12 11:59:38 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,14 @@
 # define ASTRONAUT "./textures/32px_astronaut.png"
 # define EARTH "./textures/32px_earth.png"
 /* Sprite definitions */
+
+# define RED	"\033[0;31m"
+# define GRE	"\033[0;32m"
+# define YEL	"\033[0;33m"
+# define BLU	"\033[0;34m"
+# define PUR	"\033[0;35m"
+# define CYA	"\033[0;36m"
+# define RESET	"\033[0m"
 
 typedef struct s_hud
 {
@@ -151,7 +159,8 @@ void	end_game(t_game *game);
 void	keyb_wasd_arrow(mlx_key_data_t key, t_game *game);
 void	user_counter(char *key, t_game *game);
 void	coins_counter(t_game *game);
-void	shield_counter(t_game *game);
+void	shield_warnings(t_game *game);
+void	shield_counter_printer(t_game *game);
 /* game hooks functions */
 
 void	future_player_pos(mlx_key_data_t key, t_game *game);

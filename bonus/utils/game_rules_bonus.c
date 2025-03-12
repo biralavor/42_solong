@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 12:19:44 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/13 14:42:17 by umeneses         ###   ########.fr       */
+/*   Updated: 2025/03/12 12:01:06 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ bool	is_wall(mlx_key_data_t key, t_game *game)
 			&& game->userdata->future_x_pos == wall_x)
 		{
 			game->userdata->shield--;
-			ft_printf("\n(ง ◉ _ ◉)ง WATCH OUT\nYou've hit an Asteroid! 💥\n\n");
+			ft_printf(RED"\n(ง ◉ _ ◉)ง WATCH OUT >>> " \
+				YEL"You've hit an Asteroid! 💥\n"RESET);
 			return (true);
 		}
 		index++;
@@ -50,12 +51,38 @@ bool	is_wall(mlx_key_data_t key, t_game *game)
 	return (false);
 }
 
-void	shield_counter(t_game *game)
+void	shield_warnings(t_game *game)
 {
-	ft_printf("\nSpacecraft Shield = (%i/%i)\n",
-		game->userdata->shield, game->userdata->totalshield);
+	shield_counter_printer(game);
 	if (game->userdata->shield == 2)
-		ft_printf("\n\nWARNING!\n\nYou have a breach in the hull!\n\n");
+		ft_printf(RED" <<< WARNING! >>> " \
+			YEL"You have a breach in the hull!"RESET);
 	if (game->userdata->shield == 1)
-		ft_printf("\nGOSH!\n\nYou only have one engine!\n\n");
+		ft_printf(RED" <<< GOSH! >>> "YEL"You only have one engine!"RESET);
+	ft_printf("\n*************\n");
+}
+
+void	shield_counter_printer(t_game *game)
+{
+	int	total_shield;
+	int	user_shield;
+	int	idx;
+	
+	idx = -1;
+	total_shield = game->userdata->totalshield * 2;
+	user_shield = game->userdata->shield * 2;
+	ft_printf(RESET"\n(");
+	if (user_shield == total_shield)
+	{
+		while (++idx <= total_shield)
+		write(1, "|", 1);
+	}
+	else
+	{
+		while (++idx < user_shield)
+			ft_printf(RED"|"RESET);
+		while (++idx <= total_shield)
+			ft_printf(RESET"|");
+	}
+	ft_printf(RESET") "PUR"Spacecraft Shield"RESET);
 }
