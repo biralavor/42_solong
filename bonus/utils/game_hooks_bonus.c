@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 16:52:24 by umeneses          #+#    #+#             */
-/*   Updated: 2025/03/12 11:45:59 by umeneses         ###   ########.fr       */
+/*   Updated: 2025/03/12 11:57:02 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	user_counter(char *key, t_game *game)
 	{
 		ft_printf("\nSliding right!\n*************\n(%i)      "\
 			PUR"Used Fuel"RESET, ++game->userdata->totalmoves);
-		}
+	}
 	coins_counter(game);
 	shield_counter(game);
 }
