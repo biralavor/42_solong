@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 16:52:24 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/12 22:41:23 by umeneses         ###   ########.fr       */
+/*   Updated: 2025/03/12 11:45:59 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,33 +45,30 @@ void	user_counter(char *key, t_game *game)
 {
 	if (ft_strncmp(key, "UP", 3) == 0)
 	{
-		ft_printf("\n\nLet's Go!\n\nFuel = %i",
-			++game->userdata->totalmoves);
-		coins_counter(game);
+		ft_printf("\nLet's Go!\n*************\n(%i)      "\
+			PUR"Used Fuel"RESET, ++game->userdata->totalmoves);
 	}
 	if (ft_strncmp(key, "DOWN", 5) == 0)
 	{
-		ft_printf("\n\nVish! Pulling back now!\n\nFuel = %i",
-			++game->userdata->totalmoves);
-		coins_counter(game);
+		ft_printf("\nVish! Pulling back now!\n*************\n(%i)      "\
+			PUR"Used Fuel"RESET, ++game->userdata->totalmoves);
 	}
 	if (ft_strncmp(key, "LEFT", 5) == 0)
 	{
-		ft_printf("\n\nDodging left!\n\nFuel = %i",
-			++game->userdata->totalmoves);
-		coins_counter(game);
+		ft_printf("\nDodging left!\n*************\n(%i)      "\
+			PUR"Used Fuel"RESET, ++game->userdata->totalmoves);
 	}
 	if (ft_strncmp(key, "RIGHT", 6) == 0)
 	{
-		ft_printf("\n\nSliding right!\n\nFuel = %i",
-			++game->userdata->totalmoves);
-		coins_counter(game);
-	}
+		ft_printf("\nSliding right!\n*************\n(%i)      "\
+			PUR"Used Fuel"RESET, ++game->userdata->totalmoves);
+		}
+	coins_counter(game);
 	shield_counter(game);
 }
 
 void	coins_counter(t_game *game)
 {
-	ft_printf("  && Lost Astronauts = %i/%i",
+	ft_printf("\n("GRE"%i"RESET"/%i)     "PUR"Lost Astronauts in Space"RESET,
 		game->userdata->totalcoins, game->map->coin_index);
 }
