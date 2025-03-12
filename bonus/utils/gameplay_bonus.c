@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 10:08:04 by umeneses          #+#    #+#             */
-/*   Updated: 2024/04/12 21:10:14 by umeneses         ###   ########.fr       */
+/*   Updated: 2025/03/12 11:06:03 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,9 @@ void	frame_update(mlx_key_data_t key, t_game *game)
 	{
 		if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 		{
-			write(1, "\n\nN00OOOOOOO00!\n\n", 18);
-			write(1, "\\¯\\_(ツ)_/¯/\n\n", 18);
+			ft_printf(RED);
+			write(1, "\nN00OOOOOOO00!\n", 18);
+			write(1, "\\¯\\_(ツ)_/¯/\n\n", 16);
 			mlx_close_window(game->mlx);
 			return ;
 		}
@@ -46,7 +47,7 @@ void	coins_update(t_game *game)
 			&& game->sprites->coin->instances[index].enabled == true)
 		{
 			++game->userdata->totalcoins;
-			ft_printf("\n\nYou've saved an Astronaut!\n");
+			ft_printf(GRE"\nYou've saved an Astronaut!\n"RESET);
 			game->sprites->coin->instances[index].enabled = false;
 			show_exit(game);
 		}
@@ -58,8 +59,8 @@ void	show_exit(t_game *game)
 {
 	if (game->userdata->totalcoins == game->map->coin_index)
 	{
-		ft_printf("\n\nGREAT! You've saved all Astronauts!\n");
-		ft_printf("\nYour last mission >>> Let's go back home!\n");
+		ft_printf(GRE"\nGREAT! You've saved all Astronauts!\n");
+		ft_printf(YEL"Your last mission >>> "BLU"Let's go back home!\n"RESET);
 		game->sprites->exit->instances->enabled = true;
 	}
 }
@@ -68,8 +69,8 @@ void	end_game(t_game *game)
 {
 	if (game->userdata->shield == 0)
 	{
-		ft_printf("\n\nYou've lost all your shield!\n");
-		ft_printf("\nGAME OVER! (╥﹏╥)\n\n");
+		ft_printf(YEL"\nYou've lost all your shield!\n");
+		ft_printf(RED"\nGAME OVER! (╥﹏╥)\n");
 		mlx_close_window(game->mlx);
 	}
 	if ((game->userdata->y_pos
@@ -78,8 +79,8 @@ void	end_game(t_game *game)
 			== game->sprites->exit->instances->x / PIXEL_SIZE)
 		&& game->sprites->exit->instances->enabled == true)
 	{
-		ft_printf("\n\nAll Astronauts have arrived safely >>> 🌎\n");
-		ft_printf("\nCONGRATULATIONS! You WON!\n\n\\( ﾟヮﾟ)/🏆\n\n");
+		ft_printf(GRE"\nAll Astronauts have arrived safely >>> 🌎\n");
+		ft_printf("\nCONGRATULATIONS! You WON!"BLU"\n\n\\( ﾟヮﾟ)/🏆\n\n");
 		mlx_close_window(game->mlx);
 	}
 }
