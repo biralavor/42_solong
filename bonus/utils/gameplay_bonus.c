@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 10:08:04 by umeneses          #+#    #+#             */
-/*   Updated: 2025/03/13 10:19:16 by umeneses         ###   ########.fr       */
+/*   Updated: 2025/03/13 10:52:36 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	frame_update(mlx_key_data_t key, t_game *game)
 		if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 		{
 			ft_printf(RED);
-			write(1, "\nN00OOOOOOO00!\n", 18);
+			write(1, "\nN00OOOOOOO00!\n", 16);
 			write(1, "\\¯\\_(ツ)_/¯/\n\n", 16);
 			mlx_close_window(game->mlx);
 			return ;
