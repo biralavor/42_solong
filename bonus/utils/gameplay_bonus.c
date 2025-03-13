@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 10:08:04 by umeneses          #+#    #+#             */
-/*   Updated: 2025/03/12 11:06:03 by umeneses         ###   ########.fr       */
+/*   Updated: 2025/03/13 10:19:16 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	show_exit(t_game *game)
 	if (game->userdata->totalcoins == game->map->coin_index)
 	{
 		ft_printf(GRE"\nGREAT! You've saved all Astronauts!\n");
-		ft_printf(YEL"Your last mission >>> "BLU"Let's go back home!\n"RESET);
+		ft_printf(YEL"Your last mission >>> "CYA"Let's go back home!\n"RESET);
 		game->sprites->exit->instances->enabled = true;
 	}
 }
@@ -80,7 +80,7 @@ void	end_game(t_game *game)
 		&& game->sprites->exit->instances->enabled == true)
 	{
 		ft_printf(GRE"\nAll Astronauts have arrived safely >>> 🌎\n");
-		ft_printf("\nCONGRATULATIONS! You WON!"BLU"\n\n\\( ﾟヮﾟ)/🏆\n\n");
+		ft_printf("\nCONGRATULATIONS! You WON!"CYA"\n\n\\( ﾟヮﾟ)/🏆\n\n");
 		mlx_close_window(game->mlx);
 	}
 }
