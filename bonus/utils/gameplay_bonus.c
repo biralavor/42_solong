@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 10:08:04 by umeneses          #+#    #+#             */
-/*   Updated: 2025/03/13 10:52:36 by umeneses         ###   ########.fr       */
+/*   Updated: 2025/03/13 14:54:43 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	coins_update(t_game *game)
 			&& game->sprites->coin->instances[index].enabled == true)
 		{
 			++game->userdata->totalcoins;
-			ft_printf(GRE"\nYou've saved an Astronaut!\n"RESET);
+			ft_printf(GRE"\a\nYou've saved an Astronaut!\n"RESET);
 			game->sprites->coin->instances[index].enabled = false;
 			show_exit(game);
 		}
@@ -80,7 +80,7 @@ void	end_game(t_game *game)
 		&& game->sprites->exit->instances->enabled == true)
 	{
 		ft_printf(GRE"\nAll Astronauts have arrived safely >>> 🌎\n");
-		ft_printf("\nCONGRATULATIONS! You WON!"CYA"\n\n\\( ﾟヮﾟ)/🏆\n\n");
+		ft_printf("\a\nCONGRATULATIONS! You WON!"CYA"\n\n\\( ﾟヮﾟ)/🏆\n\n");
 		mlx_close_window(game->mlx);
 	}
 }
