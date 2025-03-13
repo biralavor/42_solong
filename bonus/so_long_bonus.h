@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:46:04 by umeneses          #+#    #+#             */
-/*   Updated: 2025/03/12 11:59:38 by umeneses         ###   ########.fr       */
+/*   Updated: 2025/03/13 11:09:11 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <stdint.h>
 # include <stdbool.h>
 
-# define WIDTH 1024
+# define WIDTH 610
 # define HEIGHT 720
 # define PIXEL_SIZE 32
 # define MAX_MAP_WIDTH 30
