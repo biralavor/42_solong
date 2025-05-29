@@ -1,16 +1,17 @@
-# Let's save the Astronauts!
+# So_long -> Let's save the Astronauts!
 This is a common core project from https://42.fr
-## Project name: so_long
 
 My grade at 42 School: 105% \o/
 
-![so_longm](https://github.com/biralavor/42_solong/assets/80487147/f760aaf0-3431-4fe8-81a2-09aa87535608)   ![105sucess](https://github.com/biralavor/42_solong/assets/80487147/7d94b14f-1c64-466d-8804-c636d59d6518)
+![Screenshot from 2024-04-14 10-04-21](https://github.com/biralavor/42_solong/assets/80487147/9ab01979-2f1d-453f-af1b-fe9897ac9033)
+
+| ![so_longm](https://github.com/biralavor/42_solong/assets/80487147/f760aaf0-3431-4fe8-81a2-09aa87535608) | A game built in Linux without any game engine | ![105sucess](https://github.com/biralavor/42_solong/assets/80487147/7d94b14f-1c64-466d-8804-c636d59d6518) |
+| :-: | :-: | :-: |
+
 
 - Main goal:
   - Build a game in C language
   - Use a graphic library (minilibX or MLX42codam)
-
-![Screenshot from 2024-04-14 10-04-21](https://github.com/biralavor/42_solong/assets/80487147/9ab01979-2f1d-453f-af1b-fe9897ac9033)
 
 ### Features
 - Build your own map, using:
